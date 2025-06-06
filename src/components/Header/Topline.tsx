@@ -62,25 +62,6 @@ export const Topline: React.FC<Props> = ({ className }) => {
 					</div>
 				</Container>
 			</div>
-			<Container>
-				<ul className="flex items-center justify-between gap-5">
-					<li>
-						<NavLink to="/bestsellers">Bestsellers</NavLink>
-					</li>
-					<li>
-						<NavLink to="/new-products">New Product</NavLink>
-					</li>
-					<li>
-						<NavLink to="/products">Products</NavLink>
-					</li>
-					<li>
-						<NavLink to="/products/product">Product Card</NavLink>
-					</li>
-					<li>
-						<NavLink to="/order">Order</NavLink>
-					</li>
-				</ul>
-			</Container>
 		</>
 	);
 };

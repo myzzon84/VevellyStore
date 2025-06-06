@@ -29,7 +29,7 @@ export const CardSlider: React.FC<Props> = ({ cards }) => {
 		slidesToScroll: 4,
 	};
 	return (
-		<div className="w-full">
+		<div className="w-[1400px]">
 			<AnySlider {...settings}>
 				{cards.map(item => {
 					const [currentImgIndex, setCurrentImgIndex] = useState(0);
@@ -47,14 +47,14 @@ export const CardSlider: React.FC<Props> = ({ cards }) => {
 									<span
 										className={clsx(
 											item.badge === 'Sale' ? 'bg-[#FF8D8D]' : '',
-											item.badge === 'New' ? 'bg-[#D6E8EE]' : '',
+											item.badge === 'New' || 'Top' ? 'bg-[#D6E8EE]' : '',
 											'badge-card absolute top-0 left-0 py-1.5 px-2.5'
 										)}
 									>
 										{item.badge}
 									</span>
 								)}
-								<span className="fav-card absolute top-0 right-0 ">
+								<span className="fav-card absolute top-3 right-3 ">
 									{item.fav ? <Icon name="fav" /> : <Icon name="like" />}
 								</span>
 								<img
@@ -73,7 +73,7 @@ export const CardSlider: React.FC<Props> = ({ cards }) => {
 							</div>
 							<div className="wrap_info text-center">
 								<div className="category text-lg leading-6">{item.category}</div>
-								<div className="title text-sm leading-6">{item.title}</div>
+								<div className="title text-[16px]/[21px]">{item.title}</div>
 								<div className="price text-lg leading-6">
 									{item.old_price ? (
 										<>

@@ -24,7 +24,7 @@ export const HomeBlock: React.FC<Props> = ({ title, cards }) => {
 					<div className="text-lg font-light leading-6 text-[#0d0c0c]">{t.seeAll[lang]}</div>
 				</div>
 			</Container>
-			<Container>
+			<Container className={` card-slider`}>
 				<div className="flex items-center justify-between">
 					<CardSlider cards={cards} />
 				</div>

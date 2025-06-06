@@ -23,37 +23,38 @@ export const MySlider: React.FC<Props> = ({ banner }) => {
 	};
 	return (
 		<div className="slider mb-30">
-			<div className="relative w-screen h-screen overflow-hidden">
+			<div className="relative w-screen">
 				<AnySlider {...settings}>
 					{banner.map((item, index) => (
-						<div key={index} className="relative w-full h-screen flex items-center justify-center">
-							<div className="absolute top-0 right-0 w-[94%] h-[1px]  bg-[#99cadd]"></div>
-							<div
-								className="absolute top-1/2 transform -translate-y-1/2 left-0 w-full flex h-3/5 z-10 items-center justify-between"
-								style={{ backgroundColor: item.color || 'transparent' }}
-							></div>
+						<div key={index}>
+							<div className="relative max-w-[1400px] mx-auto flex items-center justify-center border-t border-[#97CADB] border-l">
+								<div
+									className="absolute top-1/2 transform -translate-y-1/2 left-0 w-full flex h-3/5 z-10 items-center justify-between"
+									style={{ backgroundColor: item.color || 'transparent' }}
+								></div>
 
-							<div className="relative  flex h-full max-w-[1320px] m-auto px-4 items-center justify-between">
-								<div className="absolute top-1/2 transform -translate-y-1/2 left-0 w-[1px] h-full z-1 bg-[#99cadd]"></div>
-								<div className="relative z-10 w-1/2 flex items-center justify-center p-10">
-									<h2
-										className={clsx(
-											'text-[46px] uppercase font-normal leading-[1.5] text-center',
-											item.text_color ? `text-[${item.text_color}]` : 'text-white'
-										)}
-									>
-										{item.title}
-									</h2>
-								</div>
+								<div className="relative  flex h-full max-w-[1320px] m-auto px-4 items-center justify-between">
+									<div className="relative z-10 w-1/2 flex items-center justify-center p-10 -left-[50px]">
+										<h2
+											className={clsx(
+												'text-[64px]/[1.5] font-normal max-w-[500px]',
+												item.text_color ? `text-[${item.text_color}]` : 'text-white'
+											)}
+											style={{ fontFamily: 'Libre Caslon Display' }}
+										>
+											{item.title}
+										</h2>
+									</div>
 
-								<div className="w-1/2 z-10">
-									<img className="w-full h-full object-cover" src={item.img} alt="slider" />
+									<div className="w-1/2 z-10">
+										<img className="w-full h-full object-cover" src={item.img} alt="slider" />
+									</div>
 								</div>
+								<div className="absolute -bottom-1 right-1/2 mr-8 text-[#018ABE] text-[24px]/[31px] font-medium">
+									{String(index + 1).padStart(2, '0')}
+								</div>
+								<div className={` absolute bottom-0 bg-white -left-[2px] border-t w-[44%] border-[#97CADB] h-3`}></div>
 							</div>
-							<div className="absolute -bottom-1 right-1/2 mr-8 text-blue-900 text-base font-bold">
-								{String(index + 1).padStart(2, '0')}
-							</div>
-							<div className="absolute bottom-0 left-22 w-[38%] h-[1px] bg-[#99cadd]"></div>
 						</div>
 					))}
 				</AnySlider>

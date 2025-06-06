@@ -105,6 +105,10 @@ h1 {
 	min-height: 440px;
 }
 
+.card{
+	width: 328px !important;
+}
+
 @layer utilities {
 	.scrollbar-hide {
 		-ms-overflow-style: none;
@@ -131,4 +135,14 @@ h1 {
 	font-weight: 400;
 	line-height: 20px;
 	color: #434141;
+}
+
+.card-slider{
+	display: flex;
+	justify-content: center;
+}
+
+.card-slider .slick-slide > div{
+	display: flex;
+	justify-content: center;
 }
