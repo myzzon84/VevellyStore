@@ -9,16 +9,49 @@ import Icon from './Icon';
 export type CartItemType = {
 	id: number;
 	img: string | string[];
-	badge?: string;
+	badge?: string | string[];
 	fav?: boolean;
 	category: string;
 	title: string;
 	old_price?: number;
 	price?: number;
 };
+export type SwaggerCartItemType = {
+	article: string;
+	attributes: [];
+	category: {
+		has_diameter: boolean;
+		has_length: boolean;
+		has_weight: boolean;
+		has_width: boolean;
+		id: number;
+		name: string;
+		slug: string;
+		updated_at: string;
+	};
+	certificates: [];
+	collection: null | string;
+	description: [];
+	design: string;
+	ean_13: null;
+	gemstone: [];
+	id: number;
+	images: [];
+	material: [];
+	name: string;
+	occasions: string;
+	sku: string;
+	slug: string;
+	statuses: string[];
+	subcategory: null;
+	subproducts: [];
+	fav?: boolean;
+	price?: number;
+	old_price?: number;
+};
 
 interface Props {
-	cards: CartItemType[];
+	cards: SwaggerCartItemType[];
 }
 
 export const CardSlider: React.FC<Props> = ({ cards }) => {
@@ -33,7 +66,7 @@ export const CardSlider: React.FC<Props> = ({ cards }) => {
 			<AnySlider {...settings}>
 				{cards.map(item => {
 					const [currentImgIndex, setCurrentImgIndex] = useState(0);
-					const images = Array.isArray(item.img) ? item.img : [item.img];
+					const images = Array.isArray(item.images) ? item.images : [item.images];
 
 					const handleNextImage = () => {
 						if (images.length > 1) {
@@ -43,15 +76,17 @@ export const CardSlider: React.FC<Props> = ({ cards }) => {
 					return (
 						<div key={item.id} className="card group">
 							<div className="img relative">
-								{item.badge && (
+								{item.statuses && (
 									<span
 										className={clsx(
-											item.badge === 'Sale' ? 'bg-[#FF8D8D]' : '',
-											item.badge === 'New' || 'Top' ? 'bg-[#D6E8EE]' : '',
+											item.statuses.includes('Sale') ? 'bg-[#FF8D8D]' : '',
+											item.statuses.includes('New') || item.statuses.includes('Top')
+												? 'bg-[#D6E8EE]'
+												: '',
 											'badge-card absolute top-0 left-0 py-1.5 px-2.5'
 										)}
 									>
-										{item.badge}
+										{item.statuses}
 									</span>
 								)}
 								<span className="fav-card absolute top-3 right-3 ">
@@ -59,7 +94,7 @@ export const CardSlider: React.FC<Props> = ({ cards }) => {
 								</span>
 								<img
 									src={images[currentImgIndex]}
-									alt={item.title}
+									alt={item.name}
 									className="!h-[300px] object-cover"
 								/>
 								{images.length > 1 && (
@@ -72,8 +107,8 @@ export const CardSlider: React.FC<Props> = ({ cards }) => {
 								)}
 							</div>
 							<div className="wrap_info text-center">
-								<div className="category text-lg leading-6">{item.category}</div>
-								<div className="title text-[16px]/[21px]">{item.title}</div>
+								<div className="category text-lg leading-6">{item.category.name}</div>
+								<div className="title text-[16px]/[21px]">{item.name}</div>
 								<div className="price text-lg leading-6">
 									{item.old_price ? (
 										<>

@@ -1,18 +1,20 @@
 import React from 'react';
-import { CardSlider, CartItemType } from '../CardSlider';
+import { CardSlider, SwaggerCartItemType } from '../CardSlider';
 import { Container } from '../Container/Container';
 
 import { useSelector } from 'react-redux';
 import { selectLanguage } from '../../redux/language/selectors';
 import { mainPage as t } from '../../translations/translations';
+import { homePageStore } from '../../store/homePageStore';
 
 interface Props {
 	title: string;
-	cards: CartItemType[];
+	cards: SwaggerCartItemType[];
 }
 
 export const HomeBlock: React.FC<Props> = ({ title, cards }) => {
 	const lang = useSelector(selectLanguage);
+	const loading = homePageStore(state => state.loading);
 
 	return (
 		<>
@@ -26,7 +28,7 @@ export const HomeBlock: React.FC<Props> = ({ title, cards }) => {
 			</Container>
 			<Container className={` card-slider`}>
 				<div className="flex items-center justify-between">
-					<CardSlider cards={cards} />
+					{loading ? <div className={` text-3xl font-bold`}>Loading...</div> : <CardSlider cards={cards} />}
 				</div>
 			</Container>
 		</>
