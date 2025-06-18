@@ -1,4 +1,3 @@
-import { NavLink } from 'react-router-dom';
 import { About } from '../components/Home/About';
 import { Bestsellers } from '../components/Home/Bestsellers';
 import { FullPromo } from '../components/Home/FullPromo';
@@ -10,34 +9,14 @@ import Layout from '../components/Layout/Layout';
 
 import { Baner } from '../seed/seed';
 import { MySlider } from '../components/Home/Slider';
-import api from '../api/axios';
 import { useEffect } from 'react';
 import { homePageStore } from '../store/homePageStore';
-import { SwaggerCartItemType } from '../components/CardSlider';
 
 const HomePage = () => {
-	const setNewProducts = homePageStore(state => state.setNewProducts);
-	const setBestsellersProducts = homePageStore(state => state.setBestsellersProducts);
-	const setLoading = homePageStore(state => state.setLoading);
+	const getAllProducts = homePageStore(state => state.getAllProducts);
 
 	useEffect(() => {
-		setLoading(true);
-		api
-			.get('all-products')
-			.then(res => {
-				let result = res.data.results;
-				console.log(result);
-				let filteredNewRes: [] = result.filter((item: SwaggerCartItemType) => item.statuses.includes('New'));
-				let filteredBestsellerRes: [] = result.filter((item: SwaggerCartItemType) => item.statuses.includes('Bestseller'));
-				let twoArray: [] = [...filteredNewRes, ...filteredNewRes];
-				setNewProducts(twoArray);
-				setBestsellersProducts(filteredBestsellerRes);
-				setLoading(false);
-			})
-			.catch(err => {
-				setLoading(false);
-				console.log(err);
-			})
+		getAllProducts();
 	}, []);
 
 	return (

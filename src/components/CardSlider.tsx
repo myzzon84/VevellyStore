@@ -5,6 +5,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 import Button from './Button';
 import Icon from './Icon';
+import { useNavigate } from 'react-router-dom';
 
 export type CartItemType = {
 	id: number;
@@ -18,7 +19,15 @@ export type CartItemType = {
 };
 export type SwaggerCartItemType = {
 	article: string;
-	attributes: [];
+	attributes: [
+		{
+			clasp_type: null;
+			coating_material: null;
+			gender: string;
+			id: number;
+			weaving_type: null;
+		}
+	];
 	category: {
 		has_diameter: boolean;
 		has_length: boolean;
@@ -44,7 +53,25 @@ export type SwaggerCartItemType = {
 	slug: string;
 	statuses: string[];
 	subcategory: null;
-	subproducts: [];
+	subproducts: [
+		{
+			article: string;
+			discount_applied: number;
+			discount_percentage: string;
+			ean_13: null;
+			id: number;
+			length: number;
+			max_length: null;
+			new_price: number;
+			old_price: number;
+			position: number;
+			price: string;
+			size: string;
+			sku: string;
+			weight: number;
+			width: null;
+		}
+	];
 	fav?: boolean;
 	price?: number;
 	old_price?: number;
@@ -61,6 +88,9 @@ export const CardSlider: React.FC<Props> = ({ cards }) => {
 		slidesToShow: 4,
 		slidesToScroll: 4,
 	};
+
+	const navigate = useNavigate();
+
 	return (
 		<div className="w-[1400px]">
 			<AnySlider {...settings}>
@@ -74,7 +104,7 @@ export const CardSlider: React.FC<Props> = ({ cards }) => {
 						}
 					};
 					return (
-						<div key={item.id} className="card group">
+						<div key={item.id} className="card group" onClick={() => {navigate(`/products/${item.id}`)}}>
 							<div className="img relative">
 								{item.statuses && (
 									<span

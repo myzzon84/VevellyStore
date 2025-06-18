@@ -12,17 +12,39 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getProductByIdThunk } from '../redux/product/operations';
 import { AppDispatch } from '../redux/store';
+import { homePageStore } from '../store/homePageStore';
+import { useParams } from 'react-router-dom';
 
 const ProductCardPage = () => {
+
+	const params = useParams();
+
 	const dispatch: AppDispatch = useDispatch();
 
 	const getProduct = (id: number): void => {
 		dispatch(getProductByIdThunk(id));
 	};
 
+	const allProducts = homePageStore(state => state.allProducts);
+	const getAllProducts = homePageStore(state => state.getAllProducts);
+	const setSelectedProduct = homePageStore(state => state.setSelectedProduct);
+	const selectedProduct = homePageStore(state => state.selectedProduct);
+
 	useEffect(() => {
 		getProduct(14);
 	}, []);
+
+	useEffect(() => {
+		if(allProducts.length === 0){
+			getAllProducts();
+		}
+	},[]);
+
+	useEffect(() => {
+		if(!selectedProduct){
+			setSelectedProduct(Number(params.productId));
+		}
+	},[]);
 
 	return (
 		<Layout>
@@ -35,7 +57,7 @@ const ProductCardPage = () => {
 				<AboutProduct />
 
 				<div className="mb-[150px]">
-					<HomeBlock title="You may also like" cards={cards} />
+					<HomeBlock title="You may also like" cards={allProducts} />
 				</div>
 			</Container>
 		</Layout>
