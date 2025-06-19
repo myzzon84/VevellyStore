@@ -6,6 +6,7 @@ import 'slick-carousel/slick/slick.css';
 import Button from './Button';
 import Icon from './Icon';
 import { useNavigate } from 'react-router-dom';
+import { homePageStore } from '../store/homePageStore';
 
 export type CartItemType = {
 	id: number;
@@ -46,7 +47,11 @@ export type SwaggerCartItemType = {
 	gemstone: [];
 	id: number;
 	images: [];
-	material: [];
+	material: [{
+		material: {
+			material: string,
+		}
+	}];
 	name: string;
 	occasions: string;
 	sku: string;
@@ -91,6 +96,8 @@ export const CardSlider: React.FC<Props> = ({ cards }) => {
 
 	const navigate = useNavigate();
 
+	const setSelectedProduct = homePageStore(state => state.setSelectedProduct);
+
 	return (
 		<div className="w-[1400px]">
 			<AnySlider {...settings}>
@@ -104,7 +111,14 @@ export const CardSlider: React.FC<Props> = ({ cards }) => {
 						}
 					};
 					return (
-						<div key={item.id} className="card group" onClick={() => {navigate(`/products/${item.id}`)}}>
+						<div
+							key={item.id}
+							className="card group"
+							onClick={() => {
+								navigate(`/products/${item.id}`);
+								setSelectedProduct(item.id);
+							}}
+						>
 							<div className="img relative">
 								{item.statuses && (
 									<span

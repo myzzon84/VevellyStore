@@ -1,9 +1,12 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { imagesSelector } from '../../redux/product/selectors';
+import { SwaggerCartItemType } from '../CardSlider';
 
-const ProductGallery = () => {
-	const images = useSelector(imagesSelector);
+interface ProductGalleryProps {
+	selectedProduct: SwaggerCartItemType;
+}
+
+const ProductGallery: React.FC<ProductGalleryProps> = ({selectedProduct}) => {
+	const images: string[] = selectedProduct.images;
 	const [currentImage, setCurrentImage] = useState<string>(images?.length ? images[0] : '');
 
 	const handleCurrentImage = (image: string): void => {

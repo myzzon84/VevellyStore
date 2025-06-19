@@ -10,6 +10,7 @@ import { Topline } from './Topline';
 import { selectLanguage } from '../../redux/language/selectors';
 import { useSelector } from 'react-redux';
 import { header as t } from '../../translations/translations';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
 	const { isSearchVisible, toggleSearchVisibility } = useSearchStore();
@@ -41,7 +42,8 @@ const Header = () => {
 							'flex items-center gap-2 text-2xl leading-8 text-[#0d0c0c]'
 						)}
 					>
-						VEVELLY
+						<Link to={'/'}>VEVELLY</Link>
+						
 					</div>
 					<div className="flex items-center justify-between gap-5">
 						<div className="flex items-center relative" onClick={toggleSearchVisibility}>

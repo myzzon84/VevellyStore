@@ -7,8 +7,12 @@ import {
 	productSelector,
 	subproductsSelector,
 } from '../../../redux/product/selectors';
+import { homePageStore } from '../../../store/homePageStore';
 
 const Description = () => {
+
+	const selectedProduct = homePageStore(state => state.selectedProduct);
+
 	const product = useSelector(productSelector);
 	const subproducts = useSelector(subproductsSelector);
 	const materials = useSelector(materialsSelector);

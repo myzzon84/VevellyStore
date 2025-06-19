@@ -7,18 +7,25 @@ import {
 	productSelector,
 	subproductsSelector,
 } from '../../redux/product/selectors';
+import { SwaggerCartItemType } from '../CardSlider';
+import { FC } from 'react';
 
-const ProductInfo = () => {
+interface ProductInfoProps {
+	selectedProduct: SwaggerCartItemType;
+}
+
+const ProductInfo:FC<ProductInfoProps> = ({selectedProduct}) => {
 	const product = useSelector(productSelector);
-	const subproducts = useSelector(subproductsSelector);
+	const subproducts = selectedProduct.subproducts;
+	// const subproducts = useSelector(subproductsSelector);
 	const currentSize = useSelector(currentSizeSelector);
 
 	return (
 		<div className="flex flex-col gap-5 justify-between">
 			<div className="flex flex-col gap-2 ">
-				<h1 className="!text-3xl font-medium leading-8 w-full">{product?.name}</h1>
-				<p className="text-[18px] font-light leading-6">{product?.design}</p>
-				<p className="text-[18px] font-light leading-6">{`SKU: ${product?.sku}`}</p>
+				<h1 className="!text-3xl font-medium leading-8 w-full">{selectedProduct?.name}</h1>
+				<p className="text-[18px] font-light leading-6">{selectedProduct?.design}</p>
+				<p className="text-[18px] font-light leading-6">{`SKU: ${selectedProduct?.sku}`}</p>
 			</div>
 			<MetalColorSwitcher />
 			<SizeComponent />
