@@ -19,7 +19,7 @@ const Icon: React.FC<IconProps> = ({
 	stroke,
 	className,
 }) => (
-	<div className="relative inline-block">
+	<div className="relative inline-block cursor-pointer">
 		<svg className={className} width={width} height={height} stroke={stroke} fill={color}>
 			<use href={`/icons_spite6.svg#${name}`} />
 		</svg>

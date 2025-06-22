@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSearchStore } from '../../redux/search/useSearchStore';
 import { Basket } from '../Basket/Basket';
 import { Container } from '../Container/Container';
@@ -11,9 +11,13 @@ import { selectLanguage } from '../../redux/language/selectors';
 import { useSelector } from 'react-redux';
 import { header as t } from '../../translations/translations';
 import { Link } from 'react-router-dom';
+import { headerStore } from '../../store/HeaderStore';
 
 const Header = () => {
-	const { isSearchVisible, toggleSearchVisibility } = useSearchStore();
+	// const { isSearchVisible, toggleSearchVisibility } = useSearchStore();
+
+	const searchVisible = headerStore(state => state.searchVisible);
+	const setSearchVisible = headerStore(state => state.setSearchVisible);
 	const [isShowMenu, setIsShowMenu] = React.useState(false);
 
 	const lang = useSelector(selectLanguage);
@@ -46,12 +50,12 @@ const Header = () => {
 						
 					</div>
 					<div className="flex items-center justify-between gap-5">
-						<div className="flex items-center relative" onClick={toggleSearchVisibility}>
-							{isSearchVisible && <Search />}
+						<div className="flex items-center relative cursor-pointer" onClick={() => setSearchVisible(true)}>
+							{searchVisible && <Search />}
 							<Icon name="search" className="ml-2.5" />
 						</div>
 						<Icon name="like" badge={1} />
-						<div className="flex items-center relative" onClick={toggleBasket}>
+						<div className="flex items-center relative cursor-pointer" onClick={toggleBasket}>
 							<Icon name="basket" color="none" badge={5} />
 						</div>
 						<Icon name="person" color="none" />
