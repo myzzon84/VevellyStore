@@ -30,10 +30,10 @@ const Header = () => {
 		setIsShowBasket(!isShowBasket);
 	};
 	return (
-		<header className="relative">
+		<header className="relative max-1000:text-9xl">
 			<Topline />
 			<Container>
-				<div className="flex items-center justify-between py-10">
+				<div className="flex items-center justify-between py-10 max-w-[1200px] ">
 					<div className="flex items-center gap-2 text-2xl leading-8 text-[#0d0c0c]">
 						<span onClick={toggleMenu}>
 							<Icon name="menu" />
@@ -46,7 +46,7 @@ const Header = () => {
 							'flex items-center gap-2 text-2xl leading-8 text-[#0d0c0c]'
 						)}
 					>
-						<Link to={'/'}>VEVELLY</Link>
+						<Link to={'/'} className={``}>VEVELLY</Link>
 						
 					</div>
 					<div className="flex items-center justify-between gap-5">

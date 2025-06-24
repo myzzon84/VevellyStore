@@ -25,7 +25,7 @@ export const Topline: React.FC<Props> = ({ className }) => {
 		<>
 			<div className={clsx('flex items-center h-[60px] bg-[#d6e8ee]', className)}>
 				<Container>
-					<div className="flex items-center justify-between">
+					<div className="flex items-center justify-between max-w-[1200px] mx-auto">
 						<div>
 							<ul className="flex gap-5">
 								<li>

@@ -26,14 +26,14 @@ export const MySlider: React.FC<Props> = ({ banner }) => {
 			<div className="relative w-screen">
 				<AnySlider {...settings}>
 					{banner.map((item, index) => (
-						<div key={index}>
-							<div className="relative max-w-[1400px] mx-auto flex items-center justify-center border-t border-[#97CADB] border-l">
+						<div key={index} className={`relative`}>
+							<div className=" mx-auto flex items-center justify-center border-t border-[#97CADB] border-l max-w-[1200px] w-full">
 								<div
 									className="absolute top-1/2 transform -translate-y-1/2 left-0 w-full flex h-3/5 z-10 items-center justify-between"
 									style={{ backgroundColor: item.color || 'transparent' }}
 								></div>
 
-								<div className="relative  flex h-full max-w-[1320px] m-auto px-4 items-center justify-between">
+								<div className="relative w-full flex h-full items-center justify-between max-w-[1200px]">
 									<div className="relative z-10 w-1/2 flex items-center justify-center p-10 -left-[50px]">
 										<h2
 											className={clsx(
@@ -49,11 +49,12 @@ export const MySlider: React.FC<Props> = ({ banner }) => {
 									<div className="w-1/2 z-10">
 										<img className="w-full h-full object-cover" src={item.img} alt="slider" />
 									</div>
+									<div className={` absolute bottom-0 bg-white -left-[2px] border-t w-[42.5%] border-[#97CADB] h-3`}></div>
 								</div>
 								<div className="absolute -bottom-1 right-1/2 mr-8 text-[#018ABE] text-[24px]/[31px] font-medium">
 									{String(index + 1).padStart(2, '0')}
 								</div>
-								<div className={` absolute bottom-0 bg-white -left-[2px] border-t w-[44%] border-[#97CADB] h-3`}></div>
+								
 							</div>
 						</div>
 					))}

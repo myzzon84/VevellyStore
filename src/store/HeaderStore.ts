@@ -1,6 +1,4 @@
 import { create } from 'zustand';
-import { mountStoreDevtool } from 'simple-zustand-devtools';
-import { bool } from 'yup';
 
 type Store = {
     searchVisible: boolean,
