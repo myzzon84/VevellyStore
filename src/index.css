@@ -3,7 +3,11 @@
 @import 'tailwindcss';
 
 @theme {
-	--breakpoint-1000: 80rem,
+	--breakpoint-700px: 700px;
+	--breakpoint-850px: 850px;
+	--breakpoint-1050px: 1050px;
+	--breakpoint-1200px: 1200px;
+	--breakpoint-1300px: 1300px;
 }
 
 html {

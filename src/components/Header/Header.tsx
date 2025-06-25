@@ -12,6 +12,7 @@ import { useSelector } from 'react-redux';
 import { header as t } from '../../translations/translations';
 import { Link } from 'react-router-dom';
 import { headerStore } from '../../store/HeaderStore';
+import useResize from '../../helpers/usePageSize';
 
 const Header = () => {
 	// const { isSearchVisible, toggleSearchVisibility } = useSearchStore();
@@ -29,11 +30,12 @@ const Header = () => {
 	const toggleBasket = () => {
 		setIsShowBasket(!isShowBasket);
 	};
+	const _width = useResize()[0];
 	return (
-		<header className="relative max-1000:text-9xl">
+		<header className="relative">
 			<Topline />
 			<Container>
-				<div className="flex items-center justify-between py-10 max-w-[1200px] ">
+				<div className="flex items-center justify-between py-10 max-w-[1200px] mx-auto ">
 					<div className="flex items-center gap-2 text-2xl leading-8 text-[#0d0c0c]">
 						<span onClick={toggleMenu}>
 							<Icon name="menu" />
@@ -46,7 +48,7 @@ const Header = () => {
 							'flex items-center gap-2 text-2xl leading-8 text-[#0d0c0c]'
 						)}
 					>
-						<Link to={'/'} className={``}>VEVELLY</Link>
+						<Link to={'/'} className={`max-1000px:text-9xl`}>VEVELLY</Link>
 						
 					</div>
 					<div className="flex items-center justify-between gap-5">
@@ -92,6 +94,9 @@ const Header = () => {
 			{isShowBasket && (
 				<div className="fixed inset-0 bg-black/10 z-40" onClick={toggleBasket}></div>
 			)}
+			<div className={` absolute top-0 left-0 px-5 text-[20px]`}>
+				{_width}
+			</div>
 		</header>
 	);
 };
