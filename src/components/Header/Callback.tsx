@@ -8,7 +8,7 @@ export const Callback = () => {
 	return (
 		<div className="absolute  top-8 right-0 w-44 flex flex-col gap-2.5 p-2.5 bg-white z-10">
 			<div className="text-lg text-center leading-6 text-[#0d0c0c] border-b-[1px] border-[#D6E8EE] py-3">
-				+38 067 747 01 45
+				+380 67 747 01 45
 			</div>
 			<div>
 				<span className="block text-sm leading-4.5 text-right text-black">{t.callToYou[lang]}</span>
