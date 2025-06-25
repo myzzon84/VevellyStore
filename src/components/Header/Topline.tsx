@@ -9,13 +9,15 @@ import { Callback } from './Callback';
 import { useSelector } from 'react-redux';
 import { selectLanguage } from '../../redux/language/selectors';
 import { header as t } from '../../translations/translations';
+import { headerStore } from '../../store/HeaderStore';
 
 interface Props {
 	className?: string;
 }
 
 export const Topline: React.FC<Props> = ({ className }) => {
-	const [isOpenCall, setIsOpenCall] = useState(false);
+	const isOpenCall = headerStore(state => state.isOpenCall);
+	const setIsOpenCall = headerStore(state => state.setIsOpenCall);
 	const lang = useSelector(selectLanguage);
 
 	const handlerCall = () => {

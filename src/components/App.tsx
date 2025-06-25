@@ -6,6 +6,7 @@ import router from '../routes/router';
 import { RouterProvider } from 'react-router-dom';
 
 function App() {
+
 	return (
 		<div className={` overflow-hidden`}>
 			<Provider store={store}>
