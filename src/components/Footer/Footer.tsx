@@ -47,7 +47,7 @@ const Footer = () => {
 										<a href="#">0-800-603-897</a>
 									</li>
 									<li className="py-1">
-										<a href="#">+38 067 747 01 45</a>
+										<a href="#">+380 67 747 01 45</a>
 									</li>
 									<li className="py-1">
 										<a href="#">vevelly@gmail.com</a>
