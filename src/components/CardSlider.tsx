@@ -99,7 +99,7 @@ export const CardSlider: React.FC<Props> = ({ cards }) => {
 	const setSelectedProduct = homePageStore(state => state.setSelectedProduct);
 
 	return (
-		<div className="w-[1400px]">
+		<div className="max-w-[1440px]">
 			<AnySlider {...settings}>
 				{cards.map(item => {
 					const [currentImgIndex, setCurrentImgIndex] = useState(0);
@@ -113,7 +113,7 @@ export const CardSlider: React.FC<Props> = ({ cards }) => {
 					return (
 						<div
 							key={item.id}
-							className="card group"
+							className="card group w-1/4"
 							onClick={() => {
 								navigate(`/products/${item.id}`);
 								setSelectedProduct(item.id);

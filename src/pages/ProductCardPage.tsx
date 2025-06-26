@@ -12,9 +12,9 @@ import { getProductByIdThunk } from '../redux/product/operations';
 import { AppDispatch } from '../redux/store';
 import { homePageStore } from '../store/homePageStore';
 import { useParams } from 'react-router-dom';
+import { RotatingLines } from 'react-loader-spinner';
 
 const ProductCardPage = () => {
-
 	const params = useParams();
 
 	const dispatch: AppDispatch = useDispatch();
@@ -33,30 +33,55 @@ const ProductCardPage = () => {
 	}, []);
 
 	useEffect(() => {
-		if(allProducts.length === 0){
+		if (allProducts.length === 0) {
 			getAllProducts();
 		}
-	},[]);
+	}, []);
 
 	useEffect(() => {
-		if(!selectedProduct){
+		if (!selectedProduct) {
 			setSelectedProduct(Number(params.productId));
 		}
-	},[]);
+	}, []);
 
-	if(!selectedProduct){
-		return(<div>Loading...</div>)
-	}
+	// if (!selectedProduct) {
+	// 	return (
+	// 		<>
+	// 			<RotatingLines
+	// 				animationDuration="0.75"
+	// 				strokeColor="#018ABE"
+	// 				strokeWidth="5"
+	// 				visible={true}
+	// 				width="200"
+	// 			/>
+	// 		</>
+	// 	);
+	// }
 
 	return (
 		<Layout>
 			<Container>
 				<Breadcrumbs className="mb-11" />
-				<div className="flex gap-10 mb-[120px] ">
-					<ProductGallery selectedProduct={selectedProduct}/>
-					<ProductInfo selectedProduct={selectedProduct} />
-				</div>
-				<AboutProduct />
+				{selectedProduct ? (
+					<>
+						<div className="flex gap-10 mb-[120px] ">
+							<ProductGallery selectedProduct={selectedProduct} />
+							<ProductInfo selectedProduct={selectedProduct} />
+						</div>
+						<AboutProduct />
+					</>
+				) : (
+					<div className={`flex justify-center`}>
+						<RotatingLines
+							animationDuration="0.75"
+							strokeColor="#018ABE"
+							strokeWidth="3"
+							visible={true}
+							width="200"
+							
+						/>
+					</div>
+				)}
 
 				<div className="mb-[150px]">
 					<HomeBlock title="You may also like" cards={allProducts} />

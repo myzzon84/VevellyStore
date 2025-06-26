@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { selectLanguage } from '../../redux/language/selectors';
 import { mainPage as t } from '../../translations/translations';
 import { homePageStore } from '../../store/homePageStore';
+import { RotatingLines } from 'react-loader-spinner';
 
 interface Props {
 	title: string;
@@ -28,7 +29,18 @@ export const HomeBlock: React.FC<Props> = ({ title, cards }) => {
 			</Container>
 			<Container className={` card-slider`}>
 				<div className="flex items-center justify-between">
-					{loading ? <div className={` text-3xl font-bold`}>Loading...</div> : <CardSlider cards={cards} />}
+					{loading ? (
+						<RotatingLines
+							visible={true}
+							width="200"
+							strokeColor='#018ABE'
+							strokeWidth="3"
+							animationDuration="0.75"
+							ariaLabel="rotating-lines-loading"
+						/>
+					) : (
+						<CardSlider cards={cards} />
+					)}
 				</div>
 			</Container>
 		</>

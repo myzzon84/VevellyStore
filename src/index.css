@@ -99,7 +99,7 @@ h1 {
 	font-family: 'Libre Caslon Display', serif;
 }
 
-.slick-dots li button:before {
+/* .slick-dots li button:before {
 	width: 18px !important;
 	height: 18px !important;
 	font-size: normal !important;
@@ -115,6 +115,12 @@ h1 {
 
 .card{
 	width: 328px !important;
+} */
+
+.new {
+	.slick-slide {
+		width: 300px !important;
+	}
 }
 
 @layer utilities {
@@ -145,12 +151,12 @@ h1 {
 	color: #434141;
 }
 
-.card-slider{
+.card-slider {
 	display: flex;
 	justify-content: center;
 }
 
-.card-slider .slick-slide > div{
+.card-slider .slick-slide > div {
 	display: flex;
 	justify-content: center;
 }
