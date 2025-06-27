@@ -1,94 +1,22 @@
 import clsx from 'clsx';
 import React from 'react';
 import { MenuItem } from './MenuItem';
+import { CategoriesType } from '../Header/Header';
+import { headerStore } from '../../store/HeaderStore';
 
 interface Props {
 	className?: string;
+	categories: CategoriesType[];
 }
 
-export const Menu: React.FC<Props> = ({ className }) => {
+export const Menu: React.FC<Props> = ({ className, categories }) => {
+
 	const [isOpenSubmenu, setIsOpenSubmenu] = React.useState<number | null>(null);
 
 	const toggleSubmenu = (index: number) => {
 		setIsOpenSubmenu(isOpenSubmenu === index ? null : index);
 	};
-
-	const menu = [
-		{
-			icon: '/1.png',
-			title: 'Каблучки',
-			link: '#/',
-			submenu: [
-				{
-					title: 'Обручки',
-					link: '#/',
-					submenu: [
-						{
-							title: 'Для молодих',
-							link: '#/',
-						},
-					],
-				},
-				{
-					title: 'Для заручин',
-					link: '#/',
-				},
-				{
-					title: 'Фалангові',
-					link: '#/',
-				},
-				{
-					title: 'Печатки/перстні',
-					link: '#/',
-				},
-				{
-					title: 'Широкі',
-					link: '#/',
-				},
-				{
-					title: 'Тонкі',
-					link: '#/',
-				},
-				{
-					title: 'Єксклюзивні',
-					link: '#/',
-				},
-				{
-					title: 'Sale',
-					link: '#/',
-				},
-				{
-					title: 'Всі каблучки',
-					link: '#/',
-				},
-			],
-		},
-		{
-			icon: '/1.png',
-			title: 'Сережки',
-			link: '#/',
-		},
-		{
-			icon: '/1.png',
-			title: 'Для заручин',
-			link: '#/',
-		},
-		{
-			icon: '/1.png',
-			title: 'Браслети',
-			link: '#/',
-		},
-		{
-			icon: '/1.png',
-			title: 'Ланцюжки',
-			link: '#/',
-		},
-		{
-			icon: '/1.png',
-			title: 'Кольє',
-			link: '#/',
-		},
-	];
+	
 
 	return (
 		<>
@@ -99,17 +27,17 @@ export const Menu: React.FC<Props> = ({ className }) => {
 				)}
 			>
 				<ul className="menu relative ">
-					{menu.map((item, index) => (
+					{categories.map((item, index) => (
 						<li
 							key={index}
 							className="w-full text-lg leading-6 text-[#0d0c0c]  border-b-[1px] border-transparent hover:border-[#D6E8EE] group"
 						>
 							<a href={item.link} className="flex items-center justify-between">
 								<div className="flex items-center gap-2">
-									{item.icon && <img src={item.icon} alt="icon" />}
-									<span>{item.title}</span>
+									{/* {item.icon && <img src={item.icon} alt="icon" />} */}
+									<span>{item.name}</span>
 								</div>
-								{item.submenu && (
+								{item.subcategories.length > 0 && (
 									<img
 										src="/arrow.svg"
 										alt="arrow"
@@ -122,8 +50,8 @@ export const Menu: React.FC<Props> = ({ className }) => {
 								)}
 							</a>
 
-							{item.submenu && isOpenSubmenu === index && (
-								<MenuItem menu={item.submenu} depth={1} />
+							{item.subcategories && item.subcategories.length > 0 && isOpenSubmenu === index && (
+								<MenuItem menu={item.subcategories} depth={1} />
 							)}
 						</li>
 					))}

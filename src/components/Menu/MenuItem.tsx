@@ -2,9 +2,9 @@ import clsx from 'clsx';
 import React from 'react';
 
 interface MenuItem {
-	link: string;
-	title: string;
-	submenu?: MenuItem[];
+	link?: string;
+	name: string;
+	subcategories?: MenuItem[];
 }
 
 interface Props {
@@ -37,8 +37,8 @@ export const MenuItem: React.FC<Props> = ({ menu, depth = 0 }) => {
 					className="relative py-2 border-b-[1px] border-transparent hover:border-[#D6E8EE] group"
 				>
 					<a href={item.link} className="flex justify-between items-center ">
-						{item.title}
-						{item.submenu && (
+						{item.name}
+						{item.subcategories && (
 							<img
 								src="/arrow.svg"
 								alt="arrow"
@@ -51,8 +51,8 @@ export const MenuItem: React.FC<Props> = ({ menu, depth = 0 }) => {
 						)}
 					</a>
 
-					{item.submenu && isOpenSubmenu === index && (
-						<MenuItem menu={item.submenu} depth={depth + 1} />
+					{item.subcategories && item.subcategories.length > 0 && isOpenSubmenu === index && (
+						<MenuItem menu={item.subcategories} depth={depth + 1} />
 					)}
 				</li>
 			))}

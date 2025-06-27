@@ -14,11 +14,32 @@ import { Link } from 'react-router-dom';
 import { headerStore } from '../../store/HeaderStore';
 import useResize from '../../helpers/usePageSize';
 
+export type CategoriesType = {
+	has_diameter: boolean;
+	has_length: boolean;
+	has_weight: boolean;
+	has_width: boolean;
+	id: number;
+	name: string;
+	slug: string;
+	link?: string;
+	subcategories: [
+		{
+			id: number;
+			name: string;
+			slug: string;
+		}
+	];
+	updated_at: string;
+};
+
 const Header = () => {
 	// const { isSearchVisible, toggleSearchVisibility } = useSearchStore();
 
 	const searchVisible = headerStore(state => state.searchVisible);
 	const setSearchVisible = headerStore(state => state.setSearchVisible);
+	const getCategories = headerStore(state => state.getCategories);
+	const categories = headerStore(state => state.categories);
 	const [isShowMenu, setIsShowMenu] = React.useState(false);
 
 	const lang = useSelector(selectLanguage);
@@ -31,6 +52,28 @@ const Header = () => {
 		setIsShowBasket(!isShowBasket);
 	};
 	const _width = useResize()[0];
+
+	const raw = sessionStorage.getItem('categories');
+	let categoriesFromSessionStorage: CategoriesType[] = [];
+
+	if (raw) {
+		try {
+			const parsed = JSON.parse(raw);
+			if (Array.isArray(parsed)) {
+				categoriesFromSessionStorage = parsed as CategoriesType[];
+			}
+		} catch (error) {
+			console.error('Помилка при парсингу categories з sessionStorage:', error);
+		}
+	}
+
+	useEffect(() => {
+		if (sessionStorage.getItem('categories')) {
+			return;
+		}
+		getCategories();
+	}, []);
+
 	return (
 		<header className="relative">
 			<Topline />
@@ -48,11 +91,15 @@ const Header = () => {
 							'flex items-center gap-2 text-2xl leading-8 text-[#0d0c0c]'
 						)}
 					>
-						<Link to={'/'} className={`max-1000px:text-9xl`}>VEVELLY</Link>
-						
+						<Link to={'/'} className={`max-1000px:text-9xl`}>
+							VEVELLY
+						</Link>
 					</div>
 					<div className="flex items-center justify-between gap-5">
-						<div className="flex items-center relative cursor-pointer" onClick={() => setSearchVisible(true)}>
+						<div
+							className="flex items-center relative cursor-pointer"
+							onClick={() => setSearchVisible(true)}
+						>
 							{searchVisible && <Search />}
 							<Icon name="search" className="ml-2.5" />
 						</div>
@@ -64,13 +111,13 @@ const Header = () => {
 					</div>
 				</div>
 			</Container>
-			{isShowMenu && (
+			{isShowMenu && (sessionStorage.getItem('categories') || categories) && (
 				<>
 					<div className="fixed inset-0 bg-black/10 z-40" onClick={toggleMenu}></div>
 
 					<Container className="absolute top-full left-0 right-0 z-50">
 						<div className="w-full flex justify-between bg-white border border-[#D6E8EE]">
-							<Menu />
+							<Menu categories={categoriesFromSessionStorage || categories} />
 							<div className="w-64 p-5">
 								<img className="h-40" src="/photo-menu.png" alt="menu-promo" />
 								<div className="border-l-[1px]  border-[#018ABE]">
@@ -94,9 +141,7 @@ const Header = () => {
 			{isShowBasket && (
 				<div className="fixed inset-0 bg-black/10 z-40" onClick={toggleBasket}></div>
 			)}
-			<div className={` absolute top-0 left-0 px-5 text-[20px]`}>
-				{_width}
-			</div>
+			<div className={` absolute top-0 left-0 px-5 text-[20px]`}>{_width}</div>
 		</header>
 	);
 };
