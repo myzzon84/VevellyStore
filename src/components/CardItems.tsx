@@ -36,7 +36,7 @@ export const CardItems: React.FC<Props> = ({ cards }) => {
 						<div className="img relative mb-2">
 							{Array.isArray(item.badge)
 								? item.badge.map((badge, index) => (
-										<span
+										<div
 											key={index}
 											className={clsx(
 												badge === 'Sale' ? 'bg-[#FB3636]' : '',
@@ -47,7 +47,7 @@ export const CardItems: React.FC<Props> = ({ cards }) => {
 											)}
 										>
 											{badge}
-										</span>
+										</div>
 								  ))
 								: item.badge && (
 										<span

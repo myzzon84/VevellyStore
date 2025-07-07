@@ -25,10 +25,10 @@ export const Topline: React.FC<Props> = ({ className }) => {
 	};
 	return (
 		<>
-			<div className={clsx('flex items-center h-[60px] bg-[#d6e8ee]', className)}>
+			<div className={clsx('flex items-center h-[60px] max-600px:h-[40px] bg-[#d6e8ee]', className)}>
 				<Container>
 					<div className="flex items-center justify-between max-w-[1200px] mx-auto">
-						<div>
+						<div className={` max-700px:hidden`}>
 							<ul className="flex gap-5">
 								<li>
 									<NavLink className="border-b-[1px] border-[#018ABE]" to="#">
@@ -40,11 +40,11 @@ export const Topline: React.FC<Props> = ({ className }) => {
 								</li>
 							</ul>
 						</div>
-						<div className="flex items-center justify-between gap-5">
+						<div className="flex items-center justify-between gap-5 max-700px:w-full max-469px:gap-[10px] ">
 							<div>
 								<LanguageSwitcher />
 							</div>
-							<div className="flex items-center justify-between text-lg leading-6 text-[#0d0c0c] relative">
+							<div className="flex items-center justify-between text-lg max-600px:text-[16px]/[1.3] leading-6 text-[#0d0c0c] relative">
 								0-800-603-897
 								<span
 									onClick={() => {

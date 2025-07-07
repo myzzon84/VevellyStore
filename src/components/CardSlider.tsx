@@ -47,11 +47,13 @@ export type SwaggerCartItemType = {
 	gemstone: [];
 	id: number;
 	images: [];
-	material: [{
-		material: {
-			material: string,
+	material: [
+		{
+			material: {
+				material: string;
+			};
 		}
-	}];
+	];
 	name: string;
 	occasions: string;
 	sku: string;
@@ -92,7 +94,26 @@ export const CardSlider: React.FC<Props> = ({ cards }) => {
 		dots: true,
 		slidesToShow: 4,
 		slidesToScroll: 4,
+		className: 'mySlick',
+		responsive: [
+			{
+				breakpoint: 1000,
+				settings: {
+					slidesToShow: 3,
+					slidesToScroll: 3,
+				},
+			},
+			{
+				breakpoint: 700,
+				settings: {
+					slidesToShow: 2,
+					slidesToScroll: 2,
+				},
+			},
+		],
 	};
+
+	const images = ['/watch1.png', '/watch2.png', '/watch3.png', '/watch4.png'];
 
 	const navigate = useNavigate();
 
@@ -110,6 +131,7 @@ export const CardSlider: React.FC<Props> = ({ cards }) => {
 							setCurrentImgIndex((currentImgIndex + 1) % images.length);
 						}
 					};
+					console.log(item.statuses);
 					return (
 						<div
 							key={item.id}
@@ -119,19 +141,20 @@ export const CardSlider: React.FC<Props> = ({ cards }) => {
 								setSelectedProduct(item.id);
 							}}
 						>
-							<div className="img relative">
+							<div className="img relative flex justify-center">
 								{item.statuses && (
-									<span
-										className={clsx(
-											item.statuses.includes('Sale') ? 'bg-[#FF8D8D]' : '',
-											item.statuses.includes('New') || item.statuses.includes('Top')
-												? 'bg-[#D6E8EE]'
-												: '',
-											'badge-card absolute top-0 left-0 py-1.5 px-2.5'
-										)}
-									>
-										{item.statuses}
-									</span>
+									<div className={` absolute top-0 left-0 flex flex-col gap-2`}>
+										{item.statuses.map((item, i) => (
+											<div
+												key={i}
+												className={`badge-card py-1.5 px-2.5 w-max text-[14px]/[1.3] max-600px:text-[12px] max-600px:py-[2px] max-600px:px-1${
+													item === 'Sale' ? 'bg-[#FF8D8D]' : ''
+												} ${item === 'New' || item === 'Top' ? 'bg-[#D6E8EE]' : 'bg-blue-300'}`}
+											>
+												{item}
+											</div>
+										))}
+									</div>
 								)}
 								<span className="fav-card absolute top-3 right-3 ">
 									{item.fav ? <Icon name="fav" /> : <Icon name="like" />}
@@ -139,7 +162,8 @@ export const CardSlider: React.FC<Props> = ({ cards }) => {
 								<img
 									src={images[currentImgIndex]}
 									alt={item.name}
-									className="!h-[300px] object-cover"
+									// className="!h-[300px] object-cover"
+									className={` object-cover max-h-[300px] max-1000px:max-h-[224px]`}
 								/>
 								{images.length > 1 && (
 									<span

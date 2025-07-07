@@ -3,9 +3,16 @@
 @import 'tailwindcss';
 
 @theme {
+	--font-libre-caslon-display: "Libre Caslon Display";
+	--breakpoint-469px: 469px;
+	--breakpoint-550px: 550px;
+	--breakpoint-600px: 600px;
 	--breakpoint-700px: 700px;
+	--breakpoint-800px: 800px;
 	--breakpoint-850px: 850px;
+	--breakpoint-1000px: 1000px;
 	--breakpoint-1050px: 1050px;
+	--breakpoint-1100px: 1100px;
 	--breakpoint-1200px: 1200px;
 	--breakpoint-1300px: 1300px;
 }
@@ -99,7 +106,7 @@ h1 {
 	font-family: 'Libre Caslon Display', serif;
 }
 
-/* .slick-dots li button:before {
+.slick-dots li button:before {
 	width: 18px !important;
 	height: 18px !important;
 	font-size: normal !important;
@@ -109,18 +116,15 @@ h1 {
 .slick-dots li.slick-active button:before {
 	color: #1870a6 !important;
 }
-.slick-track {
-	min-height: 440px;
-}
 
-.card{
-	width: 328px !important;
-} */
 
-.new {
-	.slick-slide {
-		width: 300px !important;
-	}
+.mySlick{
+	display: flex !important;
+	width: 100vw;
+	margin: 0 auto;
+	max-width: 1440px;
+	padding: 0 10px;
+	outline: none;
 }
 
 @layer utilities {

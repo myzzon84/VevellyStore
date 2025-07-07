@@ -1,4 +1,4 @@
-import { cards } from '../../seed/seed';
+
 import { HomeBlock } from './HomeBlock';
 import { homePageStore } from '../../store/homePageStore';
 
@@ -13,7 +13,7 @@ export const NewProducts = () => {
 	const lang = useSelector(selectLanguage);
 
 	return (
-		<div className="new mb-30">
+		<div className="new mb-30 max-600px:mb-[50px]">
 			<HomeBlock title={t.new[lang]} cards={allProducts} />
 		</div>
 	);

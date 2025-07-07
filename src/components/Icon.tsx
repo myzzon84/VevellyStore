@@ -19,15 +19,14 @@ const Icon: React.FC<IconProps> = ({
 	stroke,
 	className,
 }) => (
-	<div className="relative inline-block cursor-pointer">
+	<div className={`relative inline-block cursor-pointer ${className}`}>
 		<svg className={className} width={width} height={height} stroke={stroke} fill={color}>
 			<use href={`/icons_spite6.svg#${name}`} />
 		</svg>
 
 		{badge && badge > 0 && (
 			<span
-				className="absolute top-[12px] left-[11px] bg-[#1E84C3]
-			 text-white text-xs font-bold rounded-full w-3.5 h-[13px] flex items-center justify-center"
+				className={`absolute top-[12px] left-[11px] bg-[#1E84C3] text-white text-xs font-bold rounded-full w-3.5 h-[13px] flex items-center justify-center ${className}`}
 			>
 				{badge}
 			</span>

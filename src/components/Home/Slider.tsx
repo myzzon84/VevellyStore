@@ -24,7 +24,7 @@ export const MySlider: React.FC<Props> = ({ banner }) => {
 		slidesToScroll: 1,
 	};
 	return (
-		<div className="slider mb-30">
+		<div className="slider mb-30 max-1000px:mb-20 max-600px:mb-[50px] ">
 			<div className="relative w-screen">
 				<AnySlider {...settings}>
 					{banner.map((item, index) => (
@@ -36,7 +36,7 @@ export const MySlider: React.FC<Props> = ({ banner }) => {
 								></div>
 
 								<div className="relative w-full flex h-full items-center justify-between max-w-[1200px]">
-									<div className="relative z-10 w-1/2 flex items-center justify-center p-10 -left-[50px] max-700px:-left-[20px] max-700px:pr-0">
+									<div className="relative z-10 w-1/2 flex items-center justify-center p-10 -left-[50px] max-700px:-left-[20px] max-700px:pr-0 max-600px:pl-0 max-600px:-left-[10px]">
 										<h2
 											className={clsx(
 												'text-[46px]/[1.3] font-normal max-w-[500px] uppercase max-1200px:text-[40px] max-1050px:text-[30px] max-850px:text-[22px] max-700px:text-[16px]',
@@ -52,10 +52,10 @@ export const MySlider: React.FC<Props> = ({ banner }) => {
 										<img className="w-full h-full object-cover min-h-[300px]" src={item.img} alt="slider" />
 									</div>
 									<div
-										className={` absolute bottom-0 bg-white -left-[2px] border-t w-[42.5%] border-[#97CADB] h-3 max-1050px:w-[40%] max-850px:w-[37%] max-700px:w-[35%]`}
+										className={` absolute bottom-0 bg-white -left-[2px] border-t w-[42.5%] border-[#97CADB] h-2 max-1050px:w-[40%] max-850px:w-[37%] max-700px:w-[35%] max-550px:w-[30%] max-469px:w-[25%]`}
 									></div>
 								</div>
-								<div className="absolute -bottom-1 right-1/2 mr-8 text-[#018ABE] text-[24px]/[31px] font-medium">
+								<div className="absolute -bottom-1 right-1/2 mr-8 text-[#018ABE] text-[20px]/[1.3] font-medium">
 									{String(index + 1).padStart(2, '0')}
 								</div>
 							</div>

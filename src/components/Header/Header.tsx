@@ -12,6 +12,7 @@ import { useSelector } from 'react-redux';
 import { header as t } from '../../translations/translations';
 import { Link } from 'react-router-dom';
 import { headerStore } from '../../store/HeaderStore';
+import { catalogStore } from '../../store/CatalogStore';
 import useResize from '../../helpers/usePageSize';
 
 export type CategoriesType = {
@@ -38,8 +39,8 @@ const Header = () => {
 
 	const searchVisible = headerStore(state => state.searchVisible);
 	const setSearchVisible = headerStore(state => state.setSearchVisible);
-	const getCategories = headerStore(state => state.getCategories);
-	const categories = headerStore(state => state.categories);
+	const getCategories = catalogStore(state => state.getCategories);
+	const categories = catalogStore(state => state.categories);
 	const [isShowMenu, setIsShowMenu] = React.useState(false);
 
 	const lang = useSelector(selectLanguage);
@@ -59,8 +60,8 @@ const Header = () => {
 	if (raw) {
 		try {
 			const parsed = JSON.parse(raw);
-			if (Array.isArray(parsed)) {
-				categoriesFromSessionStorage = parsed as CategoriesType[];
+			if (Array.isArray(parsed.state.categories)) {
+				categoriesFromSessionStorage = parsed.state.categories as CategoriesType[];
 			}
 		} catch (error) {
 			console.error('Помилка при парсингу categories з sessionStorage:', error);
@@ -78,8 +79,8 @@ const Header = () => {
 		<header className="relative">
 			<Topline />
 			<Container>
-				<div className="flex items-center justify-between py-10 max-w-[1200px] mx-auto ">
-					<div className="flex items-center gap-2 text-2xl leading-8 text-[#0d0c0c]">
+				<div className="flex items-center justify-between py-10 max-w-[1200px] mx-auto max-600px:pt-[10px] max-600px:pb-5 ">
+					<div className="flex items-center gap-2 text-2xl leading-8 text-[#0d0c0c] max-600px:text-[18px]/[1.3]">
 						<span onClick={toggleMenu}>
 							<Icon name="menu" />
 						</span>
@@ -88,10 +89,10 @@ const Header = () => {
 					<div
 						className={clsx(
 							'header__logo',
-							'flex items-center gap-2 text-2xl leading-8 text-[#0d0c0c]'
+							'flex items-center gap-2 text-2xl leading-8 text-[#0d0c0c] max-600px:text-[20px]/[1.3]'
 						)}
 					>
-						<Link to={'/'} className={`max-1000px:text-9xl`}>
+						<Link to={'/'} className={``}>
 							VEVELLY
 						</Link>
 					</div>
@@ -103,11 +104,11 @@ const Header = () => {
 							{searchVisible && <Search />}
 							<Icon name="search" className="ml-2.5" />
 						</div>
-						<Icon name="like" badge={1} />
+						<Icon name="like" badge={1} className={` max-469px:hidden`}/>
 						<div className="flex items-center relative cursor-pointer" onClick={toggleBasket}>
 							<Icon name="basket" color="none" badge={5} />
 						</div>
-						<Icon name="person" color="none" />
+						<Icon name="person" color="none" className={` max-469px:hidden`} />
 					</div>
 				</div>
 			</Container>
