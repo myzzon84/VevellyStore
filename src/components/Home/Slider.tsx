@@ -49,7 +49,7 @@ export const MySlider: React.FC<Props> = ({ banner }) => {
 									</div>
 
 									<div className="w-1/2 z-10">
-										<img className="w-full h-full object-cover min-h-[300px]" src={item.img} alt="slider" />
+										<img className="w-full h-full object-cover min-h-[300px]" src={item.img} alt="slider"/>
 									</div>
 									<div
 										className={` absolute bottom-0 bg-white -left-[2px] border-t w-[42.5%] border-[#97CADB] h-2 max-1050px:w-[40%] max-850px:w-[37%] max-700px:w-[35%] max-550px:w-[30%] max-469px:w-[25%]`}

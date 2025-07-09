@@ -8,6 +8,8 @@ type IconProps = {
 	color?: string;
 	stroke?: string;
 	className?: string;
+	setSearchVisible?: (bool: boolean) => void;
+	searchVisible?: boolean;
 };
 
 const Icon: React.FC<IconProps> = ({
@@ -18,8 +20,13 @@ const Icon: React.FC<IconProps> = ({
 	color = '#0D0C0C',
 	stroke,
 	className,
+	setSearchVisible,
+	searchVisible,
 }) => (
-	<div className={`relative inline-block cursor-pointer ${className}`}>
+	<div
+		className={`relative inline-block cursor-pointer ${className}`}
+		onClick={() => setSearchVisible?.(!searchVisible)}
+	>
 		<svg className={className} width={width} height={height} stroke={stroke} fill={color}>
 			<use href={`/icons_spite6.svg#${name}`} />
 		</svg>

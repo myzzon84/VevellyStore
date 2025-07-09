@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useSearchStore } from '../../redux/search/useSearchStore';
 import { Basket } from '../Basket/Basket';
 import { Container } from '../Container/Container';
@@ -14,6 +14,7 @@ import { Link } from 'react-router-dom';
 import { headerStore } from '../../store/HeaderStore';
 import { catalogStore } from '../../store/CatalogStore';
 import useResize from '../../helpers/usePageSize';
+import { useOnClickOutside } from '../../helpers/clickOutside';
 
 export type CategoriesType = {
 	has_diameter: boolean;
@@ -43,6 +44,8 @@ const Header = () => {
 	const categories = catalogStore(state => state.categories);
 	const [isShowMenu, setIsShowMenu] = React.useState(false);
 
+	const refSearch = useRef(null);
+
 	const lang = useSelector(selectLanguage);
 
 	const toggleMenu = () => {
@@ -56,6 +59,8 @@ const Header = () => {
 
 	const raw = sessionStorage.getItem('categories');
 	let categoriesFromSessionStorage: CategoriesType[] = [];
+
+	useOnClickOutside(refSearch, () => {setSearchVisible(false)})
 
 	if (raw) {
 		try {
@@ -99,12 +104,17 @@ const Header = () => {
 					<div className="flex items-center justify-between gap-5">
 						<div
 							className="flex items-center relative cursor-pointer"
-							onClick={() => setSearchVisible(true)}
+							ref={refSearch}
 						>
 							{searchVisible && <Search />}
-							<Icon name="search" className="ml-2.5" />
+							<Icon
+								name="search"
+								className="ml-2.5"
+								setSearchVisible={setSearchVisible}
+								searchVisible={searchVisible}
+							/>
 						</div>
-						<Icon name="like" badge={1} className={` max-469px:hidden`}/>
+						<Icon name="like" badge={1} className={` max-469px:hidden`} />
 						<div className="flex items-center relative cursor-pointer" onClick={toggleBasket}>
 							<Icon name="basket" color="none" badge={5} />
 						</div>
