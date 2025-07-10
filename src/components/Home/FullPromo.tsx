@@ -8,7 +8,7 @@ export const FullPromo = () => {
 		<div className="full_promo mb-30 max-600px:mb-[50px]">
 			<div className="wrap relative min-h-[300px] max-w-[1440px] mx-auto">
 				<img
-					className=" rotate-y-180 grayscale-100 min-h-[300px] object-cover"
+					className=" rotate-y-180 grayscale-100 min-h-[300px] object-cover w-full"
 					src="/full_promo.png"
 					alt="promo"
 				/>

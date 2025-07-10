@@ -1,5 +1,6 @@
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
+import ScrollToTopButton from '../ScrollToTopButton/ScrollToTopButton';
 
 interface LayoutProps {
 	children: React.ReactNode;
@@ -11,6 +12,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 			<Header />
 			<main>{children}</main>
 			<Footer />
+			<ScrollToTopButton />
 		</>
 	);
 };
