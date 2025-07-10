@@ -4,27 +4,50 @@ import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
 import { useSelector } from 'react-redux';
 import { selectLanguage } from '../../redux/language/selectors';
 import { footer as t } from '../../translations/translations';
+import arrowDown from '../../assets/icons/arrow-down.svg';
+import { useState } from 'react';
+import useResize from '../../helpers/usePageSize';
 
 const Footer = () => {
 	const lang = useSelector(selectLanguage);
 
+	const [showInfo, setShowInfo] = useState(false);
+
+	const _width = useResize()[0];
+
 	return (
 		<footer className="bg-[#d6e8ee]">
 			<Container>
-				<div className="flex justify-around py-[100px]">
-					<div className="flex flex-col items-center">
-						<div className="footer_logo text-[40px] leading-[52px]">VEVELLY</div>
+				<div className="flex justify-around py-[100px] max-800px:flex-col max-800px:py-[50px]">
+					<div className="flex flex-col items-center max-800px:mb-10">
+						<div className="footer_logo text-[40px] leading-[52px] max-600px:text-[30px]/[1.3]">
+							VEVELLY
+						</div>
 						<div className="lang pt-5">
 							<LanguageSwitcher />
 						</div>
 					</div>
-					<div className="flex gap-14">
+					<div className="flex gap-14 max-800px:justify-center max-469px:flex-col-reverse">
 						<div className="flex flex-col">
-							<div className="text-2xl font-medium leading-8 text-[#0D0C0C] mb-4">
+							<div className="text-2xl font-medium leading-8 text-[#0D0C0C] mb-4 max-600px:text-[18px]/[1.3] max-469px:text-center max-469px:flex max-469px:justify-center max-469px:items-center max-469px:gap-[15px] ">
 								{t.info[lang]}
+								{_width < 469 && (
+									<img
+										src={arrowDown}
+										className={`${
+											showInfo ? ' rotate-180' : ' rotate-0'
+										} transition-all duration-500 cursor-pointer`}
+										alt="arrow down"
+										onClick={() => setShowInfo(!showInfo)}
+									/>
+								)}
 							</div>
-							<div className="text-lg font-light leading-6 text-[#0d0c0c]">
-								<ul className="flex flex-col gap-2.5">
+							<div
+								className={`text-lg font-light leading-6 text-[#0d0c0c] max-600px:text-[16px]/[1.3] ${
+									_width < 469 && !showInfo ? 'hidden' : ''
+								}`}
+							>
+								<ul className="flex flex-col gap-2.5 max-469px:items-center">
 									<li className="py-1">
 										<a href="#">{t.paymentAndDelivery[lang]}</a>
 									</li>
@@ -38,11 +61,11 @@ const Footer = () => {
 							</div>
 						</div>
 						<div className="flex flex-col gap-2.5">
-							<div className="text-2xl font-medium leading-8 text-[#0D0C0C] mb-4">
+							<div className="text-2xl font-medium leading-8 text-[#0D0C0C] mb-4 max-600px:text-[18px]/[1.3] max-469px:text-center">
 								{t.contacts[lang]}
 							</div>
-							<div className="text-lg font-light leading-6 text-[#0d0c0c]">
-								<ul>
+							<div className="text-lg font-light leading-6 text-[#0d0c0c] max-600px:text-[16px]/[1.3]">
+								<ul className={` max-469px:flex flex-col items-center`}>
 									<li className="py-1">
 										<a href="#">0-800-603-897</a>
 									</li>
