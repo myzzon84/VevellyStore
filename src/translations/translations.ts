@@ -9,6 +9,7 @@ export const header = {
 };
 
 export const mainPage = {
+	chooseGiftCard: {en: 'Choose a gift card', ua: 'Оберіть подарункову карту'},
 	new: { en: 'New', ua: 'Новинки' },
 	bestsellers: { en: 'Bestsellers', ua: 'Бестселери' },
 	watchForHim: { en: 'Watch for him', ua: 'Годинники для нього' },

@@ -60,12 +60,12 @@ const Footer = () => {
 								</ul>
 							</div>
 						</div>
-						<div className="flex flex-col gap-2.5">
+						<div className="flex flex-col">
 							<div className="text-2xl font-medium leading-8 text-[#0D0C0C] mb-4 max-600px:text-[18px]/[1.3] max-469px:text-center">
 								{t.contacts[lang]}
 							</div>
 							<div className="text-lg font-light leading-6 text-[#0d0c0c] max-600px:text-[16px]/[1.3]">
-								<ul className={` max-469px:flex flex-col items-center`}>
+								<ul className={` flex flex-col max-469px:items-center`}>
 									<li className="py-1">
 										<a href="#">0-800-603-897</a>
 									</li>

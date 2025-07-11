@@ -21,8 +21,8 @@ export const Gift = () => {
 						<div className="text-lg leading-6">
 							<p className="pb-5 max-800px:max-w-[580px] mx-auto max-469px:text-[16px]/[1.3]">{t.giftText[lang]}</p>
 						</div>
-						<div className="text-right text-lg leading-6">
-							<a href="#">{t.readMore[lang]}</a>
+						<div className="text-right text-[18px]/[1.3] text-[#FDFDFD] max-800px:text-center">
+							<a href="#" className={` inline-block bg-[#018ABE] px-[10px] py-3 rounded-[4px] max-800px:w-full`}>{t.chooseGiftCard[lang]}</a>
 						</div>
 					</div>
 				</div>
