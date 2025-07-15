@@ -2,15 +2,14 @@
 import { HomeBlock } from './HomeBlock';
 import { homePageStore } from '../../store/homePageStore';
 
-import { useSelector } from 'react-redux';
-import { selectLanguage } from '../../redux/language/selectors';
 import { mainPage as t } from '../../translations/translations';
+import { translateStore } from '../../store/translateStore';
 
 export const NewProducts = () => {
 
 	const allProducts = homePageStore(state => state.allProducts)
 
-	const lang = useSelector(selectLanguage);
+	const lang = translateStore(state => state.lang);
 
 	return (
 		<div className="new mb-30 max-600px:mb-[50px]">

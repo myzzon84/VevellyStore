@@ -2,11 +2,10 @@ import React from 'react';
 import { CardSlider, SwaggerCartItemType } from '../CardSlider';
 import { Container } from '../Container/Container';
 
-import { useSelector } from 'react-redux';
-import { selectLanguage } from '../../redux/language/selectors';
 import { mainPage as t } from '../../translations/translations';
 import { homePageStore } from '../../store/homePageStore';
 import { RotatingLines } from 'react-loader-spinner';
+import { translateStore } from '../../store/translateStore';
 
 interface Props {
 	title: string;
@@ -14,7 +13,7 @@ interface Props {
 }
 
 export const HomeBlock: React.FC<Props> = ({ title, cards }) => {
-	const lang = useSelector(selectLanguage);
+	const lang = translateStore(state => state.lang);
 	const loading = homePageStore(state => state.loading);
 
 	return (

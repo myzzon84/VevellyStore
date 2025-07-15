@@ -1,15 +1,13 @@
 import { Container } from '../Container/Container';
 import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
-
-import { useSelector } from 'react-redux';
-import { selectLanguage } from '../../redux/language/selectors';
 import { footer as t } from '../../translations/translations';
 import arrowDown from '../../assets/icons/arrow-down.svg';
 import { useState } from 'react';
 import useResize from '../../helpers/usePageSize';
+import { translateStore } from '../../store/translateStore';
 
 const Footer = () => {
-	const lang = useSelector(selectLanguage);
+	const lang = translateStore(state => state.lang);
 
 	const [showInfo, setShowInfo] = useState(false);
 

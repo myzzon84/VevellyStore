@@ -1,20 +1,18 @@
 import clsx from 'clsx';
-import React, { useEffect, useRef, useState } from 'react';
-import { useSearchStore } from '../../redux/search/useSearchStore';
+import React, { useEffect, useRef } from 'react';
 import { Basket } from '../Basket/Basket';
 import { Container } from '../Container/Container';
 import Icon from '../Icon';
 import { Menu } from '../Menu/Menu';
 import { Search } from './Search';
 import { Topline } from './Topline';
-import { selectLanguage } from '../../redux/language/selectors';
-import { useSelector } from 'react-redux';
 import { header as t } from '../../translations/translations';
 import { Link } from 'react-router-dom';
 import { headerStore } from '../../store/HeaderStore';
 import { catalogStore } from '../../store/CatalogStore';
 import useResize from '../../helpers/usePageSize';
 import { useOnClickOutside } from '../../helpers/clickOutside';
+import { translateStore } from '../../store/translateStore';
 
 export type CategoriesType = {
 	has_diameter: boolean;
@@ -36,7 +34,7 @@ export type CategoriesType = {
 };
 
 const Header = () => {
-	// const { isSearchVisible, toggleSearchVisibility } = useSearchStore();
+	const lang = translateStore(state => state.lang);
 
 	const searchVisible = headerStore(state => state.searchVisible);
 	const setSearchVisible = headerStore(state => state.setSearchVisible);
@@ -45,8 +43,6 @@ const Header = () => {
 	const [isShowMenu, setIsShowMenu] = React.useState(false);
 
 	const refSearch = useRef(null);
-
-	const lang = useSelector(selectLanguage);
 
 	const toggleMenu = () => {
 		setIsShowMenu(!isShowMenu);

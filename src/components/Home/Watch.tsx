@@ -1,13 +1,12 @@
 import { cards } from '../../seed/seed';
 import { HomeBlock } from './HomeBlock';
 
-import { useSelector } from 'react-redux';
-import { selectLanguage } from '../../redux/language/selectors';
 import { mainPage as t } from '../../translations/translations';
 import { homePageStore } from '../../store/homePageStore';
+import { translateStore } from '../../store/translateStore';
 
 export const Watch = () => {
-	const lang = useSelector(selectLanguage);
+	const lang = translateStore(state => state.lang);
 
 	const allProducts = homePageStore(state => state.allProducts);
 

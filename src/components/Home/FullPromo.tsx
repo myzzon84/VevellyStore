@@ -1,9 +1,9 @@
-import { useSelector } from 'react-redux';
-import { selectLanguage } from '../../redux/language/selectors';
+
 import { mainPage as t } from '../../translations/translations';
+import { translateStore } from '../../store/translateStore';
 
 export const FullPromo = () => {
-	const lang = useSelector(selectLanguage);
+	const lang = translateStore(state => state.lang);
 	return (
 		<div className="full_promo mb-30 max-600px:mb-[50px]">
 			<div className="wrap relative min-h-[300px] max-w-[1440px] mx-auto">

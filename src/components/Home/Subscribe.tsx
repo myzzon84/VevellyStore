@@ -2,16 +2,15 @@ import clsx from 'clsx';
 import React from 'react';
 import { Container } from '../Container/Container';
 
-import { useSelector } from 'react-redux';
-import { selectLanguage } from '../../redux/language/selectors';
 import { mainPage as t } from '../../translations/translations';
+import { translateStore } from '../../store/translateStore';
 
 interface Props {
 	className?: string;
 }
 
 export const Subscribe: React.FC<Props> = ({ className }) => {
-	const lang = useSelector(selectLanguage);
+	const lang = translateStore(state => state.lang);
 
 	return (
 		<div className={clsx('mb-30 border border-[#018abe] border-x-0', className)}>

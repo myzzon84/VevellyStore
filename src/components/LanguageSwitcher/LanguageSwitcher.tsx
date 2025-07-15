@@ -1,15 +1,12 @@
 import clsx from 'clsx';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { changeLanguage } from '../../redux/language/operations';
-import { selectLanguage } from '../../redux/language/selectors';
+import { translateStore } from '../../store/translateStore';
 
 const LanguageSwitcher: React.FC = () => {
-	const dispatch = useDispatch();
-	const language = useSelector(selectLanguage);
-
+	const setLang = translateStore(state => state.setLang);
+	const language = translateStore(state => state.lang);
 	const handleChangeLanguage = (lang: 'ua' | 'en') => {
-		dispatch(changeLanguage(lang));
+		setLang(lang);
 	};
 
 	return (

@@ -1,10 +1,9 @@
 import { Container } from '../Container/Container';
-import { useSelector } from 'react-redux';
-import { selectLanguage } from '../../redux/language/selectors';
 import { mainPage as t } from '../../translations/translations';
+import { translateStore } from '../../store/translateStore';
 
 export const About = () => {
-	const lang = useSelector(selectLanguage);
+	const lang = translateStore(state => state.lang);
 
 	return (
 		<div className="about mb-30 ">

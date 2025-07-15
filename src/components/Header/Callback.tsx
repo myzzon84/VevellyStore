@@ -1,12 +1,12 @@
-import { useSelector } from 'react-redux';
-import { selectLanguage } from '../../redux/language/selectors';
+
 import { header as t } from '../../translations/translations';
 import { headerStore } from '../../store/HeaderStore';
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { useOnClickOutside } from '../../helpers/clickOutside';
+import { translateStore } from '../../store/translateStore';
 
 export const Callback = () => {
-	const lang = useSelector(selectLanguage);
+	const lang = translateStore(state => state.lang);
 
 	const setIsOpenCall = headerStore(state => state.setIsOpenCall);
 
