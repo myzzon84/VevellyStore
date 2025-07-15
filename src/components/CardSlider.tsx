@@ -135,7 +135,7 @@ export const CardSlider: React.FC<Props> = ({ cards }) => {
 					return (
 						<div
 							key={item.id}
-							className="card group w-1/4"
+							className="card group w-1/4 cursor-pointer relative"
 							onClick={() => {
 								navigate(`/products/${item.id}`);
 								setSelectedProduct(item.id);
@@ -162,7 +162,6 @@ export const CardSlider: React.FC<Props> = ({ cards }) => {
 								<img
 									src={images[currentImgIndex]}
 									alt={item.name}
-									// className="!h-[300px] object-cover"
 									className={` object-cover max-h-[300px] max-1000px:max-h-[224px]`}
 								/>
 								{images.length > 1 && (
@@ -187,9 +186,12 @@ export const CardSlider: React.FC<Props> = ({ cards }) => {
 										<span>${item.price}</span>
 									)}
 								</div>
-								<Button className="hidden group-hover:block mt-2" type="button" variant="primary">
+								<Button className="hidden group-hover:block mt-2 absolute bottom-0 left-0" type="button" variant="primary">
 									Add to bag
 								</Button>
+							</div>
+							<div className={` w-full h-[50px]`}>
+
 							</div>
 						</div>
 					);

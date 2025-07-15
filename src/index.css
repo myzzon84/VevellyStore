@@ -58,7 +58,7 @@ img {
 
 .container {
 	width: 100%;
-	max-width: 1320px; /* Как в Bootstrap */
+	max-width: 1440px;
 	margin: 0 auto;
 	padding: 0 16px; /* Отступы по бокам */
 }
@@ -115,6 +115,10 @@ h1 {
 
 .slick-dots li.slick-active button:before {
 	color: #1870a6 !important;
+}
+
+.slick-dots{
+	bottom: -10px !important;
 }
 
 
