@@ -44,20 +44,6 @@ const ProductCardPage = () => {
 		}
 	}, []);
 
-	// if (!selectedProduct) {
-	// 	return (
-	// 		<>
-	// 			<RotatingLines
-	// 				animationDuration="0.75"
-	// 				strokeColor="#018ABE"
-	// 				strokeWidth="5"
-	// 				visible={true}
-	// 				width="200"
-	// 			/>
-	// 		</>
-	// 	);
-	// }
-
 	return (
 		<Layout>
 			<Container>

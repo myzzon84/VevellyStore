@@ -1,8 +1,6 @@
 import { create } from 'zustand';
-import { mountStoreDevtool } from 'simple-zustand-devtools';
 import api from '../api/axios';
 import { SwaggerCartItemType } from '../components/CardSlider';
-import { headerStore } from './HeaderStore';
 
 type Store = {
 	loading: boolean;
@@ -47,8 +45,3 @@ export const homePageStore = create<Store>()(set => ({
 			});
 	},
 }));
-
-if (import.meta.env.MODE === 'development') {
-	mountStoreDevtool('Store1', homePageStore);
-	mountStoreDevtool('header store', headerStore);
-}

@@ -13,6 +13,7 @@ import { catalogStore } from '../../store/CatalogStore';
 import useResize from '../../helpers/usePageSize';
 import { useOnClickOutside } from '../../helpers/clickOutside';
 import { translateStore } from '../../store/translateStore';
+import { useNavigate } from 'react-router-dom';
 
 export type CategoriesType = {
 	has_diameter: boolean;
@@ -56,7 +57,11 @@ const Header = () => {
 	const raw = sessionStorage.getItem('categories');
 	let categoriesFromSessionStorage: CategoriesType[] = [];
 
-	useOnClickOutside(refSearch, () => {setSearchVisible(false)})
+	const navigate = useNavigate();
+
+	useOnClickOutside(refSearch, () => {
+		setSearchVisible(false);
+	});
 
 	if (raw) {
 		try {
@@ -98,10 +103,7 @@ const Header = () => {
 						</Link>
 					</div>
 					<div className="flex items-center justify-between gap-5">
-						<div
-							className="flex items-center relative cursor-pointer"
-							ref={refSearch}
-						>
+						<div className="flex items-center relative cursor-pointer" ref={refSearch}>
 							{searchVisible && <Search />}
 							<Icon
 								name="search"
@@ -114,7 +116,9 @@ const Header = () => {
 						<div className="flex items-center relative cursor-pointer" onClick={toggleBasket}>
 							<Icon name="basket" color="none" badge={5} />
 						</div>
-						<Icon name="person" color="none" className={` max-469px:hidden`} />
+						<Link to={'/auth'}>
+							<Icon name="person" color="none" className={` max-469px:hidden`} />
+						</Link>
 					</div>
 				</div>
 			</Container>

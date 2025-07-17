@@ -6,6 +6,7 @@ import OrderPage from '../pages/OrderPage';
 import BestsellersPage from '../pages/BestsellersPage';
 import ProductCardPage from '../pages/ProductCardPage';
 import ProductsPage from '../pages/ProductsPage';
+import AuthPage from '../pages/AuthPage';
 
 const router = createBrowserRouter(
 	[
@@ -36,6 +37,10 @@ const router = createBrowserRouter(
 		{
 			path: '*',
 			element: <NotFoundPage />,
+		},
+		{
+			path: '/auth',
+			element: <AuthPage/>
 		},
 	],
 	{

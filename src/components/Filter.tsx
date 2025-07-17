@@ -16,7 +16,7 @@ export const Filter: React.FC<FilterProps> = ({ onClose }) => {
 							<div className="filter_wrap_size flex gap-3 pb-6 flex-wrap">
 								{item.params.map(param => (
 									<button key={param.name} className="flex items-center">
-										<span className="p-2.5 font-light rounded-sm transition duration-300 ease-in-out py-[3px] px-2.5 w-12 h-6 text-sm text-[#434141] font-normal leading-4.5 border border-[#C0C0C0] !border-[#018ABE]">
+										<span className="p-2.5 rounded-sm transition duration-300 ease-in-out py-[3px] px-2.5 w-12 h-6 text-sm text-[#434141] font-normal leading-4.5 border border-[#C0C0C0]">
 											{param.name}
 										</span>
 									</button>
