@@ -5,6 +5,7 @@
 @theme {
 	--font-libre-caslon-display: "Libre Caslon Display";
 	--breakpoint-469px: 469px;
+	--breakpoint-500px: 500px;
 	--breakpoint-550px: 550px;
 	--breakpoint-600px: 600px;
 	--breakpoint-700px: 700px;

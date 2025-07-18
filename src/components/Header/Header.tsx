@@ -107,7 +107,7 @@ const Header = () => {
 							{searchVisible && <Search />}
 							<Icon
 								name="search"
-								className="ml-2.5"
+								className=""
 								setSearchVisible={setSearchVisible}
 								searchVisible={searchVisible}
 							/>
@@ -152,7 +152,6 @@ const Header = () => {
 			{isShowBasket && (
 				<div className="fixed inset-0 bg-black/10 z-40" onClick={toggleBasket}></div>
 			)}
-			<div className={` absolute top-0 left-0 px-5 text-[20px]`}>{_width}</div>
 		</header>
 	);
 };
