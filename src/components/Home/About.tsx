@@ -25,7 +25,7 @@ export const About = () => {
 							<a href="#">{t.readMore[lang]}</a>
 						</div>
 					</div>
-					<div className="flex-1 max-700px:hidden">
+					<div className="flex flex-1 max-700px:hidden justify-end">
 						<img src="/about.png" alt="about" />
 					</div>
 				</div>

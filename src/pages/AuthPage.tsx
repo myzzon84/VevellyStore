@@ -3,6 +3,8 @@ import { Container } from '../components/Container/Container';
 import { FieldValues, useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
 import InputForm from '../components/InputForm';
+import { authPage as t } from '../translations/translations';
+import { translateStore } from '../store/translateStore';
 
 const AuthPage = () => {
 	const {
@@ -15,6 +17,8 @@ const AuthPage = () => {
 	const onSubmit = (data: FieldValues) => console.log(data);
 
 	const [tabLogin, setTabLogin] = useState<'user' | 'guest'>('user');
+
+	const lang = translateStore(state => state.lang);
 
 	useEffect(() => {
 		console.log(errors);
@@ -31,7 +35,7 @@ const AuthPage = () => {
 							} cursor-pointer `}
 							onClick={() => setTabLogin('user')}
 						>
-							Log in as a client
+							{t.clientTab[lang]}
 						</div>
 						<div
 							className={` basis-[320px] p-[10px] pt-0 border-r border-b ${
@@ -39,7 +43,7 @@ const AuthPage = () => {
 							} cursor-pointer`}
 							onClick={() => setTabLogin('guest')}
 						>
-							Check in as a guest
+							{t.guestTab[lang]}
 						</div>
 					</div>
 					<div className={` p-10 border border-[#D6E8EE] max-500px:p-5`}>
@@ -58,7 +62,7 @@ const AuthPage = () => {
 								type={['password', 'text']}
 								name="password"
 								options={{ required: {value: true, message: 'field are required'}, minLength: {value: 6, message: 'password must be at least 6 characters'} }}
-								text="Password"
+								text={t.password[lang]}
 								watch={watch}
 								errors={errors}
 							/>
@@ -66,10 +70,10 @@ const AuthPage = () => {
 								type="submit"
 								className={` py-[10px] border border-[#1870A6] rounded-[4px] text-[18px]/[1.3] text-[#1870A6]`}
 							>
-								Login
+								{t.login[lang]}
 							</button>
 						</form>
-						<div className={` text-center text-[18px]/[1.3] mb-5 max-500px:mb-2`}>or</div>
+						<div className={` text-center text-[18px]/[1.3] mb-5 max-500px:mb-2`}>{t.or[lang]}</div>
 						<div className={`flex justify-between max-700px:gap-3`}>
 							<button
 								className={`flex border border-[#D6E8EE] max-w-[280px] w-full gap-[10px] items-center justify-center py-[10px] rounded-[4px]`}

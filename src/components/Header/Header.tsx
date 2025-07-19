@@ -10,10 +10,8 @@ import { header as t } from '../../translations/translations';
 import { Link } from 'react-router-dom';
 import { headerStore } from '../../store/HeaderStore';
 import { catalogStore } from '../../store/CatalogStore';
-import useResize from '../../helpers/usePageSize';
 import { useOnClickOutside } from '../../helpers/clickOutside';
 import { translateStore } from '../../store/translateStore';
-import { useNavigate } from 'react-router-dom';
 
 export type CategoriesType = {
 	has_diameter: boolean;
@@ -52,12 +50,9 @@ const Header = () => {
 	const toggleBasket = () => {
 		setIsShowBasket(!isShowBasket);
 	};
-	const _width = useResize()[0];
 
 	const raw = sessionStorage.getItem('categories');
 	let categoriesFromSessionStorage: CategoriesType[] = [];
-
-	const navigate = useNavigate();
 
 	useOnClickOutside(refSearch, () => {
 		setSearchVisible(false);

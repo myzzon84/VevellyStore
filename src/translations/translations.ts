@@ -59,3 +59,11 @@ export const footer = {
 	contacts: { en: 'Contacts', ua: 'Контакти' },
 	weekDay: { en: '09:00 - 20:00 Mon-Sun', ua: '09:00 - 20:00 Пн-Нд' },
 };
+
+export const authPage = {
+	clientTab: {en: 'Log in as a client', ua: 'Увійти як клієнт'},
+	guestTab: {en: 'Check in as a guest', ua: 'Зареєструватися як гість'},
+	password: {en: 'Password', ua: 'Пароль'},
+	login: {en: 'Login', ua: 'Увійти'},
+	or: {en: 'or', ua: 'або'},
+}
