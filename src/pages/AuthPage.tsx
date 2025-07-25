@@ -20,15 +20,13 @@ const AuthPage = () => {
 
 	const lang = translateStore(state => state.lang);
 
-	useEffect(() => {
-		console.log(errors);
-	},[errors])
-
 	return (
 		<Layout>
 			<Container>
 				<div className={` max-w-[683px] mx-auto`}>
-					<div className={`flex justify-between text-[20px]/[1.3] mb-10 max-700px:gap-3 max-600px:text-[16px]`}>
+					<div
+						className={`flex justify-between text-[20px]/[1.3] mb-10 max-700px:gap-3 max-600px:text-[16px]`}
+					>
 						<div
 							className={` basis-[320px] p-[10px] pt-0 border-r border-b ${
 								tabLogin === 'user' ? 'border-[#27697F]' : 'border-[#D6E8EE]'
@@ -47,12 +45,21 @@ const AuthPage = () => {
 						</div>
 					</div>
 					<div className={` p-10 border border-[#D6E8EE] max-500px:p-5`}>
-						<form onSubmit={handleSubmit(onSubmit)} className={`flex flex-col gap-5 mb-5 max-500px:mb-2`}>
+						<form
+							onSubmit={handleSubmit(onSubmit)}
+							className={`flex flex-col gap-5 mb-5 max-500px:mb-2`}
+						>
 							<InputForm
 								register={register}
 								type={['email']}
 								name="email"
-								options={{ required: { value: true, message: 'field are required'}, pattern: {value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, message: 'invalid email'} }}
+								options={{
+									required: { value: true, message: 'field are required' },
+									pattern: {
+										value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+										message: 'invalid email',
+									},
+								}}
 								text="E-mail"
 								watch={watch}
 								errors={errors}
@@ -61,7 +68,10 @@ const AuthPage = () => {
 								register={register}
 								type={['password', 'text']}
 								name="password"
-								options={{ required: {value: true, message: 'field are required'}, minLength: {value: 6, message: 'password must be at least 6 characters'} }}
+								options={{
+									required: { value: true, message: 'field are required' },
+									minLength: { value: 6, message: 'password must be at least 6 characters' },
+								}}
 								text={t.password[lang]}
 								watch={watch}
 								errors={errors}

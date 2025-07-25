@@ -1,6 +1,7 @@
 import React from 'react';
 
 type IconProps = {
+	label?: string;
 	name: string;
 	badge?: number;
 	width?: number;
@@ -13,6 +14,7 @@ type IconProps = {
 };
 
 const Icon: React.FC<IconProps> = ({
+	label,
 	name,
 	badge,
 	width = 24,
@@ -24,12 +26,14 @@ const Icon: React.FC<IconProps> = ({
 	searchVisible,
 }) => (
 	<div
-		className={`relative inline-block cursor-pointer ${className}`}
+		className={`relative cursor-pointer ${className} flex items-center gap-1`}
 		onClick={() => setSearchVisible?.(!searchVisible)}
 	>
 		<svg className={className} width={width} height={height} stroke={stroke} fill={color}>
 			<use href={`/icons_spite6.svg#${name}`} />
 		</svg>
+
+		{label && <span className={` font-sarabun text-[14px]/[1.3]`}>{label}</span>}
 
 		{badge && badge > 0 && (
 			<span

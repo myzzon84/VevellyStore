@@ -29,7 +29,7 @@ export const MySlider: React.FC<Props> = ({ banner }) => {
 				<AnySlider {...settings}>
 					{banner.map((item, index) => (
 						<div key={index} className={`relative max-1300px:px-8`}>
-							<div className=" mx-auto flex items-center justify-center border-t border-[#97CADB] border-l max-w-[1200px] w-full">
+							<div className=" mx-auto flex items-center justify-center max-w-[1200px] w-full">
 								<div
 									className="absolute top-1/2 transform -translate-y-1/2 left-0 w-full flex h-3/5 z-10 items-center justify-between"
 									style={{ backgroundColor: item.color || 'transparent' }}
@@ -51,12 +51,6 @@ export const MySlider: React.FC<Props> = ({ banner }) => {
 									<div className="w-1/2 z-10">
 										<img className="w-full h-full object-cover min-h-[300px]" src={item.img} alt="slider"/>
 									</div>
-									<div
-										className={` absolute bottom-0 bg-white -left-[2px] border-t w-[42.5%] border-[#97CADB] h-2 max-1050px:w-[40%] max-850px:w-[37%] max-700px:w-[35%] max-550px:w-[30%] max-469px:w-[25%]`}
-									></div>
-								</div>
-								<div className="absolute -bottom-1 right-1/2 mr-8 text-[#018ABE] text-[20px]/[1.3] font-medium">
-									{String(index + 1).padStart(2, '0')}
 								</div>
 							</div>
 						</div>

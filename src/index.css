@@ -4,6 +4,8 @@
 
 @theme {
 	--font-libre-caslon-display: "Libre Caslon Display";
+	--font-sarabun: "Sarabun";
+	--font-shippori-mincho-B1: "Shippori Mincho B1";
 	--breakpoint-469px: 469px;
 	--breakpoint-500px: 500px;
 	--breakpoint-550px: 550px;

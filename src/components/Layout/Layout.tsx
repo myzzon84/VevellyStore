@@ -1,5 +1,5 @@
 import Footer from '../Footer/Footer';
-import Header from '../Header/Header';
+import Header from '../Header/NewHeader';
 import ScrollToTopButton from '../ScrollToTopButton/ScrollToTopButton';
 
 interface LayoutProps {

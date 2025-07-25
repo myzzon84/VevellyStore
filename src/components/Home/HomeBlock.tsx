@@ -19,7 +19,7 @@ export const HomeBlock: React.FC<Props> = ({ title, cards }) => {
 	return (
 		<>
 			<Container>
-				<div className="flex items-center justify-between pb-10 max-600px:pb-5 ">
+				<div className="flex items-center justify-between pb-10 max-600px:pb-5 font-shippori-mincho-B1">
 					<div className="title text-[46px]/[1.3] uppercase font-medium text-[#0D0C0C] mb-4 font-libre-caslon-display max-600px:text-[24px]/[1.3]">
 						{title}
 					</div>
