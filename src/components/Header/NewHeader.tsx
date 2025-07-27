@@ -38,6 +38,7 @@ const Header = () => {
 	const setSearchVisible = headerStore(state => state.setSearchVisible);
 	const getCategories = catalogStore(state => state.getCategories);
 	const categories = catalogStore(state => state.categories);
+	const loading = catalogStore(state => state.loading);
 	const [isShowMenu, setIsShowMenu] = React.useState(false);
 
 	const refSearch = useRef(null);
@@ -50,23 +51,9 @@ const Header = () => {
 		setIsShowBasket(!isShowBasket);
 	};
 
-	// const raw = sessionStorage.getItem('categories');
-	// let categoriesFromSessionStorage: CategoriesType[] = [];
-
 	useOnClickOutside(refSearch, () => {
 		setSearchVisible(false);
 	});
-
-	// if (raw) {
-	// 	try {
-	// 		const parsed = JSON.parse(raw);
-	// 		if (Array.isArray(parsed.state.categories)) {
-	// 			categoriesFromSessionStorage = parsed.state.categories as CategoriesType[];
-	// 		}
-	// 	} catch (error) {
-	// 		console.error('Помилка при парсингу categories з sessionStorage:', error);
-	// 	}
-	// }
 
 	useEffect(() => {
 		getCategories();
@@ -76,18 +63,22 @@ const Header = () => {
 		<header className="relative font-sarabun">
 			<Container>
 				<div className="flex items-center justify-between py-10 max-w-[1200px] mx-auto max-600px:pt-[10px] max-600px:pb-5 ">
-					<div
-						className="flex items-center gap-6 text-[14px]/[1.3] text-[#0d0c0c] max-600px:text-[18px]/[1.3] cursor-pointer"
-						
-					>
-						<div className={` flex items-center gap-6`} onClick={toggleMenu}>
+					<div className="flex items-center gap-6 text-[14px]/[1.3] text-[#0d0c0c] max-600px:text-[18px]/[1.3] cursor-pointer">
+						<div
+							className={` flex items-center gap-6`}
+							onClick={() => {
+								if (!loading) {
+									toggleMenu();
+								}
+							}}
+						>
 							<span className={` flex items-center`}>
 								<Icon name="menu" />
 							</span>
 							{t.catalog[lang]}
 						</div>
-                        <a href="#">Women</a>
-                        <a href="#">Men</a>
+						<a href="#">{t.women[lang]}</a>
+						<a href="#">{t.men[lang]}</a>
 					</div>
 					<div
 						className={clsx(
@@ -101,12 +92,12 @@ const Header = () => {
 					</div>
 					<div className="flex items-center justify-between gap-5">
 						<Link to={'/auth'}>
-							<Icon name="person" color="none" className={` max-469px:hidden`} label='Account' />
+							<Icon name="person" color="none" className={` max-469px:hidden`} label={t.account[lang]} />
 						</Link>
 						<div className="flex items-center relative cursor-pointer" ref={refSearch}>
 							{searchVisible && <Search />}
 							<Icon
-                                label='Search'
+								label={t.search[lang]}
 								name="search"
 								className=""
 								setSearchVisible={setSearchVisible}
@@ -114,7 +105,7 @@ const Header = () => {
 							/>
 						</div>
 						<div className="flex items-center relative cursor-pointer" onClick={toggleBasket}>
-							<Icon name="basket" color="none" badge={5} label='Bag'/>
+							<Icon name="basket" color="none" badge={5} label={t.bag[lang]} />
 						</div>
 					</div>
 				</div>
@@ -125,7 +116,7 @@ const Header = () => {
 
 					<Container className="absolute top-full left-0 right-0 z-50">
 						<div className="w-full flex justify-between bg-white border border-[#D6E8EE]">
-							<Menu categories={ categories} />
+							<Menu categories={categories} />
 							<div className="w-64 p-5">
 								<img className="h-40" src="/photo-menu.png" alt="menu-promo" />
 								<div className="border-l-[1px]  border-[#018ABE]">

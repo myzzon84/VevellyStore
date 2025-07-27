@@ -4,6 +4,7 @@ import api from '../api/axios';
 import { CategoriesType } from '../components/Header/Header';
 
 type Store = {
+	loading: boolean;
 	categories: CategoriesType[];
 	getCategories: () => void;
 };
@@ -11,6 +12,7 @@ type Store = {
 export const catalogStore = create<Store>()(
 	persist(
 		set => ({
+			loading: true,
 			categories: [],
 			getCategories: () => {
 				api
@@ -19,8 +21,12 @@ export const catalogStore = create<Store>()(
 						console.log(res.data);
 						console.log(res.headers);
 						set({ categories: res.data });
+						set({loading: false});
 					})
-					.catch(err => console.log(err));
+					.catch(err => {
+						console.log(err);
+						set({loading: false});
+					});
 			},
 		}),
 		{

@@ -12,7 +12,7 @@ const AuthPage = () => {
 		watch,
 		handleSubmit,
 		formState: { errors },
-	} = useForm<FieldValues>({ mode: 'all', reValidateMode: 'onBlur' });
+	} = useForm<FieldValues>({ mode: 'all' });
 
 	const onSubmit = (data: FieldValues) => console.log(data);
 

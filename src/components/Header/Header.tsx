@@ -39,6 +39,7 @@ const Header = () => {
 	const setSearchVisible = headerStore(state => state.setSearchVisible);
 	const getCategories = catalogStore(state => state.getCategories);
 	const categories = catalogStore(state => state.categories);
+	const loading = catalogStore(state => state.loading);
 	const [isShowMenu, setIsShowMenu] = React.useState(false);
 
 	const refSearch = useRef(null);
@@ -70,9 +71,6 @@ const Header = () => {
 	}
 
 	useEffect(() => {
-		// if (sessionStorage.getItem('categories')) {
-		// 	return;
-		// }
 		getCategories();
 	}, []);
 
@@ -82,7 +80,11 @@ const Header = () => {
 			<Container>
 				<div className="flex items-center justify-between py-10 max-w-[1200px] mx-auto max-600px:pt-[10px] max-600px:pb-5 ">
 					<div className="flex items-center gap-2 text-2xl leading-8 text-[#0d0c0c] max-600px:text-[18px]/[1.3]">
-						<span onClick={toggleMenu}>
+						<span onClick={() => {
+							if(!loading){
+								toggleMenu();
+							}
+						}}>
 							<Icon name="menu" />
 						</span>
 						{t.catalog[lang]}

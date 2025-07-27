@@ -6,6 +6,11 @@ export const header = {
 	callMe: { en: 'Call', ua: 'Зателефонувати' },
 	catalog: { en: 'Catalog', ua: 'Каталог' },
 	sales: { en: 'Discounts up to 25%', ua: 'Знижки до 25%' },
+	women: { en: 'Women', ua: 'Для неї' },
+	men: { en: 'Men', ua: 'Для нього' },
+	account: { en: 'Account', ua: 'Кабінет' },
+	search: { en: 'Search', ua: 'Пошук' },
+	bag: { en: 'Bag', ua: 'Корзина' },
 };
 
 export const mainPage = {
