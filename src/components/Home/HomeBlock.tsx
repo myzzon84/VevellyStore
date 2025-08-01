@@ -8,7 +8,7 @@ import { RotatingLines } from 'react-loader-spinner';
 import { translateStore } from '../../store/translateStore';
 
 interface Props {
-	title: string;
+	title: string | string[];
 	cards: SwaggerCartItemType[];
 }
 
@@ -20,10 +20,10 @@ export const HomeBlock: React.FC<Props> = ({ title, cards }) => {
 		<>
 			<Container>
 				<div className="flex items-center justify-between pb-10 max-600px:pb-5 font-shippori-mincho-B1">
-					<div className="title text-[46px]/[1.3] uppercase font-medium text-[#0D0C0C] mb-4 font-libre-caslon-display max-600px:text-[24px]/[1.3]">
-						{title}
+					<div className="title text-[60px]/[.79] -tracking-[4%] uppercase font-medium text-[#27697F] mb-4 font-libre-caslon-display max-600px:text-[24px]/[1.3] relative">
+						{Array.isArray(title) ? title[0] : title}
+						{Array.isArray(title) && (<span className={` absolute -top-4 right-0 font-vujahday-script text-[20px]/[.89] lowercase`}>{title[1]}</span>)}
 					</div>
-					<div className="text-lg font-light leading-6 text-[#0d0c0c] max-600px:text-[16px]/[1.3]">{t.seeAll[lang]}</div>
 				</div>
 			</Container>
 			<Container className={` card-slider`}>
