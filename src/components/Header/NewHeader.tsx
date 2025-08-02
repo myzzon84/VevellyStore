@@ -11,6 +11,7 @@ import { headerStore } from '../../store/HeaderStore';
 import { catalogStore } from '../../store/CatalogStore';
 import { useOnClickOutside } from '../../helpers/clickOutside';
 import { translateStore } from '../../store/translateStore';
+import useResize from '../../helpers/usePageSize';
 
 export type CategoriesType = {
 	has_diameter: boolean;
@@ -32,6 +33,8 @@ export type CategoriesType = {
 };
 
 const Header = () => {
+	const _width = useResize()[0];
+
 	const lang = translateStore(state => state.lang);
 
 	const searchVisible = headerStore(state => state.searchVisible);
@@ -75,10 +78,10 @@ const Header = () => {
 							<span className={` flex items-center`}>
 								<Icon name="menu" />
 							</span>
-							{t.catalog[lang]}
+							{_width > 767 && t.catalog[lang]}
 						</div>
-						<a href="#">{t.women[lang]}</a>
-						<a href="#">{t.men[lang]}</a>
+						<a href="#">{_width > 767 &&  t.women[lang]}</a>
+						<a href="#">{_width > 767 &&  t.men[lang]}</a>
 					</div>
 					<div
 						className={clsx(
@@ -92,12 +95,12 @@ const Header = () => {
 					</div>
 					<div className="flex items-center justify-between gap-5">
 						<Link to={'/auth'}>
-							<Icon name="person" color="none" className={` max-469px:hidden`} label={t.account[lang]} />
+							<Icon name="person" color="none" className={` max-768px:hidden`} label={t.account[lang]} />
 						</Link>
 						<div className="flex items-center relative cursor-pointer" ref={refSearch}>
 							{searchVisible && <Search />}
 							<Icon
-								label={t.search[lang]}
+								label={_width > 767 ? t.search[lang] : ''}
 								name="search"
 								className=""
 								setSearchVisible={setSearchVisible}
@@ -105,7 +108,7 @@ const Header = () => {
 							/>
 						</div>
 						<div className="flex items-center relative cursor-pointer" onClick={toggleBasket}>
-							<Icon name="basket" color="none" badge={5} label={t.bag[lang]} />
+							<Icon name="basket" color="none" badge={5} label={_width > 767 ? t.bag[lang] : ''} />
 						</div>
 					</div>
 				</div>

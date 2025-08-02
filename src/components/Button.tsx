@@ -7,7 +7,7 @@ interface Props {
 	children: ReactNode;
 	className?: string;
 	variant?: 'primary' | 'secondary' | 'size';
-	onClick?: () => void;
+	onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const Button: React.FC<Props> = ({ children, className, variant = 'primary', ...props }) => {

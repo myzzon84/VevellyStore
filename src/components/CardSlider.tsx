@@ -113,11 +113,11 @@ export const CardSlider: React.FC<Props> = ({ cards }) => {
 		],
 	};
 
-	const images = ['/watch1.png', '/watch2.png', '/watch3.png', '/watch4.png'];
-
 	const navigate = useNavigate();
 
 	const setSelectedProduct = homePageStore(state => state.setSelectedProduct);
+
+	const [visible, setVisible] = useState(false);
 
 	return (
 		<div className="max-w-[1440px]">
@@ -140,6 +140,11 @@ export const CardSlider: React.FC<Props> = ({ cards }) => {
 								navigate(`/products/${item.id}`);
 								setSelectedProduct(item.id);
 							}}
+							onMouseEnter={() => {
+								setVisible(true);
+								console.log('visible true');
+							}}
+							onMouseLeave={() => setVisible(false)}
 						>
 							<div className="img relative flex justify-center">
 								{item.statuses && (
@@ -186,7 +191,7 @@ export const CardSlider: React.FC<Props> = ({ cards }) => {
 										<span>${item.price}</span>
 									)}
 								</div>
-								<Button className="hidden group-hover:block mt-2 absolute bottom-0 left-0" type="button" variant="primary">
+								<Button className={` ${visible ? 'block' : 'hidden'} mt-2`} type="button" variant="primary">
 									Add to bag
 								</Button>
 							</div>
