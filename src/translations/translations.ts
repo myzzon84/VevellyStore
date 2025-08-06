@@ -72,3 +72,13 @@ export const authPage = {
 	login: {en: 'Login', ua: 'Увійти'},
 	or: {en: 'or', ua: 'або'},
 }
+
+export const burger = {
+	allProducts: {en: 'All products', ua: 'Усі товари'},
+	collections: {en: 'Collections', ua: 'Колекції'},
+	personalInformation: {en: 'Personal Information', ua: 'Кабінет'},
+	favorites: {en: 'Favorites', ua: 'Обране'},
+	paymentAndDelivery: {en: 'Payment and Delivery', ua: 'Оплата та доставка'},
+	exchangeAndReturn: {en: 'Exchange and return', ua: 'Обмін та повернення'},
+	contacts: {en: 'Contacts', ua: 'Контакти'},
+}

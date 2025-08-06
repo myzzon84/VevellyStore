@@ -15,7 +15,6 @@ export const headerStore = create<Store>()(set => ({
 	searchVisible: false,
 	setSearchVisible: bool => {
 		set({ searchVisible: bool });
-		console.log('setSearchVisible');
 	},
 	isOpenCall: false,
 	setIsOpenCall: bool => set({ isOpenCall: bool }),

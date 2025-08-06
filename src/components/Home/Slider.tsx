@@ -37,7 +37,7 @@ export const MySlider: React.FC<Props> = ({ banner }) => {
 								></div>
 
 								<div className="relative w-full flex h-full items-center justify-between max-w-[1200px]">
-									<div className="relative z-10 w-1/2 flex items-center justify-center p-10 -left-[50px] max-700px:-left-[20px] max-1300px:pr-0 max-600px:pl-0 max-600px:-left-[10px]">
+									<div className="relative z-10 w-1/2 flex items-center justify-center max-700px:-left-[20px] max-1300px:pr-0 max-600px:pl-0 max-600px:-left-[10px]">
 										{index === 0 ? (
 											<HeroFirstSlideText />
 										) : (
@@ -53,7 +53,7 @@ export const MySlider: React.FC<Props> = ({ banner }) => {
 										)}
 									</div>
 
-									<div className="w-1/2 z-10">
+									<div className="w-1/2 z-10 flex justify-end">
 										<img
 											className="w-full h-full object-cover min-h-[300px]"
 											src={item.img}

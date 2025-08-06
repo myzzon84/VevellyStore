@@ -7,7 +7,9 @@
 	--font-sarabun: "Sarabun";
 	--font-shippori-mincho-B1: "Shippori Mincho B1";
 	--font-vujahday-script: "Vujahday Script";
+	--font-krub: "Krub";
 	--breakpoint-469px: 469px;
+	--breakpoint-440px: 440px;
 	--breakpoint-500px: 500px;
 	--breakpoint-550px: 550px;
 	--breakpoint-600px: 600px;
@@ -125,7 +127,7 @@ h1 {
 }
 
 .slick-dots{
-	bottom: -10px !important;
+	bottom: -15px !important;
 }
 
 
@@ -166,6 +168,16 @@ h1 {
 	color: #434141;
 }
 
+.slick-slide{
+	height: 100%;
+}
+
+.slick-track{
+	height: 100%;
+	display: flex !important;
+	gap: 20px;
+}
+
 .card-slider {
 	display: flex;
 	justify-content: center;
@@ -174,4 +186,6 @@ h1 {
 .card-slider .slick-slide > div {
 	display: flex;
 	justify-content: center;
+	height: 100%;
+	background: white;
 }

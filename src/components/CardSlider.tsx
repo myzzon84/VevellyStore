@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
@@ -117,8 +117,6 @@ export const CardSlider: React.FC<Props> = ({ cards }) => {
 
 	const setSelectedProduct = homePageStore(state => state.setSelectedProduct);
 
-	const [visible, setVisible] = useState(false);
-
 	return (
 		<div className="max-w-[1440px]">
 			<AnySlider {...settings}>
@@ -135,16 +133,12 @@ export const CardSlider: React.FC<Props> = ({ cards }) => {
 					return (
 						<div
 							key={item.id}
-							className="card group w-1/4 cursor-pointer relative"
+							className="card group w-1/4 cursor-pointer relative !flex flex-col !h-full justify-between px-1"
 							onClick={() => {
+								
 								navigate(`/products/${item.id}`);
 								setSelectedProduct(item.id);
 							}}
-							onMouseEnter={() => {
-								setVisible(true);
-								console.log('visible true');
-							}}
-							onMouseLeave={() => setVisible(false)}
 						>
 							<div className="img relative flex justify-center">
 								{item.statuses && (
@@ -191,7 +185,7 @@ export const CardSlider: React.FC<Props> = ({ cards }) => {
 										<span>${item.price}</span>
 									)}
 								</div>
-								<Button className={` ${visible ? 'block' : 'hidden'} mt-2`} type="button" variant="primary">
+								<Button className={`hidden group-hover:block mt-2 absolute left-0 bottom-0`} type="button" variant="primary">
 									Add to bag
 								</Button>
 							</div>

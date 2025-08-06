@@ -16,7 +16,7 @@ export const catalogStore = create<Store>()(
 			categories: [],
 			getCategories: () => {
 				api
-					.get('categories/',{headers:{'Accept-Language': 'ua'}})
+					.get('categories/',{headers:{'Accept-Language': 'en'}})
 					.then(res => {
 						console.log(res.data);
 						console.log(res.headers);

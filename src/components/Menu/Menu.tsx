@@ -2,7 +2,6 @@ import clsx from 'clsx';
 import React from 'react';
 import { MenuItem } from './MenuItem';
 import { CategoriesType } from '../Header/Header';
-import { headerStore } from '../../store/HeaderStore';
 
 interface Props {
 	className?: string;
@@ -20,15 +19,15 @@ export const Menu: React.FC<Props> = ({ className, categories }) => {
 		<>
 			<div
 				className={clsx(
-					'w-60 h-auto flex flex-col gap-2.5 p-5 border-r-[1px] border-[#D6E8EE]',
+					'w-max h-auto flex flex-col gap-2.5 p-10 border-r-[1px] border-[#D6E8EE]',
 					className
 				)}
 			>
-				<ul className="menu relative ">
+				<ul className="menu relative flex flex-col gap-[14px] ">
 					{categories.map((item, index) => (
 						<li
 							key={index}
-							className="w-full text-lg leading-6 text-[#0d0c0c]  border-b-[1px] border-transparent hover:border-[#D6E8EE] group"
+							className="w-full text-[20px]/[1.3] text-black  border-b-[1px] border-transparent hover:border-[#D6E8EE] group font-krub font-light"
 						>
 							<a
 								href={item.link}
@@ -38,7 +37,7 @@ export const Menu: React.FC<Props> = ({ className, categories }) => {
 									toggleSubmenu(index);
 								}}
 							>
-								<div className="flex items-center gap-2">
+								<div className="flex items-center gap-2 pr-5">
 									<span>{item.name}</span>
 								</div>
 								{item.subcategories.length > 0 && (

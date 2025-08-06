@@ -20,7 +20,7 @@ export const MenuItem: React.FC<Props> = ({ menu, depth = 0 }) => {
 	return (
 		<ul
 			className={clsx(
-				'absolute py-5 pl-5 left-full border-r-[1px] border-[#D6E8EE] bg-white w-60 shadow-md',
+				'absolute py-5 pl-5 left-full border-r-[1px] border-[#D6E8EE] bg-[#EFEFEF] w-60 shadow-md',
 				{
 					relative: depth === 0,
 				}
@@ -34,7 +34,7 @@ export const MenuItem: React.FC<Props> = ({ menu, depth = 0 }) => {
 			{menu.map((item, index) => (
 				<li
 					key={index}
-					className="relative py-2 border-b-[1px] border-transparent hover:border-[#D6E8EE] group"
+					className="relative py-2 border-b-[1px] border-transparent hover:border-[#D6E8EE] group cursor-pointer"
 				>
 					<a href={item.link} className="flex justify-between items-center ">
 						{item.name}
