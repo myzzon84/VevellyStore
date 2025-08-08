@@ -19,11 +19,8 @@ const Footer = () => {
 			<Container>
 				<div className="flex justify-around py-[100px] max-800px:flex-col max-800px:py-[50px]">
 					<div className="flex flex-col items-center max-800px:mb-10">
-						<div className="footer_logo text-[40px] leading-[52px] max-600px:text-[30px]/[1.3]">
+						<div className="footer_logo text-[40px] leading-[52px] max-600px:text-[30px]/[1.3] mb-[56px]">
 							<img src={'/Main_logo.png'} alt="main logo" className={`relative -left-6`} />
-						</div>
-						<div className="lang pt-5 mb-10">
-							<LanguageSwitcher />
 						</div>
 						<div className={` flex gap-6`}>
 							<Link to={''}><img src={'/facebook_icon.svg'} alt="facebook" /></Link>

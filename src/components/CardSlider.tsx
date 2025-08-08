@@ -1,11 +1,10 @@
-import clsx from 'clsx';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 import Button from './Button';
 import Icon from './Icon';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { homePageStore } from '../store/homePageStore';
 
 export type CartItemType = {
@@ -89,12 +88,15 @@ interface Props {
 }
 
 export const CardSlider: React.FC<Props> = ({ cards }) => {
+	const [isSwiping, setIsSwiping] = useState(false);
 	const AnySlider = Slider as unknown as React.ComponentType<any>;
 	const settings = {
 		dots: true,
 		slidesToShow: 4,
 		slidesToScroll: 4,
 		className: 'mySlick',
+		beforeChange: () => setIsSwiping(true),
+		afterChange: () => setIsSwiping(false),
 		responsive: [
 			{
 				breakpoint: 1000,
@@ -118,7 +120,7 @@ export const CardSlider: React.FC<Props> = ({ cards }) => {
 	const setSelectedProduct = homePageStore(state => state.setSelectedProduct);
 
 	return (
-		<div className="max-w-[1440px]">
+		<div className="max-w-[1200px] mx-auto">
 			<AnySlider {...settings}>
 				{cards.map(item => {
 					const [currentImgIndex, setCurrentImgIndex] = useState(0);
@@ -133,9 +135,9 @@ export const CardSlider: React.FC<Props> = ({ cards }) => {
 					return (
 						<div
 							key={item.id}
-							className="card group w-1/4 cursor-pointer relative !flex flex-col !h-full justify-between px-1"
+							className="card group w-1/4 cursor-pointer relative !flex flex-col !h-full justify-between"
 							onClick={() => {
-								
+								if (isSwiping) return;
 								navigate(`/products/${item.id}`);
 								setSelectedProduct(item.id);
 							}}
@@ -185,17 +187,26 @@ export const CardSlider: React.FC<Props> = ({ cards }) => {
 										<span>${item.price}</span>
 									)}
 								</div>
-								<Button className={`hidden group-hover:block mt-2 absolute left-0 bottom-0`} type="button" variant="primary">
+								<Button
+									className={`hidden group-hover:block mt-2 absolute left-0 bottom-0`}
+									type="button"
+									variant="primary"
+								>
 									Add to bag
 								</Button>
 							</div>
-							<div className={` w-full h-[50px]`}>
-
-							</div>
+							<div className={` w-full h-[39px] bg-[#EFEFEF]`}></div>
 						</div>
 					);
 				})}
 			</AnySlider>
+			<div
+				className={` max-w-[1200px] mx-auto font-sarabun text-[18px]/[1.3] font-extralight text-[#27697F] text-center`}
+			>
+				<Link to={''} className={` border border-[#27697F] rounded-[4px] py-[10px] px-[52px]`}>
+					Discover more
+				</Link>
+			</div>
 		</div>
 	);
 };

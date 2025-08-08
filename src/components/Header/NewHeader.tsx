@@ -121,7 +121,7 @@ const Header = () => {
 						)}
 					>
 						<Link to={'/'} className={``}>
-							<img src="Main_logo.png" alt="main logo" />
+							<img src="/Main_logo.png" alt="main logo" />
 						</Link>
 					</div>
 					<div className="flex items-center justify-between gap-5">

@@ -67,14 +67,15 @@ img {
 
 .container {
 	width: 100%;
-	max-width: 1440px;
+	max-width: 1200px;
 	margin: 0 auto;
-	padding: 0 16px; /* Отступы по бокам */
+	/* padding: 0 16px; Отступы по бокам */
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1240px) {
 	.container {
 		max-width: 1140px;
+		padding: 0 20px;
 	}
 }
 
@@ -95,13 +96,6 @@ img {
 		max-width: 100%;
 		padding: 0 12px;
 	}
-}
-h1 {
-	font-family: 'Libre Caslon Display', serif;
-	font-size: 46px;
-	line-height: 60px;
-	color: #0d0c0c;
-	text-transform: uppercase;
 }
 
 .header__logo,
@@ -134,10 +128,11 @@ h1 {
 .mySlick{
 	display: flex !important;
 	width: 100vw;
-	margin: 0 auto;
-	max-width: 1440px;
-	padding: 0 10px;
+	margin: 0 auto 20px auto;
+	max-width: 1200px;
+	/* padding: 0 10px; */
 	outline: none;
+	overflow: hidden;
 }
 
 @layer utilities {
