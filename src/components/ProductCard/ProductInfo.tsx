@@ -20,7 +20,7 @@ const ProductInfo:FC<ProductInfoProps> = ({selectedProduct}) => {
 	const currentSize = useSelector(currentSizeSelector);
 
 	return (
-		<div className="flex flex-col gap-5 justify-between">
+		<div className="flex flex-col gap-5 justify-between min-w-[370px] max-900px:min-w-[220px]">
 			<div className="flex flex-col gap-2 font-krub font-medium text-[#0D0C0C]">
 				<h1 className="text-[24px]/[1.3] w-full">{selectedProduct?.name}</h1>
 				<p className="text-[16px]/[1.3]">{selectedProduct?.design}</p>

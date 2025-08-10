@@ -14,8 +14,8 @@ const ProductGallery: React.FC<ProductGalleryProps> = ({selectedProduct}) => {
 	};
 
 	return (
-		<div className="w-[683px] flex gap-5">
-			<ul className="flex flex-col gap-5">
+		<div className="flex gap-5 min-w-[475px] max-500px:flex-col max-500px:min-w-auto">
+			<ul className="flex flex-col gap-5 max-500px:flex-row">
 				{images?.map(img => {
 					return (
 						<li

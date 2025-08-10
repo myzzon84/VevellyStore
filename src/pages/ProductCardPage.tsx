@@ -50,7 +50,7 @@ const ProductCardPage = () => {
 				<Breadcrumbs className="mb-11" />
 				{selectedProduct ? (
 					<>
-						<div className="flex gap-10 mb-[120px] ">
+						<div className="flex gap-10 mb-[120px] max-950px:gap-3 max-768px:flex-col">
 							<ProductGallery selectedProduct={selectedProduct} />
 							<ProductInfo selectedProduct={selectedProduct} />
 						</div>

@@ -19,11 +19,10 @@ const SizeComponent = () => {
 	};
 
 	return (
-		<div className="w-[372px]">
+		<div className="">
 			<p className="text-lg text-[#0D0C0C] font-medium leading-6">Size</p>
 			<div className="flex gap-3 flex-wrap mt-2.5">
 				{allSizes?.map((item, index) => {
-					// const outOfStock = !items[item] ? 'text-[#C0C0C0] !cursor-not-allowed' : '';
 					const isActive = currentSize === index ? '!border-[#018ABE]' : '';
 
 					return (
@@ -33,8 +32,6 @@ const SizeComponent = () => {
 							variant="size"
 							key={index}
 							className={`${isActive}`}
-							// className={`${outOfStock} ${isActive}`}
-							// disabled={!items[item]}
 						>
 							{item}
 						</Button>
