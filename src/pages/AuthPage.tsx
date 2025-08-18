@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import InputForm from '../components/InputForm';
 import { authPage as t } from '../translations/translations';
 import { translateStore } from '../store/translateStore';
+import Breadcrumbs from '../components/Breadcrumbs';
 
 const AuthPage = () => {
 	const {
@@ -22,6 +23,9 @@ const AuthPage = () => {
 
 	return (
 		<Layout>
+			<Container>
+				<Breadcrumbs className={` mb-11`}/>
+			</Container>
 			<Container>
 				<div className={` max-w-[683px] mx-auto`}>
 					<div

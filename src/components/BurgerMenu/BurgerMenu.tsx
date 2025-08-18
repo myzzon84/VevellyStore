@@ -17,13 +17,13 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({ refBurger }) => {
 		>
 			<div className={` w-[380px] bg-[#EFEFEF] py-10 pl-10 absolute z-10`}>
 				<div className={`mb-[14px]`}>
-					<Link to={''}>{t.allProducts[lang]}</Link>
+					<Link to={'/products'}>{t.allProducts[lang]}</Link>
 				</div>
 				<div className={`mb-[58px]`}>
 					<Link to={''}>{t.collections[lang]}</Link>
 				</div>
 				<div className={`mb-[14px]`}>
-					<Link to={''}>{t.personalInformation[lang]}</Link>
+					<Link to={'/auth'}>{t.personalInformation[lang]}</Link>
 				</div>
 				<div className={`mb-[58px]`}>
 					<Link to={''}>{t.favorites[lang]}</Link>

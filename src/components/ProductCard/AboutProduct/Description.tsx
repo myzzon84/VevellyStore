@@ -20,8 +20,8 @@ const Description = () => {
 	const currentSize = useSelector(currentSizeSelector);
 
 	return (
-		<div className="flex gap-15">
-			<ul className="w-[464px] flex flex-col gap-2.5 flex-shrink-0">
+		<div className="flex gap-15 max-768px:flex-col">
+			<ul className="max-w-[464px] flex flex-col gap-2.5 flex-shrink-0">
 				<li className="flex gap-2.5 items-center">
 					<p className="w-22 text-lg font-medium leading-6 capitalize">Metal: </p>
 					<p className="text-lg font-light leading-6">

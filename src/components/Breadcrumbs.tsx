@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { NavLink, Link, useLocation } from 'react-router-dom';
 
 interface Props {
 	className?: string;
@@ -20,7 +20,16 @@ const Breadcrumbs: React.FC<Props> = ({ className }) => {
 					return (
 						<li key={path}>
 							<span> / </span>
-							<Link to={path}>{value}</Link>
+							<NavLink
+								to={path}
+								style={index === pathnames.length - 1 ? ({ isActive }) => {
+									return {
+										fontWeight: isActive ? 'bold' : '',
+									};
+								} : {}}
+							>
+								{value}
+							</NavLink>
 						</li>
 					);
 				})}

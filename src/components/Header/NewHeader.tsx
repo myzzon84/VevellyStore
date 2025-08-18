@@ -13,6 +13,7 @@ import { catalogStore } from '../../store/CatalogStore';
 import { useOnClickOutside } from '../../helpers/clickOutside';
 import { translateStore } from '../../store/translateStore';
 import useResize from '../../helpers/usePageSize';
+import MobileBurgerMenu from '../BurgerMenu/MobileBurgerMenu';
 
 export type CategoriesType = {
 	has_diameter: boolean;
@@ -65,19 +66,19 @@ const Header = () => {
 		setSearchVisible(false);
 	});
 
-	useOnClickOutside(refBurger, (e) => {
+	useOnClickOutside(refBurger, e => {
 		if (refBurgerIcon.current && refBurgerIcon.current.contains(e.target as Node)) {
 			return;
 		}
 		setIsShowBurgerMenu(false);
-	})
+	});
 
-	useOnClickOutside(refCatalog, (e) => {
+	useOnClickOutside(refCatalog, e => {
 		if (refCatalogIcon.current && refCatalogIcon.current.contains(e.target as Node)) {
 			return;
 		}
 		setIsShowCatalog(false);
-	})
+	});
 
 	useEffect(() => {
 		getCategories();
@@ -151,7 +152,6 @@ const Header = () => {
 			</Container>
 			{isShowCatalog && (sessionStorage.getItem('categories') || categories) && (
 				<div ref={refCatalog}>
-
 					<Container className="absolute top-full left-0 right-0 z-50 !max-w-[1200px] bg-[#EFEFEF] !px-0">
 						<div className="w-full flex justify-between bg-[#EFEFEF] border border-[#D6E8EE]">
 							<Menu categories={categories} />
@@ -167,7 +167,8 @@ const Header = () => {
 					</Container>
 				</div>
 			)}
-			{isShowBurgerMenu && <BurgerMenu refBurger={refBurger} />}
+			{isShowBurgerMenu &&
+				(_width > 767 ? <BurgerMenu refBurger={refBurger} /> : <MobileBurgerMenu setIsShowBurgerMenu={setIsShowBurgerMenu} isShowBurgerMenu={isShowBurgerMenu} />)}
 			<div
 				className={clsx(
 					'absolute top-40 right-0 z-50 transform transition-transform duration-500',

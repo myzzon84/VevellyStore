@@ -41,10 +41,10 @@ const InputForm: FC<InputFormProps> = ({ register, type, name, options, text, wa
 				<span className=" text-red-500 text-xs">{errors[name]?.message?.toString()}</span>
 			)}
 			<div
-				className={` absolute left-[10px] bg-white ${
+				className={` absolute left-[10px] bg-[#EFEFEF] ${
 					focus || inputValue
-						? '-top-[12px] text-[12px]/[1.3] text-black z-auto'
-						: 'text-[#C0C0C0] top-[6px] text-[16px]/[1.3] -z-[1]'
+						? '-top-[12px] text-[12px]/[1.3] text-black'
+						: 'text-[#C0C0C0] top-[6px] text-[16px]/[1.3] pointer-events-none'
 				} transition-all duration-300 p-1 `}
 			>
 				{text}

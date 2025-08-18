@@ -5,11 +5,11 @@ const Payment = () => {
 	const textStile = 'text-lg text-[#0D0C0C] font-thin leading-6 text-justify ';
 
 	return (
-		<div className="flex gap-15 ">
+		<div className="flex gap-15 max-768px:flex-col">
 			<div>
 				<h3 className={subtitleStyle}>Return Policy:</h3>
 
-				<ul className="w-[464px] !list-disc !pl-6 flex flex-col gap-1">
+				<ul className="!list-disc !pl-6 flex flex-col gap-1">
 					<li className={textStile}>30-day hassle-free returns.</li>
 					<li className={textStile}>Item must be unworn and in original packaging.</li>
 					<li className={textStile}>

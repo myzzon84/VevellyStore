@@ -8,13 +8,15 @@ import {
 	subproductsSelector,
 } from '../../redux/product/selectors';
 import { SwaggerCartItemType } from '../CardSlider';
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
 
 interface ProductInfoProps {
 	selectedProduct: SwaggerCartItemType;
 }
 
-const ProductInfo:FC<ProductInfoProps> = ({selectedProduct}) => {
+const ProductInfo: FC<ProductInfoProps> = ({ selectedProduct }) => {
 	const product = useSelector(productSelector);
 	const subproducts = selectedProduct.subproducts;
 	const currentSize = useSelector(currentSizeSelector);
@@ -28,6 +30,13 @@ const ProductInfo:FC<ProductInfoProps> = ({selectedProduct}) => {
 			</div>
 			<MetalColorSwitcher />
 			<SizeComponent />
+			{/* <Slider
+				marks={{ '16': '16', '17': '17', '18': '18', '19': '19', '20': '20' }}
+				max={20}
+				min={16}
+				step={null}
+				included={false}
+			/> */}
 			<div>
 				{subproducts && subproducts[currentSize]?.old_price ? (
 					<>

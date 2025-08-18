@@ -174,19 +174,23 @@ export const CardSlider: React.FC<Props> = ({ cards }) => {
 									</span>
 								)}
 							</div>
-							<div className="wrap_info text-center">
-								<div className="category text-lg leading-6">{item.category.name}</div>
-								<div className="title text-[16px]/[21px]">{item.name}</div>
-								<div className="price text-lg leading-6">
-									{item.old_price ? (
-										<>
-											<span className="line-through">${item.old_price}</span>{' '}
-											<span className="text-red-400">$ {item.price}</span>
-										</>
-									) : (
-										<span>${item.price}</span>
-									)}
+							<div className="wrap_info">
+								{/* <div className="category text-lg leading-6">{item.category.name}</div> */}
+								<div className={` flex justify-between items-center px-2`}>
+									<div className="title text-[16px]/[1.3] w-[40%] font-medium">{item.name.split('(')[0]}</div>
+									<div className="price text-[16px]/[1.3] font-light flex justify-end gap-2 items-center">
+										{item.subproducts[0]?.old_price ? (
+											<>
+												<span className=" text-[14px]/[1.3]">${item.subproducts[0].old_price}</span>{' '}
+												<span className=" text-[16px]/[1.3] text-[#7B5B40]">${item.subproducts[0].new_price}</span>
+											</>
+										) : (
+											// <span>${item.price}</span>
+											<span>${item.subproducts[0]?.new_price}</span>
+										)}
+									</div>
 								</div>
+
 								<Button
 									className={`hidden group-hover:block mt-2 absolute left-0 bottom-0`}
 									type="button"
