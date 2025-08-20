@@ -168,7 +168,14 @@ const Header = () => {
 				</div>
 			)}
 			{isShowBurgerMenu &&
-				(_width > 767 ? <BurgerMenu refBurger={refBurger} /> : <MobileBurgerMenu setIsShowBurgerMenu={setIsShowBurgerMenu} isShowBurgerMenu={isShowBurgerMenu} />)}
+				(_width > 767 ? (
+					<BurgerMenu refBurger={refBurger} />
+				) : (
+					<MobileBurgerMenu
+						setIsShowBurgerMenu={setIsShowBurgerMenu}
+						isShowBurgerMenu={isShowBurgerMenu}
+					/>
+				))}
 			<div
 				className={clsx(
 					'absolute top-40 right-0 z-50 transform transition-transform duration-500',

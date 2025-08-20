@@ -38,14 +38,14 @@ export type SwaggerCartItemType = {
 		slug: string;
 		updated_at: string;
 	};
-	certificates: [];
+	certificates: string[];
 	collection: null | string;
-	description: [];
+	description: string[];
 	design: string;
 	ean_13: null;
-	gemstone: [];
+	gemstone: string[];
 	id: number;
-	images: [];
+	images: string[];
 	material: [
 		{
 			material: {

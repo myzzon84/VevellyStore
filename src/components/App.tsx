@@ -5,10 +5,19 @@ import { store } from '../redux/store';
 import router from '../routes/router';
 import { RouterProvider } from 'react-router-dom';
 import useResize from '../helpers/usePageSize';
+import { useEffect } from 'react';
+import { homePageStore } from '../store/homePageStore';
+
 
 function App() {
 
 	const _width = useResize()[0];
+
+	const getAllProducts = homePageStore(state => state.getAllProducts);
+
+	useEffect(() => {
+		getAllProducts();
+	}, []);
 
 	return (
 		<div className={` overflow-hidden bg-[#EFEFEF]`}>
