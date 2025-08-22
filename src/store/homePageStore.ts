@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import api from '../api/axios';
 import { SwaggerCartItemType } from '../components/CardSlider';
 
+
 type Store = {
 	loading: boolean;
 	setLoading: (bool: boolean) => void;
@@ -35,7 +36,7 @@ export const homePageStore = create<Store>()(set => ({
 			.get('all-products/')
 			.then(res => {
 				let result = res.data.results;
-				console.log(result);
+				let data = JSON.stringify(result[0]);
 				set({ allProducts: result });
 				set({ loading: false });
 			})

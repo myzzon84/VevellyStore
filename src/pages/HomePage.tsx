@@ -13,11 +13,6 @@ import { useEffect } from 'react';
 import { homePageStore } from '../store/homePageStore';
 
 const HomePage = () => {
-	const getAllProducts = homePageStore(state => state.getAllProducts);
-
-	// useEffect(() => {
-	// 	getAllProducts();
-	// }, []);
 
 	return (
 		<Layout>

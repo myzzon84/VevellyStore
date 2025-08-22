@@ -1,6 +1,5 @@
 import Layout from '../components/Layout/Layout';
 
-import { NavLink } from 'react-router-dom';
 import Breadcrumbs from '../components/Breadcrumbs';
 import { Container } from '../components/Container/Container';
 import filterIcon from '../assets/icons/filterIcon.svg';
@@ -11,11 +10,13 @@ import { RotatingLines } from 'react-loader-spinner';
 import arrowPagination from '../assets/icons/arrowPagination.svg';
 import { useEffect, useState } from 'react';
 
+type PageType = { startIndex: number; endIndex: number };
+
 const ProductsPage = () => {
 	const allProducts = homePageStore(state => state.allProducts);
-	const newArrayOfProducts = [...allProducts, ...allProducts, ...allProducts];
+	const newArrayOfProducts = [...allProducts, ...allProducts, ...allProducts, ...allProducts, ...allProducts];
 	const [page, setPage] = useState(0);
-	const [pageArr, setPageArr] = useState<number[]>([]);
+	const [pageArr, setPageArr] = useState<PageType[]>([]);
 	const [currentPage, setCurrentPage] = useState(1);
 
 	useEffect(() => {
@@ -26,17 +27,21 @@ const ProductsPage = () => {
 
 	useEffect(() => {
 		if (page) {
-			let pages: number[] = [];
+			let pages = [];
 			for (let index = 0; index < page; index++) {
-				pages.push(index + 1);
+				if (index === 0) {
+					pages.push({ startIndex: 0, endIndex: 8 });
+				} else {
+					pages.push({ startIndex: index * 8, endIndex: index * 8 + 8 });
+				}
 			}
 			setPageArr(pages);
 		}
 	}, [page]);
 
-	useEffect(() => {
+	useEffect(() => {}, [currentPage]);
 
-	},[currentPage]);
+	console.log(pageArr);
 
 	return (
 		<Layout>
@@ -54,9 +59,11 @@ const ProductsPage = () => {
 				</div>
 				<div className={` flex flex-wrap justify-between`}>
 					{allProducts.length > 0 ? (
-						newArrayOfProducts.slice(0, 8).map((card, index) => {
-							return <CardProduct card={card} key={index} />;
-						})
+						newArrayOfProducts
+							.slice(pageArr[currentPage - 1]?.startIndex, pageArr[currentPage - 1]?.endIndex)
+							.map((card, index) => {
+								return <CardProduct card={card} key={index} />;
+							})
 					) : (
 						<div className={` flex justify-center w-full`}>
 							<RotatingLines
@@ -71,13 +78,43 @@ const ProductsPage = () => {
 					)}
 				</div>
 				<div className={` flex w-full justify-center items-center gap-2`}>
-					<img src={arrowPagination} alt="arrow" className={` rotate-180`} />
-					<div className={`flex gap-2`}>
+					<img
+						src={arrowPagination}
+						alt="arrow"
+						className={` rotate-180 cursor-pointer ${
+							currentPage === 1 ? ' opacity-50' : ' opacity-100'
+						}`}
+						onClick={() => {
+							if (currentPage === 1) {
+								return;
+							}
+							setCurrentPage(currentPage => currentPage - 1);
+						}}
+					/>
+					<div className={`flex gap-2 items-center`}>
 						{pageArr.map((item, index) => (
-							<span key={index} className={` cursor-pointer`}>{item}</span>
+							<span
+								key={index}
+								className={` cursor-pointer ${currentPage === index + 1 ? ' font-bold text-[18px]' : ' font-light'}`}
+								onClick={() => {
+									setCurrentPage(index + 1);
+								}}
+							>
+								{index + 1}
+							</span>
 						))}
 					</div>
-					<img src={arrowPagination} alt="arrow" />
+					<img
+						src={arrowPagination}
+						alt="arrow"
+						className={` ${currentPage === pageArr.length ? ' opacity-50' : ' opacity-100'} cursor-pointer`}
+						onClick={() => {
+							if (currentPage === pageArr.length) {
+								return
+							}
+							setCurrentPage(currentPage => currentPage + 1);
+						}}
+					/>
 				</div>
 			</Container>
 		</Layout>

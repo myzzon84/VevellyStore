@@ -1,0 +1,167 @@
+{
+	"id": 14,
+	"category": {
+		"id": 3,
+		"name": "Bracelets",
+		"slug": "bracelets",
+		"updated_at": "2025-04-17T12:48:19.047517+03:00",
+		"has_length": true,
+		"has_width": false,
+		"has_diameter": false,
+		"has_weight": true
+	},
+	"subcategory": { "id": 4, "name": "All bracelets", "slug": "all-bracelets", "parent": 3 },
+	"name": "\"Gold bracelet with diamonds (art. B011568005)\"",
+	"slug": "gold-bracelet-with-diamonds-art-b011568005",
+	"ean_13": null,
+	"sku": "SKU-C137CB9D",
+	"article": "PR00004",
+	"statuses": ["New"],
+	"collection": null,
+	"occasions": "\"Gold bracelet with diamonds (art. B011568005)\"",
+	"description": [
+		{
+			"id": 5,
+			"name": "Bracelets",
+			"slug": "bracelets",
+			"text": "Jewelry is a sophisticated addition to the image, emphasizing individuality and capable of improving any personal style. Each bracelet on the hand, expressively wrapping the wrist, can tell a lot about the character of its owner. For example, elegant and thin chain models will emphasize tenderness and femininity, while massive accent jewelry will become a symbol of self-confidence and a desire to stand out.",
+			"seo_title": null,
+			"seo_description": "",
+			"keywords": null
+		}
+	],
+	"subproducts": [
+		{
+			"id": 13,
+			"position": 1,
+			"ean_13": null,
+			"sku": "SKU-566D2DD9",
+			"article": "SBPR00005",
+			"weight": 2.49,
+			"price": "53184.00",
+			"discount_percentage": "20.00",
+			"new_price": 42547.2,
+			"old_price": 53184,
+			"discount_applied": 20,
+			"size": "16.0-19.0",
+			"length": 16,
+			"max_length": 19,
+			"width": null
+		},
+		{
+			"id": 14,
+			"position": 2,
+			"ean_13": null,
+			"sku": "SKU-E518F66D",
+			"article": "SBPR00006",
+			"weight": 2.53,
+			"price": "53904.00",
+			"discount_percentage": "50.00",
+			"new_price": 26952,
+			"old_price": 53904,
+			"discount_applied": 50,
+			"size": "16.5-19.5",
+			"length": 16.5,
+			"max_length": 19.5,
+			"width": null
+		},
+		{
+			"id": 15,
+			"position": 3,
+			"ean_13": null,
+			"sku": "SKU-E912BC8A",
+			"article": "SBPR00007",
+			"weight": 2.56,
+			"price": "54447.00",
+			"discount_percentage": "50.00",
+			"new_price": 27223.5,
+			"old_price": 54447,
+			"discount_applied": 50,
+			"size": "17.0-20.0",
+			"length": 17,
+			"max_length": 20,
+			"width": null
+		},
+		{
+			"id": 16,
+			"position": 4,
+			"ean_13": null,
+			"sku": "SKU-91B3CD8A",
+			"article": "SBPR00008",
+			"weight": 2.58,
+			"price": "54807.00",
+			"discount_percentage": "50.00",
+			"new_price": 27403.5,
+			"old_price": 54807,
+			"discount_applied": 50,
+			"size": "17.5-20.5",
+			"length": 17.5,
+			"max_length": 20.5,
+			"width": null
+		},
+		{
+			"id": 17,
+			"position": 5,
+			"ean_13": null,
+			"sku": "SKU-65027C5C",
+			"article": "SBPR00009",
+			"weight": 2.58,
+			"price": "54807.00",
+			"discount_percentage": "50.00",
+			"new_price": 27403.5,
+			"old_price": 54807,
+			"discount_applied": 50,
+			"size": "18.0-21.0",
+			"length": 18,
+			"max_length": 21,
+			"width": null
+		},
+		{
+			"id": 18,
+			"position": 6,
+			"ean_13": null,
+			"sku": "SKU-60C9DB6E",
+			"article": "SBPR00010",
+			"weight": 2.63,
+			"price": "55710.00",
+			"discount_percentage": "50.00",
+			"new_price": 27855,
+			"old_price": 55710,
+			"discount_applied": 50,
+			"size": "18.5-19.5",
+			"length": 18.5,
+			"max_length": 19.5,
+			"width": null
+		}
+	],
+	"gemstone": [{ "id": 2, "gemstone": "Diamond", "color": "White" }],
+	"material": [
+		{
+			"id": 7,
+			"is_primary": false,
+			"set_included": false,
+			"material": {
+				"material": "gold",
+				"assay": "585",
+				"color": "red",
+				"slug": null,
+				"label": "gold 585 red"
+			}
+		}
+	],
+	"images": [
+		"https://res.cloudinary.com/dtftiyeso/image/upload/v1/xlp8aamtnzilwbvxptqo.png",
+		"https://res.cloudinary.com/dtftiyeso/image/upload/v1/project_1444/image/2_sskoyw"
+	],
+	"certificates": [],
+	"design": "\"Gold bracelet with diamonds (art. B011568005)\"",
+	"attributes": [
+		{
+			"id": 12,
+			"gender": "female",
+			"weaving_type": "Anchor",
+			"clasp_type": null,
+			"coating_material": null
+		}
+	]
+}
