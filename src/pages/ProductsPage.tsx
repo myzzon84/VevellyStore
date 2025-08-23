@@ -10,14 +10,24 @@ import { RotatingLines } from 'react-loader-spinner';
 import arrowPagination from '../assets/icons/arrowPagination.svg';
 import { useEffect, useState } from 'react';
 
+import Filters from '../components/Filters';
+
 type PageType = { startIndex: number; endIndex: number };
 
 const ProductsPage = () => {
 	const allProducts = homePageStore(state => state.allProducts);
-	const newArrayOfProducts = [...allProducts, ...allProducts, ...allProducts, ...allProducts, ...allProducts];
+	const newArrayOfProducts = [
+		...allProducts,
+		...allProducts,
+		...allProducts,
+		...allProducts,
+		...allProducts,
+	];
 	const [page, setPage] = useState(0);
 	const [pageArr, setPageArr] = useState<PageType[]>([]);
 	const [currentPage, setCurrentPage] = useState(1);
+
+	const [showFilters, setShowFilters] = useState(false);
 
 	useEffect(() => {
 		setPage(
@@ -47,10 +57,17 @@ const ProductsPage = () => {
 		<Layout>
 			<Container>
 				<Breadcrumbs className={` mb-11`} />
-				<div className={` flex text-[20px]/[1.3] font-normal justify-between cursor-pointer mb-10`}>
-					<div className={` flex gap-[10px] items-center `}>
-						<img src={filterIcon} alt="filter icon" />
-						<span>Filters</span>
+				<div className={` flex text-[20px]/[1.3] font-normal justify-between mb-10`}>
+					<div className={`  relative `}>
+						<div
+							className={`flex gap-[10px] items-center cursor-pointer`}
+							onClick={() => setShowFilters(!showFilters)}
+						>
+							<img src={filterIcon} alt="filter icon" />
+							<span>Filters</span>
+						</div>
+
+						{showFilters && <Filters />}
 					</div>
 					<div className={`flex items-center gap-[10px] cursor-pointer`}>
 						<span className={` min-w-max`}>Sort by</span>
@@ -95,7 +112,9 @@ const ProductsPage = () => {
 						{pageArr.map((item, index) => (
 							<span
 								key={index}
-								className={` cursor-pointer ${currentPage === index + 1 ? ' font-bold text-[18px]' : ' font-light'}`}
+								className={` cursor-pointer ${
+									currentPage === index + 1 ? ' font-bold text-[18px]' : ' font-light'
+								}`}
 								onClick={() => {
 									setCurrentPage(index + 1);
 								}}
@@ -107,10 +126,12 @@ const ProductsPage = () => {
 					<img
 						src={arrowPagination}
 						alt="arrow"
-						className={` ${currentPage === pageArr.length ? ' opacity-50' : ' opacity-100'} cursor-pointer`}
+						className={` ${
+							currentPage === pageArr.length ? ' opacity-50' : ' opacity-100'
+						} cursor-pointer`}
 						onClick={() => {
 							if (currentPage === pageArr.length) {
-								return
+								return;
 							}
 							setCurrentPage(currentPage => currentPage + 1);
 						}}
