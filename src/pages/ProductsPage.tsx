@@ -8,7 +8,7 @@ import { homePageStore } from '../store/homePageStore';
 import CardProduct from '../components/CardProduct';
 import { RotatingLines } from 'react-loader-spinner';
 import arrowPagination from '../assets/icons/arrowPagination.svg';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import Filters from '../components/Filters';
 
@@ -28,6 +28,8 @@ const ProductsPage = () => {
 	const [currentPage, setCurrentPage] = useState(1);
 
 	const [showFilters, setShowFilters] = useState(false);
+
+	const filtersButtonRef = useRef(null);
 
 	useEffect(() => {
 		setPage(
@@ -49,10 +51,6 @@ const ProductsPage = () => {
 		}
 	}, [page]);
 
-	useEffect(() => {}, [currentPage]);
-
-	console.log(pageArr);
-
 	return (
 		<Layout>
 			<Container>
@@ -62,12 +60,13 @@ const ProductsPage = () => {
 						<div
 							className={`flex gap-[10px] items-center cursor-pointer`}
 							onClick={() => setShowFilters(!showFilters)}
+							ref={filtersButtonRef}
 						>
 							<img src={filterIcon} alt="filter icon" />
 							<span>Filters</span>
 						</div>
 
-						{showFilters && <Filters />}
+						{showFilters && <Filters setShowFilters={setShowFilters} filtersButtonRef={filtersButtonRef}/>}
 					</div>
 					<div className={`flex items-center gap-[10px] cursor-pointer`}>
 						<span className={` min-w-max`}>Sort by</span>

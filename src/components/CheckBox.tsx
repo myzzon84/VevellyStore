@@ -1,32 +1,28 @@
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC } from 'react';
 import checkBoxIcon from '../assets/icons/checkbox.png';
+import { FieldValues, UseFormRegister, UseFormWatch, } from 'react-hook-form';
+
+
 
 interface CheckBoxProps {
 	label: string;
+	register: UseFormRegister<FieldValues>;
+	name: any;
+	watch: UseFormWatch<FieldValues>;
 }
 
-const CheckBox: FC<CheckBoxProps> = ({ label }) => {
-	const inputRef = useRef(null);
-	const [checked, setChecked] = useState(false);
-
+const CheckBox: FC<CheckBoxProps> = ({ label, register, name, watch }) => {
+	const isChecked = watch(name);
+	console.log(watch(name));
 	return (
-		<label className={` flex gap-[6px] items-center text-[16px]/[1.3] text-[#0D0C0C] font-light cursor-pointer min-w-min`}>
+		<label className={` flex gap-[6px] items-center text-[16px]/[1.3] text-[#0D0C0C] font-light cursor-pointer max-w-max`}>
 			<input
+				{...register(name)}
 				type="checkbox"
 				className={` hidden`}
-				ref={inputRef}
-				checked={checked}
-				onChange={() => {
-                    if(checked){
-                        setChecked(false);
-                    }else{
-                        setChecked(true);
-                    }
-					
-				}}
 			/>
 			<div className={` w-[22px] h-[22px] rounded-[4px] border border-[#C0C0C0] bg-white`}>
-				{checked && <img src={checkBoxIcon} alt="checkbox" />}
+				{isChecked && <img src={checkBoxIcon} alt="checkbox" />}
 			</div>
 			{label}
 		</label>
