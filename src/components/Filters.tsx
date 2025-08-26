@@ -59,9 +59,14 @@ const Filters: FC<FiltersProps> = ({ setShowFilters, filtersButtonRef }) => {
 
 	const styleFilter = ['Classic', 'Modern', 'Minimalist', 'Vintage'];
 
+	const onSubmit = ((data:object) => {
+		console.log(data);
+	})
+
 	return (
 		<form
-			className={` w-[340px] px-10 bg-[#efefef] absolute top-10 z-10 max-h-[80vh] overflow-y-auto shadow-lg`}
+			onSubmit={handleSubmit(onSubmit)}
+			className={` w-[340px] px-10 bg-white absolute top-10 z-10 max-h-[80vh] overflow-y-auto shadow-lg pt-5`}
 			ref={filtersRef}
 		>
 			<div className={` pb-[14px] border-b border-[#D6E8EE] mb-10`}>
@@ -82,7 +87,7 @@ const Filters: FC<FiltersProps> = ({ setShowFilters, filtersButtonRef }) => {
 						);
 					})}
 					<div
-						className={` text-[14px]/[1.3] text-black font-light absolute bottom-0 w-full bg-[#efefef] py-[10px]`}
+						className={` text-[14px]/[1.3] text-black font-light absolute bottom-0 w-full bg-white py-[10px]`}
 						onClick={() => setShowCategories(!showCategories)}
 					>
 						<span className={` cursor-pointer`}>{showCategories ? 'See less' : 'See more'}</span>
@@ -166,6 +171,7 @@ const Filters: FC<FiltersProps> = ({ setShowFilters, filtersButtonRef }) => {
 					Clear all filters
 				</button>
 				<button
+					type='submit'
 					className={`flex gap-[10px] px-[17px] py-[10px] border border-[#27697f] rounded-[4px]`}
 				>
 					<img src={basket} alt="basket icon" />

@@ -4,7 +4,7 @@ const BASE_URL = 'https://team-online-storage.onrender.com/api/v1/';
 
 const api: AxiosInstance = axios.create({
 	baseURL: BASE_URL,
-	timeout: 10000,
+	timeout: 15000,
 	headers: {
 		'Content-Type': 'application/json',
 	},

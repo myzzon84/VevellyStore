@@ -14,10 +14,13 @@ function App() {
 	const _width = useResize()[0];
 
 	const getAllProducts = homePageStore(state => state.getAllProducts);
+	const allProducts = homePageStore(state => state.allProducts);
 
 	useEffect(() => {
 		getAllProducts();
 	}, []);
+
+	console.log(allProducts);
 
 	return (
 		<div className={` overflow-hidden bg-[#EFEFEF]`}>

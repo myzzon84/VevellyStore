@@ -21,6 +21,16 @@ const ProductInfo: FC<ProductInfoProps> = ({ selectedProduct }) => {
 	const subproducts = selectedProduct.subproducts;
 	const currentSize = useSelector(currentSizeSelector);
 
+	const marks: {[key: number]: number} = {};
+
+	const sizes = subproducts.map((item, index) => {
+		return Number(item.length || item.size);
+	});
+
+	sizes.forEach((item) => {
+		marks[item] = item;
+	});
+
 	return (
 		<div className="flex flex-col gap-5 justify-between min-w-[370px] max-900px:min-w-[220px]">
 			<div className="flex flex-col gap-2 font-krub font-medium text-[#0D0C0C]">
@@ -29,14 +39,14 @@ const ProductInfo: FC<ProductInfoProps> = ({ selectedProduct }) => {
 				<p className="">{`SKU: ${selectedProduct?.sku}`}</p>
 			</div>
 			<MetalColorSwitcher />
-			<SizeComponent />
-			{/* <Slider
-				marks={{ '16': '16', '17': '17', '18': '18', '19': '19', '20': '20' }}
-				max={20}
-				min={16}
+			{/* <SizeComponent /> */}
+			<Slider
+				marks={marks}
+				max={Math.max(...sizes)}
+				min={Math.min(...sizes)}
 				step={null}
 				included={false}
-			/> */}
+			/>
 			<div>
 				{subproducts && subproducts[currentSize]?.old_price ? (
 					<>

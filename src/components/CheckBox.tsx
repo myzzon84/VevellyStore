@@ -13,7 +13,6 @@ interface CheckBoxProps {
 
 const CheckBox: FC<CheckBoxProps> = ({ label, register, name, watch }) => {
 	const isChecked = watch(name);
-	console.log(watch(name));
 	return (
 		<label className={` flex gap-[6px] items-center text-[16px]/[1.3] text-[#0D0C0C] font-light cursor-pointer max-w-max`}>
 			<input

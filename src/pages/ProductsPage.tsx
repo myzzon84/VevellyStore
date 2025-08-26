@@ -9,6 +9,7 @@ import CardProduct from '../components/CardProduct';
 import { RotatingLines } from 'react-loader-spinner';
 import arrowPagination from '../assets/icons/arrowPagination.svg';
 import { useEffect, useRef, useState } from 'react';
+import SortBy from '../components/SortBy';
 
 import Filters from '../components/Filters';
 
@@ -28,8 +29,10 @@ const ProductsPage = () => {
 	const [currentPage, setCurrentPage] = useState(1);
 
 	const [showFilters, setShowFilters] = useState(false);
+	const [showSort, setShowSort] = useState(false);
 
 	const filtersButtonRef = useRef(null);
+	const sortButtonRef = useRef(null);
 
 	useEffect(() => {
 		setPage(
@@ -66,11 +69,25 @@ const ProductsPage = () => {
 							<span>Filters</span>
 						</div>
 
-						{showFilters && <Filters setShowFilters={setShowFilters} filtersButtonRef={filtersButtonRef}/>}
+						{showFilters && allProducts.length > 0 && (
+							<Filters setShowFilters={setShowFilters} filtersButtonRef={filtersButtonRef} />
+						)}
 					</div>
-					<div className={`flex items-center gap-[10px] cursor-pointer`}>
-						<span className={` min-w-max`}>Sort by</span>
-						<img src={arrowDown} alt="arrow down" className={` w-[14px]`} />
+					<div className={` relative`}>
+						<div
+							className={`flex items-center gap-[10px] cursor-pointer`}
+							onClick={() => {
+								setShowSort(!showSort);
+							}}
+							ref={sortButtonRef}
+						>
+							<span className={` min-w-max`}>Sort by</span>
+							<img src={arrowDown} alt="arrow down" className={` w-[14px]`} />
+						</div>
+
+						{showSort && allProducts.length > 0 && (
+							<SortBy setShowSort={setShowSort} sortButtonRef={sortButtonRef} />
+						)}
 					</div>
 				</div>
 				<div className={` flex flex-wrap justify-between`}>
