@@ -21,13 +21,13 @@ const ProductInfo: FC<ProductInfoProps> = ({ selectedProduct }) => {
 	const subproducts = selectedProduct.subproducts;
 	const currentSize = useSelector(currentSizeSelector);
 
-	const marks: {[key: number]: number} = {};
+	const marks: { [key: number]: number } = {};
 
 	const sizes = subproducts.map((item, index) => {
 		return Number(item.length || item.size);
 	});
 
-	sizes.forEach((item) => {
+	sizes.forEach(item => {
 		marks[item] = item;
 	});
 
@@ -46,6 +46,10 @@ const ProductInfo: FC<ProductInfoProps> = ({ selectedProduct }) => {
 				min={Math.min(...sizes)}
 				step={null}
 				included={false}
+				styles={{
+					track: Object.keys(marks).length === 1 ? { backgroundColor: 'transparent' } : undefined,
+					rail: Object.keys(marks).length === 1 ? { backgroundColor: 'transparent' } : undefined,
+				}}
 			/>
 			<div>
 				{subproducts && subproducts[currentSize]?.old_price ? (

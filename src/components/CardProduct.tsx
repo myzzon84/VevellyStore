@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { SwaggerCartItemType } from './CardSlider';
 import { useNavigate } from 'react-router-dom';
+import { homePageStore } from '../store/homePageStore';
 
 interface CardProductType {
 	card: SwaggerCartItemType;
@@ -8,12 +9,14 @@ interface CardProductType {
 
 const CardProduct: FC<CardProductType> = ({ card }) => {
 	const navigate = useNavigate();
+	const setSelectedProduct = homePageStore(state => state.setSelectedProduct);
 
 	return (
 		<div
 			className={`w-[22%] min-w-[165px] max-950px:w-[30%] max-700px:w-[47%] mb-15 max-500px:mb-5 cursor-pointer`}
 			onClick={() => {
 				navigate(`/products/${card.id}`);
+				setSelectedProduct(card.id);
 			}}
 		>
 			<div className={` mb-3`}>
