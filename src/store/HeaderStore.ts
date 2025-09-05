@@ -7,8 +7,6 @@ type Store = {
 	setSearchVisible: (bool: boolean) => void;
 	isOpenCall: boolean;
 	setIsOpenCall: (bool: boolean) => void;
-	categories: CategoriesType[];
-	getCategories: () => void;
 };
 
 export const headerStore = create<Store>()(set => ({
@@ -18,15 +16,5 @@ export const headerStore = create<Store>()(set => ({
 	},
 	isOpenCall: false,
 	setIsOpenCall: bool => set({ isOpenCall: bool }),
-	categories: [],
-	getCategories: () => {
-		api
-			.get('categories/')
-			.then(res => {
-				console.log(res.data);
-				set({ categories: res.data });
-				sessionStorage.setItem('categories', JSON.stringify(res.data));
-			})
-			.catch(err => console.log(err));
-	},
+	
 }));

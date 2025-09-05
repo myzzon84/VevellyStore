@@ -47,7 +47,7 @@ const ProductCardPage = () => {
 	return (
 		<Layout>
 			<Container>
-				<Breadcrumbs className="mb-11" />
+				<Breadcrumbs className="mb-11" selectedProduct={selectedProduct} />
 				{selectedProduct ? (
 					<>
 						<div className="flex gap-10 mb-[120px] max-950px:gap-3 max-768px:flex-col">

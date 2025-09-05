@@ -33,7 +33,7 @@ export const homePageStore = create<Store>()(set => ({
 	getAllProducts: () => {
 		set({ loading: true });
 		api
-			.get('all-products/?limit=20&offset=1', {headers: {'Accept-Language': 'en'}})
+			.get('all-products/?limit=15&offset=1', {headers: {'Accept-Language': 'en'}})
 			.then(res => {
 				let result = res.data.results;
 				set({ allProducts: result });
