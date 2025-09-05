@@ -6,7 +6,7 @@ import { SwaggerCartItemType } from '../components/CardSlider';
 type Store = {
 	loading: boolean;
 	setLoading: (bool: boolean) => void;
-	allProducts: [];
+	allProducts: SwaggerCartItemType[];
 	getAllProducts: () => void;
 	productImages: string[];
 	setProductImages: (arr: string[]) => void;
@@ -33,10 +33,9 @@ export const homePageStore = create<Store>()(set => ({
 	getAllProducts: () => {
 		set({ loading: true });
 		api
-			.get('all-products/')
+			.get('all-products/?limit=20&offset=1', {headers: {'Accept-Language': 'en'}})
 			.then(res => {
 				let result = res.data.results;
-				let data = JSON.stringify(result[0]);
 				set({ allProducts: result });
 				set({ loading: false });
 			})
