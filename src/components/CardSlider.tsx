@@ -138,7 +138,7 @@ export const CardSlider: React.FC<Props> = ({ cards }) => {
 							className="card group w-1/4 cursor-pointer relative !flex flex-col !h-full justify-between"
 							onClick={() => {
 								if (isSwiping) return;
-								navigate(`/products/${item.slug}/`);
+								navigate(`/products/--${item.id}--${item.slug}/`);
 								setSelectedProduct(item.id);
 							}}
 						>

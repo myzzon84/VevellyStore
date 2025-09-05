@@ -15,7 +15,7 @@ const CardProduct: FC<CardProductType> = ({ card }) => {
 		<div
 			className={`w-[22%] min-w-[165px] max-950px:w-[30%] max-700px:w-[47%] mb-15 max-500px:mb-5 cursor-pointer`}
 			onClick={() => {
-				navigate(`/products/${card.slug}/`);
+				navigate(`/products/--${card.id}--${card.slug}/`);
 				setSelectedProduct(card.id);
 			}}
 		>

@@ -40,7 +40,7 @@ const ProductCardPage = () => {
 
 	useEffect(() => {
 		if (!selectedProduct) {
-			setSelectedProduct(Number(params.productId));
+			setSelectedProduct(Number(params.productId?.split('--')[1]));
 		}
 	}, []);
 
