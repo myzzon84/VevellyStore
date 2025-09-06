@@ -25,28 +25,28 @@ const Description = () => {
 				<li className="flex gap-2.5 items-center">
 					<p className="w-22 text-lg font-medium leading-6 capitalize">Metal: </p>
 					<p className="text-lg font-light leading-6">
-						{materials && materials[currentMetalColor]?.material?.material}
+						{selectedProduct?.materials?.[0]?.material?.material}
 					</p>
 				</li>
 
 				<li className="flex gap-2.5 items-center">
 					<p className="w-22 text-lg font-medium leading-6 capitalize">Color: </p>
 					<p className="text-lg font-light leading-6">
-						{materials && materials[currentMetalColor]?.material?.color}
+						{selectedProduct?.materials?.[0]?.material?.color}
 					</p>
 				</li>
 
 				<li className="flex gap-2.5 items-center">
 					<p className="w-22 text-lg font-medium leading-6 capitalize">Fineness: </p>
 					<p className="text-lg font-light leading-6">
-						{materials && materials[currentMetalColor]?.material?.assay}
+						{selectedProduct?.materials?.[0]?.material?.assay}
 					</p>
 				</li>
 
 				<li className="flex gap-2.5 items-center">
 					<p className="w-22 text-lg font-medium leading-6 capitalize">Style: </p>
 					<p className="text-lg font-light leading-6">
-						{materials && materials[currentMetalColor]?.material?.label}
+						{selectedProduct?.materials?.[0]?.material?.label}
 					</p>
 				</li>
 
@@ -56,28 +56,28 @@ const Description = () => {
 						<li className="flex gap-2.5 aline-center">
 							<p className="w-22 capitalize text-lg font-light leading-6">Height: </p>
 							<p className="text-lg font-light leading-6">
-								{subproducts && subproducts[currentSize]?.width}
+								{selectedProduct?.subproducts?.[currentSize]?.width}
 							</p>
 						</li>
 
 						<li className="flex gap-2.5 aline-center">
 							<p className="w-22 capitalize text-lg font-light leading-6">Length: </p>
 							<p className="text-lg font-light leading-6">
-								{subproducts && subproducts[currentSize]?.length}
+								{selectedProduct?.subproducts?.[currentSize]?.length}
 							</p>
 						</li>
 
 						<li className="flex gap-2.5 aline-center">
 							<p className="w-22 capitalize text-lg font-light leading-6">Weight: </p>
 							<p className="text-lg font-light leading-6">
-								{subproducts && subproducts[currentSize]?.weight}
+								{selectedProduct?.subproducts?.[currentSize]?.weight}
 							</p>
 						</li>
 
 						<li className="flex gap-2.5 aline-center">
 							<p className="w-22 capitalize text-lg font-light leading-6">Thickness: </p>
 							<p className="text-lg font-light leading-6">
-								{subproducts && subproducts[currentSize]?.width}
+								{selectedProduct?.subproducts?.[currentSize]?.width}
 							</p>
 						</li>
 					</ul>
@@ -86,13 +86,13 @@ const Description = () => {
 				<li className="flex gap-2.5 items-center">
 					<p className="w-22 text-lg font-medium leading-6 capitalize">Stone: </p>
 					<p className="text-lg font-light leading-6">
-						{product && product?.gemstone[0]?.gemstone}
+						{selectedProduct?.gemstone?.[0]?.gemstone}
 					</p>
 				</li>
 			</ul>
 			<div>
 				<p className="text-lg font-normal leading-6 text-justify">
-					{product && product?.description[0]?.text}
+					{selectedProduct?.description?.[0]?.text}
 				</p>
 			</div>
 		</div>

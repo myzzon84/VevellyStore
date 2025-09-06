@@ -40,16 +40,35 @@ export type SwaggerCartItemType = {
 	};
 	certificates: string[];
 	collection: null | string;
-	description: string[];
+	description: [
+		{
+			id: number;
+			keywords: null;
+			name: string;
+			seo_description: string;
+			seo_title: string;
+			slug: string;
+			text: string;
+		}
+	];
 	design: string;
 	ean_13: null;
-	gemstone: string[];
+	gemstone: [
+		{
+			color: string;
+			gemstone: string;
+			id: number;
+		}
+	];
 	id: number;
 	images: string[];
-	material: [
+	materials: [
 		{
 			material: {
 				material: string;
+				color: string;
+				assay: string;
+				label: string;
 			};
 		}
 	];
@@ -131,7 +150,6 @@ export const CardSlider: React.FC<Props> = ({ cards }) => {
 							setCurrentImgIndex((currentImgIndex + 1) % images.length);
 						}
 					};
-					console.log(item.statuses);
 					return (
 						<div
 							key={item.id}
@@ -177,12 +195,16 @@ export const CardSlider: React.FC<Props> = ({ cards }) => {
 							<div className="wrap_info">
 								{/* <div className="category text-lg leading-6">{item.category.name}</div> */}
 								<div className={` flex justify-between items-center px-2`}>
-									<div className="title text-[16px]/[1.3] w-[40%] font-medium">{item.name.split('(')[0]}</div>
+									<div className="title text-[16px]/[1.3] w-[40%] font-medium">
+										{item.name.split('(')[0]}
+									</div>
 									<div className="price text-[16px]/[1.3] font-light flex justify-end gap-2 items-center">
 										{item.subproducts[0]?.old_price ? (
 											<>
 												<span className=" text-[14px]/[1.3]">${item.subproducts[0].old_price}</span>{' '}
-												<span className=" text-[16px]/[1.3] text-[#7B5B40]">${item.subproducts[0].new_price}</span>
+												<span className=" text-[16px]/[1.3] text-[#7B5B40]">
+													${item.subproducts[0].new_price}
+												</span>
 											</>
 										) : (
 											// <span>${item.price}</span>

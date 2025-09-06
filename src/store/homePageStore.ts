@@ -18,7 +18,7 @@ export const homePageStore = create<Store>()(set => ({
 	selectedProduct: null,
 	setSelectedProduct: id => {
 		set({selectedProduct: null});
-		api.get(`product/${id}`).then(data => {
+		api.get(`product/${id}/`).then(data => {
 			console.log(data.data);
 			set({ selectedProduct: data.data });
 		});

@@ -11,7 +11,7 @@ export const getProductByIdThunk = createAsyncThunk<
 >('product/getById', async (productId, thunkAPI) => {
 	const { ALL_PRODUCT } = Endpoints;
 	try {
-		const { data } = await api.get<Product>(`${ALL_PRODUCT}${productId}`);
+		const { data } = await api.get<Product>(`${ALL_PRODUCT}${productId}/`);
 		return data;
 	} catch (err) {
 		console.error(err);

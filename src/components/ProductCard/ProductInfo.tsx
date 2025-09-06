@@ -1,12 +1,5 @@
 import Button from '../Button';
-import SizeComponent from '../SizeComponent';
 import MetalColorSwitcher from './MetalColorSwitcher';
-import { useSelector } from 'react-redux';
-import {
-	currentSizeSelector,
-	productSelector,
-	subproductsSelector,
-} from '../../redux/product/selectors';
 import { SwaggerCartItemType } from '../CardSlider';
 import { FC, useEffect, useState } from 'react';
 import Slider from 'rc-slider';
@@ -17,9 +10,7 @@ interface ProductInfoProps {
 }
 
 const ProductInfo: FC<ProductInfoProps> = ({ selectedProduct }) => {
-	const product = useSelector(productSelector);
 	const subproducts = selectedProduct.subproducts;
-	const currentSize = useSelector(currentSizeSelector);
 
 	const marks: { [key: number]: number } = {};
 
@@ -30,6 +21,8 @@ const ProductInfo: FC<ProductInfoProps> = ({ selectedProduct }) => {
 	sizes.forEach(item => {
 		marks[item] = item;
 	});
+
+	const [currentSize, setCurrentSize] = useState(0);
 
 	return (
 		<div className="flex flex-col gap-5 justify-between min-w-[370px] max-900px:min-w-[220px]">
@@ -50,6 +43,7 @@ const ProductInfo: FC<ProductInfoProps> = ({ selectedProduct }) => {
 					track: Object.keys(marks).length === 1 ? { backgroundColor: 'transparent' } : undefined,
 					rail: Object.keys(marks).length === 1 ? { backgroundColor: 'transparent' } : undefined,
 				}}
+				onChange={(num) => {setCurrentSize(sizes.indexOf(num as number))}}
 			/>
 			<div>
 				{subproducts && subproducts[currentSize]?.old_price ? (
