@@ -31,9 +31,14 @@ const ProductInfo: FC<ProductInfoProps> = ({ selectedProduct }) => {
 				<p className="text-[16px]/[1.3]">{selectedProduct?.design}</p>
 				<p className="">{`SKU: ${selectedProduct?.sku}`}</p>
 			</div>
-			<MetalColorSwitcher />
+			{selectedProduct && selectedProduct.materials.length > 1 ? (
+				<MetalColorSwitcher />
+			) : (
+				<div>{`Metal color: ${selectedProduct.materials[0].material.color}`}</div>
+			)}
+
 			{/* <SizeComponent /> */}
-			{sizes.length > 0 ? (
+			{sizes.length > 0 && selectedProduct.subproducts.length > 1 ? (
 				<Slider
 					marks={marks}
 					max={Math.max(...sizes)}
