@@ -13,13 +13,13 @@ const ProductInfo: FC<ProductInfoProps> = ({ selectedProduct }) => {
 	const subproducts = selectedProduct.subproducts;
 
 	const marks: { [key: number]: number } = {};
-
-	const sizes = subproducts.map((item, index) => {
-		return Number(item.length || item.size);
-	});
-
-	sizes.forEach(item => {
-		marks[item] = item;
+	const sizes: number[] = [];
+	subproducts.forEach(item => {
+		if (item.size) {
+			const size = Number(item.size);
+			marks[size] = size;
+			sizes.push(size);
+		}
 	});
 
 	const [currentSize, setCurrentSize] = useState(0);
@@ -33,18 +33,23 @@ const ProductInfo: FC<ProductInfoProps> = ({ selectedProduct }) => {
 			</div>
 			<MetalColorSwitcher />
 			{/* <SizeComponent /> */}
-			<Slider
-				marks={marks}
-				max={Math.max(...sizes)}
-				min={Math.min(...sizes)}
-				step={null}
-				included={false}
-				styles={{
-					track: Object.keys(marks).length === 1 ? { backgroundColor: 'transparent' } : undefined,
-					rail: Object.keys(marks).length === 1 ? { backgroundColor: 'transparent' } : undefined,
-				}}
-				onChange={(num) => {setCurrentSize(sizes.indexOf(num as number))}}
-			/>
+			{sizes.length > 0 ? (
+				<Slider
+					marks={marks}
+					max={Math.max(...sizes)}
+					min={Math.min(...sizes)}
+					step={null}
+					included={false}
+					styles={{
+						track: Object.keys(marks).length === 1 ? { backgroundColor: 'transparent' } : undefined,
+						rail: Object.keys(marks).length === 1 ? { backgroundColor: 'transparent' } : undefined,
+					}}
+					onChange={num => {
+						setCurrentSize(sizes.indexOf(num as number));
+					}}
+				/>
+			) : null}
+
 			<div>
 				{subproducts && subproducts[currentSize]?.old_price ? (
 					<>
