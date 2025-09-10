@@ -1,7 +1,8 @@
 import Button from '../Button';
 import MetalColorSwitcher from './MetalColorSwitcher';
 import { SwaggerCartItemType } from '../CardSlider';
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
+import { productCardPageStore } from '../../store/ProductCardPageStore';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
@@ -10,19 +11,32 @@ interface ProductInfoProps {
 }
 
 const ProductInfo: FC<ProductInfoProps> = ({ selectedProduct }) => {
+
+	const currentSize = productCardPageStore(state => state.currentSize);
+	const setCurrentSize = productCardPageStore(state => state.setCurrentSize);
+
 	const subproducts = selectedProduct.subproducts;
 
 	const marks: { [key: number]: number } = {};
 	const sizes: number[] = [];
-	subproducts.forEach(item => {
-		if (item.size) {
-			const size = Number(item.size);
-			marks[size] = size;
-			sizes.push(size);
-		}
-	});
 
-	const [currentSize, setCurrentSize] = useState(0);
+	if (selectedProduct?.subproducts?.[0]?.length) {
+		subproducts.forEach(item => {
+			if (item.length) {
+				const size = Number(item.length);
+				marks[size] = size;
+				sizes.push(size);
+			}
+		});
+	} else {
+		subproducts.forEach(item => {
+			if (item.size) {
+				const size = Number(item.size);
+				marks[size] = size;
+				sizes.push(size);
+			}
+		});
+	}
 
 	return (
 		<div className="flex flex-col gap-5 justify-between min-w-[370px] max-900px:min-w-[220px]">

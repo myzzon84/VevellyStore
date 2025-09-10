@@ -1,22 +1,10 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import {
-	currentMetalColorSelector,
-	currentSizeSelector,
-	materialsSelector,
-	productSelector,
-	subproductsSelector,
-} from '../../../redux/product/selectors';
+
 import { homePageStore } from '../../../store/homePageStore';
+import { productCardPageStore } from '../../../store/ProductCardPageStore';
 
 const Description = () => {
 	const selectedProduct = homePageStore(state => state.selectedProduct);
-
-	const product = useSelector(productSelector);
-	const subproducts = useSelector(subproductsSelector);
-	const materials = useSelector(materialsSelector);
-	const currentMetalColor = useSelector(currentMetalColorSelector);
-	const currentSize = useSelector(currentSizeSelector);
+	const currentSize = productCardPageStore(state => state.currentSize);
 
 	return (
 		<div className="flex gap-15 max-768px:flex-col">
