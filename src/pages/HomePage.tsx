@@ -11,8 +11,14 @@ import { Baner } from '../seed/seed';
 import { MySlider } from '../components/Home/Slider';
 import { useEffect } from 'react';
 import { homePageStore } from '../store/homePageStore';
+import { useLocation } from 'react-router-dom';
 
 const HomePage = () => {
+	const getAllProducts = homePageStore(state => state.getAllProducts);
+	const location = useLocation();
+	useEffect(() => {
+		getAllProducts();
+	},[location]);
 
 	return (
 		<Layout>

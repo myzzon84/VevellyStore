@@ -7,6 +7,7 @@ import BestsellersPage from '../pages/BestsellersPage';
 import ProductCardPage from '../pages/ProductCardPage';
 import ProductsPage from '../pages/ProductsPage';
 import AuthPage from '../pages/AuthPage';
+import CategoryPage from '../pages/CategoryPage';
 
 const router = createBrowserRouter(
 	[
@@ -27,7 +28,7 @@ const router = createBrowserRouter(
 			element: <ProductsPage />,
 		},
 		{
-			path: '/products/:productId',
+			path: '/:categoryName/:productId',
 			element: <ProductCardPage />,
 		},
 		{
@@ -41,6 +42,10 @@ const router = createBrowserRouter(
 		{
 			path: '/auth',
 			element: <AuthPage/>
+		},
+		{
+			path: '/:categoryName',
+			element: <CategoryPage/>
 		},
 	],
 	{

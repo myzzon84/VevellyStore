@@ -2,6 +2,8 @@ import clsx from 'clsx';
 import React from 'react';
 import { MenuItem } from './MenuItem';
 import { CategoriesType } from '../Header/Header';
+import { useNavigate } from 'react-router-dom';
+import { homePageStore } from '../../store/homePageStore';
 
 interface Props {
 	className?: string;
@@ -9,6 +11,8 @@ interface Props {
 }
 
 export const Menu: React.FC<Props> = ({ className, categories }) => {
+	const getProductOfCategory = homePageStore(state => state.getProductOfCategory);
+	const navigate = useNavigate();
 	const [isOpenSubmenu, setIsOpenSubmenu] = React.useState<number | null>(null);
 
 	const toggleSubmenu = (index: number) => {
@@ -35,6 +39,9 @@ export const Menu: React.FC<Props> = ({ className, categories }) => {
 								onClick={e => {
 									e.preventDefault();
 									toggleSubmenu(index);
+									navigate(`/${item.name}`);
+									getProductOfCategory(item.id);
+
 								}}
 							>
 								<div className="flex items-center gap-2 pr-5">

@@ -3,6 +3,7 @@ import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
 import { RefObject } from 'react';
 import { burger as t } from '../../translations/translations';
 import { translateStore } from '../../store/translateStore';
+import { homePageStore } from '../../store/homePageStore';
 
 interface BurgerMenuProps {
 	refBurger: RefObject<HTMLDivElement>;
@@ -10,6 +11,7 @@ interface BurgerMenuProps {
 
 const BurgerMenu: React.FC<BurgerMenuProps> = ({ refBurger }) => {
     const lang = translateStore(state => state.lang);
+	const getAllProducts = homePageStore(state => state.getAllProducts);
 	return (
 		<div
 			ref={refBurger}
@@ -17,7 +19,7 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({ refBurger }) => {
 		>
 			<div className={` w-[380px] bg-[#EFEFEF] py-10 pl-10 absolute z-10`}>
 				<div className={`mb-[14px]`}>
-					<Link to={'/products'}>{t.allProducts[lang]}</Link>
+					<Link to={'/products'} onClick={() => {getAllProducts()}}>{t.allProducts[lang]}</Link>
 				</div>
 				<div className={`mb-[58px]`}>
 					<Link to={''}>{t.collections[lang]}</Link>
