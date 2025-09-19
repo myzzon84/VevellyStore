@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { SwaggerCartItemType } from './CardSlider';
+import { useParams } from 'react-router-dom';
 
 interface Props {
 	className?: string;
@@ -8,6 +9,7 @@ interface Props {
 }
 
 const Breadcrumbs: React.FC<Props> = ({ className, selectedProduct }) => {
+	const params = useParams();
 	const location = useLocation();
 	const pathnames = location.pathname.split('/').filter(path => path);
 
@@ -43,7 +45,10 @@ const Breadcrumbs: React.FC<Props> = ({ className, selectedProduct }) => {
 										: {}
 								}
 							>
-								{value}
+								{index === pathnames.length - 1 &&
+								params.categoryName?.split('--')[0] === 'category'
+									? value.split('--')[2]
+									: value}
 							</NavLink>
 						</li>
 					);

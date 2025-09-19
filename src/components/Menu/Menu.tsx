@@ -39,7 +39,7 @@ export const Menu: React.FC<Props> = ({ className, categories }) => {
 								onClick={e => {
 									e.preventDefault();
 									toggleSubmenu(index);
-									navigate(`/${item.name}`);
+									navigate(`/category--${item.id}--${(item.name).toLowerCase()}`);
 									getProductOfCategory(item.id);
 
 								}}

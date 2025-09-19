@@ -4,26 +4,28 @@ import Breadcrumbs from '../components/Breadcrumbs';
 import { Container } from '../components/Container/Container';
 import filterIcon from '../assets/icons/filterIcon.svg';
 import arrowDown from '../assets/icons/arrow-down.svg';
-import { homePageStore } from '../store/homePageStore';
 import CardProduct from '../components/CardProduct';
 import { RotatingLines } from 'react-loader-spinner';
 import arrowPagination from '../assets/icons/arrowPagination.svg';
-import { useEffect, useRef, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import SortBy from '../components/SortBy';
+import { useParams } from 'react-router-dom';
+import { homePageStore } from '../store/homePageStore';
 
 import Filters from '../components/Filters';
+import { SwaggerCartItemType } from '../components/CardSlider';
 
 type PageType = { startIndex: number; endIndex: number };
 
-const ProductsPage = () => {
-	const allProducts = homePageStore(state => state.allProducts);
-	const newArrayOfProducts = [
-		...allProducts,
-		...allProducts,
-		...allProducts,
-		...allProducts,
-		...allProducts,
-	];
+interface ProductsPageProps {
+	products: SwaggerCartItemType[];
+	loading: boolean;
+}
+
+const ProductsPage: FC<ProductsPageProps> = ({ products, loading }) => {
+	const getProductOfCategory = homePageStore(state => state.getProductOfCategory);
+
+	const newArrayOfProducts = [...products, ...products, ...products, ...products, ...products];
 	const [page, setPage] = useState(0);
 	const [pageArr, setPageArr] = useState<PageType[]>([]);
 	const [currentPage, setCurrentPage] = useState(1);
@@ -34,11 +36,16 @@ const ProductsPage = () => {
 	const filtersButtonRef = useRef(null);
 	const sortButtonRef = useRef(null);
 
+	const params = useParams();
+
+	console.log(params.categoryName?.split('--')[0]);
+	console.log(products);
+
 	useEffect(() => {
 		setPage(
 			Math.floor(newArrayOfProducts.length / 8) + (newArrayOfProducts.length % 8 > 0 ? 1 : 0)
 		);
-	}, [allProducts]);
+	}, [products]);
 
 	useEffect(() => {
 		if (page) {
@@ -53,6 +60,12 @@ const ProductsPage = () => {
 			setPageArr(pages);
 		}
 	}, [page]);
+
+	useEffect(() => {
+		if (products.length === 0 && params.categoryName?.split('--')[0] === 'category') {
+			getProductOfCategory(Number(params.categoryName.split('--')[1]));
+		}
+	}, []);
 
 	return (
 		<Layout>
@@ -69,7 +82,7 @@ const ProductsPage = () => {
 							<span>Filters</span>
 						</div>
 
-						{showFilters && allProducts.length > 0 && (
+						{showFilters && products.length > 0 && (
 							<Filters setShowFilters={setShowFilters} filtersButtonRef={filtersButtonRef} />
 						)}
 					</div>
@@ -85,19 +98,19 @@ const ProductsPage = () => {
 							<img src={arrowDown} alt="arrow down" className={` w-[14px]`} />
 						</div>
 
-						{showSort && allProducts.length > 0 && (
+						{showSort && products.length > 0 && (
 							<SortBy setShowSort={setShowSort} sortButtonRef={sortButtonRef} />
 						)}
 					</div>
 				</div>
 				<div className={` flex flex-wrap justify-between`}>
-					{allProducts.length > 0 ? (
+					{products.length > 0 ? (
 						newArrayOfProducts
 							.slice(pageArr[currentPage - 1]?.startIndex, pageArr[currentPage - 1]?.endIndex)
 							.map((card, index) => {
 								return <CardProduct card={card} key={index} />;
 							})
-					) : (
+					) : loading ? (
 						<div className={` flex justify-center w-full`}>
 							<RotatingLines
 								visible={true}
@@ -108,51 +121,55 @@ const ProductsPage = () => {
 								ariaLabel="rotating-lines-loading"
 							/>
 						</div>
+					) : (
+						<div className={` text-center w-full text-[30px] py-30`}>Not found</div>
 					)}
 				</div>
-				<div className={` flex w-full justify-center items-center gap-2`}>
-					<img
-						src={arrowPagination}
-						alt="arrow"
-						className={` rotate-180 cursor-pointer ${
-							currentPage === 1 ? ' opacity-50' : ' opacity-100'
-						}`}
-						onClick={() => {
-							if (currentPage === 1) {
-								return;
-							}
-							setCurrentPage(currentPage => currentPage - 1);
-						}}
-					/>
-					<div className={`flex gap-2 items-center`}>
-						{pageArr.map((item, index) => (
-							<span
-								key={index}
-								className={` cursor-pointer ${
-									currentPage === index + 1 ? ' font-bold text-[18px]' : ' font-light'
-								}`}
-								onClick={() => {
-									setCurrentPage(index + 1);
-								}}
-							>
-								{index + 1}
-							</span>
-						))}
+				{products.length > 0 && (
+					<div className={` flex w-full justify-center items-center gap-2`}>
+						<img
+							src={arrowPagination}
+							alt="arrow"
+							className={` rotate-180 cursor-pointer ${
+								currentPage === 1 ? ' opacity-50' : ' opacity-100'
+							}`}
+							onClick={() => {
+								if (currentPage === 1) {
+									return;
+								}
+								setCurrentPage(currentPage => currentPage - 1);
+							}}
+						/>
+						<div className={`flex gap-2 items-center`}>
+							{pageArr.map((item, index) => (
+								<span
+									key={index}
+									className={` cursor-pointer ${
+										currentPage === index + 1 ? ' font-bold text-[18px]' : ' font-light'
+									}`}
+									onClick={() => {
+										setCurrentPage(index + 1);
+									}}
+								>
+									{index + 1}
+								</span>
+							))}
+						</div>
+						<img
+							src={arrowPagination}
+							alt="arrow"
+							className={` ${
+								currentPage === pageArr.length ? ' opacity-50' : ' opacity-100'
+							} cursor-pointer`}
+							onClick={() => {
+								if (currentPage === pageArr.length) {
+									return;
+								}
+								setCurrentPage(currentPage => currentPage + 1);
+							}}
+						/>
 					</div>
-					<img
-						src={arrowPagination}
-						alt="arrow"
-						className={` ${
-							currentPage === pageArr.length ? ' opacity-50' : ' opacity-100'
-						} cursor-pointer`}
-						onClick={() => {
-							if (currentPage === pageArr.length) {
-								return;
-							}
-							setCurrentPage(currentPage => currentPage + 1);
-						}}
-					/>
-				</div>
+				)}
 			</Container>
 		</Layout>
 	);

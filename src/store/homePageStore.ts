@@ -5,14 +5,16 @@ import { SwaggerCartItemType } from '../components/CardSlider';
 type Store = {
 	loading: boolean;
 	setLoading: (bool: boolean) => void;
+	setLoadingCategoryProduct: (bool: boolean) => void;
+	loadingCategoryProduct: boolean;
 	allProducts: SwaggerCartItemType[];
-	categoryProducts: SwaggerCartItemType[];
 	getAllProducts: () => void;
 	productImages: string[];
 	setProductImages: (arr: string[]) => void;
 	selectedProduct: SwaggerCartItemType | null;
 	setSelectedProduct: (id: number) => void;
-	getProductOfCategory: (categoryId: number) => Promise<SwaggerCartItemType[]>;
+	productsByCategory: SwaggerCartItemType[];
+	getProductOfCategory: (categoryId: number) => void;
 };
 
 export const homePageStore = create<Store>()(set => ({
@@ -26,17 +28,18 @@ export const homePageStore = create<Store>()(set => ({
 	},
 	loading: false,
 	setLoading: bool => set({ loading: bool }),
+	loadingCategoryProduct: false,
+	setLoadingCategoryProduct: bool => set({ loadingCategoryProduct: bool }),
 	allProducts: [],
-	categoryProducts: [],
 	productImages: [],
 	setProductImages: arr => {
 		set({ productImages: arr });
 	},
 	getAllProducts: () => {
-		set({allProducts: []});
+		set({ allProducts: [] });
 		set({ loading: true });
 		api
-			.get('all-products/?limit=20&offset=0', { headers: { 'Accept-Language': 'en' } })
+			.get('all-products/?page_size=50', { headers: { 'Accept-Language': 'en' } })
 			.then(res => {
 				let result = res.data.results;
 				set({ allProducts: result });
@@ -47,18 +50,18 @@ export const homePageStore = create<Store>()(set => ({
 				console.log(err);
 			});
 	},
-	getProductOfCategory: async categoryId => {
-		set({ loading: true });
-		set({allProducts: []});
-		try {
-			let response = await api.get(`all-products/?category=${categoryId}`);
-			let result = await response.data.results;
-			set({allProducts: result});
-			set({ loading: false });
-			return result;
-		} catch (error) {
-			set({ loading: false });
-			console.log(error);
-		}
+	productsByCategory: [],
+	getProductOfCategory: categoryId => {
+		set({ loadingCategoryProduct: true });
+		api
+			.get(`all-products/?category=${categoryId}`)
+			.then(res => {
+				set({ productsByCategory: res.data.results });
+				set({ loadingCategoryProduct: false });
+			})
+			.catch(err => {
+				set({ loadingCategoryProduct: false });
+				console.log(err);
+			});
 	},
 }));
