@@ -193,7 +193,6 @@ export const CardSlider: React.FC<Props> = ({ cards }) => {
 								)}
 							</div>
 							<div className="wrap_info">
-								{/* <div className="category text-lg leading-6">{item.category.name}</div> */}
 								<div className={` flex justify-between items-center px-2`}>
 									<div className="title text-[16px]/[1.3] w-[40%] font-medium">
 										{item.name.split('(')[0]}
