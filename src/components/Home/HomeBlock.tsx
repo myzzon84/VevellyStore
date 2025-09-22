@@ -19,7 +19,7 @@ export const HomeBlock: React.FC<Props> = ({ title, cards, see_all_link }) => {
 		<>
 			<Container>
 				<div className="flex items-center justify-between pb-10">
-					<div className="title text-[46px] uppercase font-medium leading-15 text-[#0D0C0C] mb-5">
+					<div className="title text-[46px] uppercase font-medium leading-15 text-[#0D0C0C] mb-4">
 						{title}
 					</div>
 					<div className="text-lg font-light leading-6 text-[#0d0c0c] hover:underline">
