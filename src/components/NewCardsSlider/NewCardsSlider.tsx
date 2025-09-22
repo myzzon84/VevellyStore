@@ -37,8 +37,16 @@ const NewCardsSlider: FC<Props> = ({ cards }) => {
 		<div className={` w-full h-full`}>
 			<Slider {...settings}>
 				{cards.map((item, index) => (
-					<div key={index} className={` !flex items-center h-[300px]`}>
-						<img src={item.images[0]} alt="img" className={''} />
+					<div key={index} className={` h-full flex flex-col`}>
+						<div
+							className={` !flex items-center h-[300px] max-1241px:h-[230px] max-1000px:h-[280px] max-800px:h-[210px] max-700px:h-[280px] max-500px:h-[200px]`}
+						>
+							<img src={item.images[0]} alt="img" className={''} />
+						</div>
+						<div className={`flex justify-between items-center mt-auto`}>
+							<div className={` w-[50%] text-center`}>{item.name.split('(')[0]}</div>
+							<div className={` w-[40%] text-end`}>{item.subproducts?.[0]?.price}</div>
+						</div>
 					</div>
 				))}
 			</Slider>

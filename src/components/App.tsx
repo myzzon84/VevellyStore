@@ -7,7 +7,6 @@ import { RouterProvider } from 'react-router-dom';
 import useResize from '../helpers/usePageSize';
 import { useEffect } from 'react';
 import { homePageStore } from '../store/homePageStore';
-import { catalogStore } from '../store/CatalogStore';
 import api from '../api/axios';
 
 function App() {
@@ -20,9 +19,8 @@ function App() {
 		getAllProducts();
 	}, []);
 
-	console.log(allProducts);
+	// console.log(allProducts);
 
-	// api.get('livez/').then(() => console.log('livez first'));
 	// setInterval(() => {
 	// 	api.get('livez/').then(() => console.log('livez'));
 	// }, 1000 * 60 * 14);

@@ -1,23 +1,30 @@
-.myNewSlick{
-    height: 100%;
+.myNewSlick {
+	height: 100%;
 
-    .slick-arrow{
-        display: none !important;
-    }
+	.slick-track {
+		display: flex !important;
+		align-items: stretch;
+	}
 
-    .slick-list{
-        height: 100%;
-        display: flex;
-    }
+	.slick-arrow {
+		display: none !important;
+	}
 
-    .slick-slide{
-        // background-color: white;
-        display: flex !important;
-        justify-content: center !important;
+	.slick-list {
+		height: 100%;
+		display: flex;
+		justify-content: space-between;
+	}
 
-        > div{
-            width: 270px;
-            background-color: white;
-        };
-    }
+	.slick-slide {
+		height: auto;
+		display: flex !important;
+		justify-content: center !important;
+
+		> div {
+			width: 90%;
+			background-color: white;
+			height: 100%;
+		}
+	}
 }
