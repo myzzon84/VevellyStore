@@ -1,0 +1,23 @@
+.myNewSlick{
+    height: 100%;
+
+    .slick-arrow{
+        display: none !important;
+    }
+
+    .slick-list{
+        height: 100%;
+        display: flex;
+    }
+
+    .slick-slide{
+        // background-color: white;
+        display: flex !important;
+        justify-content: center !important;
+
+        > div{
+            width: 270px;
+            background-color: white;
+        };
+    }
+}

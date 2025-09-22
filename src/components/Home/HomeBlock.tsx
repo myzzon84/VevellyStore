@@ -6,6 +6,7 @@ import { mainPage as t } from '../../translations/translations';
 import { homePageStore } from '../../store/homePageStore';
 import { RotatingLines } from 'react-loader-spinner';
 import { translateStore } from '../../store/translateStore';
+import NewCardsSlider from '../NewCardsSlider/NewCardsSlider';
 
 interface Props {
 	title: string | string[];
@@ -39,6 +40,7 @@ export const HomeBlock: React.FC<Props> = ({ title, cards }) => {
 						/>
 					) : (
 						<CardSlider cards={cards} />
+						// <NewCardsSlider cards={cards}/>
 					)}
 				</div>
 			</Container>

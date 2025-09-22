@@ -68,7 +68,7 @@ img {
 
 .container {
 	width: 100%;
-	max-width: 1200px;
+	max-width: 1240px;
 	margin: 0 auto;
 	/* padding: 0 16px; Отступы по бокам */
 }
@@ -174,7 +174,7 @@ img {
 	gap: 20px;
 }
 
-.card-slider {
+/* .card-slider {
 	display: flex;
 	justify-content: center;
 }
@@ -184,4 +184,4 @@ img {
 	justify-content: center;
 	height: 100%;
 	background: white;
-}
+} */
