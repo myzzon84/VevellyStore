@@ -1,0 +1,14 @@
+name: Ping Render Server
+
+on:
+  schedule:
+    # кожні 14 хвилин
+    - cron: "*/14 * * * *"
+  workflow_dispatch: # дозволяє запускати вручну
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Curl request
+        run: curl -s https://твій-сервер.onrender.com > /dev/null
