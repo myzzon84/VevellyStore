@@ -3,7 +3,7 @@ name: Ping Render Server
 on:
   schedule:
     # кожні 14 хв з 08:00 до 23:00 за Києвом (UTC+3 => 05-20)
-    - cron: "*/14 5-20 * * *"
+    - cron: "*/10 5-20 * * *"
   workflow_dispatch:
 
 jobs:
