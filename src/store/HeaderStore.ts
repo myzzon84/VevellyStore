@@ -5,6 +5,8 @@ type Store = {
 	setSearchVisible: (bool: boolean) => void;
 	isOpenCall: boolean;
 	setIsOpenCall: (bool: boolean) => void;
+	isShowCatalog: boolean;
+	setIsShowCatalog: (bool: boolean) => void;
 };
 
 export const headerStore = create<Store>()(set => ({
@@ -14,5 +16,6 @@ export const headerStore = create<Store>()(set => ({
 	},
 	isOpenCall: false,
 	setIsOpenCall: bool => set({ isOpenCall: bool }),
-	
+	isShowCatalog: false,
+	setIsShowCatalog: (bool) => set({isShowCatalog: bool}),
 }));

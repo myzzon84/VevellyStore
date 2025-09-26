@@ -41,10 +41,11 @@ const Header = () => {
 
 	const searchVisible = headerStore(state => state.searchVisible);
 	const setSearchVisible = headerStore(state => state.setSearchVisible);
+	const isShowCatalog = headerStore(state => state.isShowCatalog);
+	const setIsShowCatalog = headerStore(state => state.setIsShowCatalog);
 	const getCategories = catalogStore(state => state.getCategories);
 	const categories = catalogStore(state => state.categories);
 	const loading = catalogStore(state => state.loading);
-	const [isShowCatalog, setIsShowCatalog] = useState(false);
 	const [isShowBurgerMenu, setIsShowBurgerMenu] = useState(false);
 
 	const refSearch = useRef<HTMLDivElement>(null);
