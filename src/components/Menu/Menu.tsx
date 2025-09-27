@@ -4,6 +4,7 @@ import { MenuItem } from './MenuItem';
 import { CategoriesType } from '../Header/Header';
 import { useNavigate } from 'react-router-dom';
 import { homePageStore } from '../../store/homePageStore';
+import { headerStore } from '../../store/HeaderStore';
 
 interface Props {
 	className?: string;
@@ -11,6 +12,7 @@ interface Props {
 }
 
 export const Menu: React.FC<Props> = ({ className, categories }) => {
+	const setIsShowCatalog = headerStore(state => state.setIsShowCatalog);
 	const getProductOfCategory = homePageStore(state => state.getProductOfCategory);
 	const navigate = useNavigate();
 	const [isOpenSubmenu, setIsOpenSubmenu] = React.useState<number | null>(null);
@@ -41,6 +43,7 @@ export const Menu: React.FC<Props> = ({ className, categories }) => {
 									toggleSubmenu(index);
 									navigate(`/category--${item.id}--${(item.name).toLowerCase()}`);
 									getProductOfCategory(item.id);
+									setIsShowCatalog(false);
 
 								}}
 							>
