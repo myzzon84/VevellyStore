@@ -53,6 +53,7 @@ export const homePageStore = create<Store>()(set => ({
 	productsByCategory: [],
 	getProductOfCategory: categoryId => {
 		set({ loadingCategoryProduct: true });
+		set({productsByCategory: []});
 		api
 			.get(`all-products/?category=${categoryId}`)
 			.then(res => {
