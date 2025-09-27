@@ -1,10 +1,12 @@
 import clsx from 'clsx';
-import React from 'react';
+import React, { useState } from 'react';
 import { MenuItem } from './MenuItem';
 import { CategoriesType } from '../Header/Header';
 import { useNavigate } from 'react-router-dom';
 import { homePageStore } from '../../store/homePageStore';
 import { headerStore } from '../../store/HeaderStore';
+import { catalogStore } from '../../store/CatalogStore';
+
 
 interface Props {
 	className?: string;
@@ -14,8 +16,10 @@ interface Props {
 export const Menu: React.FC<Props> = ({ className, categories }) => {
 	const setIsShowCatalog = headerStore(state => state.setIsShowCatalog);
 	const getProductOfCategory = homePageStore(state => state.getProductOfCategory);
+	const isOpenSubmenu = catalogStore(state => state.isOpenSubmenu);
+	const setIsOpenSubmenu = catalogStore(state => state.setIsOpenSubmenu);
 	const navigate = useNavigate();
-	const [isOpenSubmenu, setIsOpenSubmenu] = React.useState<number | null>(null);
+	const [firstClickCategory, setFirstClickCategory] = useState(false);
 
 	const toggleSubmenu = (index: number) => {
 		setIsOpenSubmenu(isOpenSubmenu === index ? null : index);
@@ -40,11 +44,15 @@ export const Menu: React.FC<Props> = ({ className, categories }) => {
 								className="flex items-center justify-between cursor-pointer"
 								onClick={e => {
 									e.preventDefault();
+									setFirstClickCategory(true);
 									toggleSubmenu(index);
+									if(!firstClickCategory && item.subcategories.length > 0){
+										return;
+									}
 									navigate(`/category--${item.id}--${(item.name).toLowerCase()}`);
 									getProductOfCategory(item.id);
 									setIsShowCatalog(false);
-
+									setFirstClickCategory(false);
 								}}
 							>
 								<div className="flex items-center gap-2 pr-5">

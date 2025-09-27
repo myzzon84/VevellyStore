@@ -7,6 +7,8 @@ type Store = {
 	loading: boolean;
 	categories: CategoriesType[];
 	getCategories: () => void;
+	isOpenSubmenu: number | null;
+	setIsOpenSubmenu: (parameter: number | null) => void;
 };
 
 export const catalogStore = create<Store>()(
@@ -28,6 +30,8 @@ export const catalogStore = create<Store>()(
 						set({loading: false});
 					});
 			},
+			isOpenSubmenu: null,
+			setIsOpenSubmenu:(parameter) => set({isOpenSubmenu: parameter }),
 		}),
 		{
 			name: 'categories',

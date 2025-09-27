@@ -26,7 +26,7 @@ api.interceptors.response.use(
 	error => {
 		console.error('API Error:', error.response?.data || error.message);
 		if (error.response?.status === 401) {
-			console.log('Токен недействителен, нужно перелогиниться');
+			console.log('Токен не дійсний');
 		}
 		return Promise.reject(error);
 	}
