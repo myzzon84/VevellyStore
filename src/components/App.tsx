@@ -19,11 +19,11 @@ function App() {
 		getAllProducts();
 	}, []);
 
-	// console.log(allProducts);
+	console.log(allProducts);
 
-	// setInterval(() => {
-	// 	api.get('livez/').then(() => console.log('livez'));
-	// }, 1000 * 60 * 14);
+	setInterval(() => {
+		api.get('livez/').then(() => console.log('livez'));
+	}, 1000 * 60 * 14);
 
 	return (
 		<div className={` overflow-hidden bg-[#EFEFEF]`}>
