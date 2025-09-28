@@ -38,6 +38,8 @@ const ProductInfo: FC<ProductInfoProps> = ({ selectedProduct }) => {
 		});
 	}
 
+	console.log(selectedProduct.materials);
+
 	return (
 		<div className="flex flex-col gap-5 justify-between min-w-[370px] max-900px:min-w-[220px]">
 			<div className="flex flex-col gap-2 font-krub font-medium text-[#0D0C0C]">
@@ -45,10 +47,10 @@ const ProductInfo: FC<ProductInfoProps> = ({ selectedProduct }) => {
 				<p className="text-[16px]/[1.3]">{selectedProduct?.design}</p>
 				<p className="">{`SKU: ${selectedProduct?.sku}`}</p>
 			</div>
-			{selectedProduct && selectedProduct.materials.length > 1 ? (
+			{selectedProduct && selectedProduct.materials?.length > 1 ? (
 				<MetalColorSwitcher />
 			) : (
-				<div>{`Metal color: ${selectedProduct.materials[0].material.color}`}</div>
+				<div>{`Metal color: ${selectedProduct.materials?.[0]?.material.color}`}</div>
 			)}
 
 			{/* <SizeComponent /> */}

@@ -206,8 +206,7 @@ export const CardSlider: React.FC<Props> = ({ cards }) => {
 												</span>
 											</>
 										) : (
-											// <span>${item.price}</span>
-											<span>${item.subproducts[0]?.new_price}</span>
+											<span>${item.subproducts?.[0]?.price}</span>
 										)}
 									</div>
 								</div>
