@@ -1,21 +1,22 @@
 import { useState } from 'react';
 import arrowDown from '../../assets/icons/arrow-down.svg';
-import { useSelector } from 'react-redux';
-import { currentMetalColorSelector, materialsSelector } from '../../redux/product/selectors';
-import { useDispatch } from 'react-redux';
-import { handleCurrentMetalColor } from '../../redux/product/slice';
-import { AppDispatch } from '../../redux/store';
+import { homePageStore } from '../../store/homePageStore';
 
 const MetalColorSwitcher = () => {
 	const [isOpen, setIsOpen] = useState(false);
-	const dispatch: AppDispatch = useDispatch();
 
-	const materials = useSelector(materialsSelector);
-	const currentMetalColor = useSelector(currentMetalColorSelector);
+	type material = [
+		{material: {
+			material: string;
+			color: string;
+		}}
+	]
+	const selectedProduct = homePageStore(state => state.selectedProduct);
+	let materials: material | undefined = selectedProduct?.materials;
+	const [currentMetalColor, setCurrentMetalColor] = useState(0);
+	
 
-	const handleMaterialColor = (index: number): void => {
-		dispatch(handleCurrentMetalColor(index));
-	};
+	console.log(selectedProduct);
 
 	return (
 		<div className="flex gap-2.5 items-center">
@@ -41,7 +42,7 @@ const MetalColorSwitcher = () => {
 								key={index}
 								className="p-1 text-[#0D0C0C] text-sm hover:bg-gray-200 cursor-pointer"
 								onClick={() => {
-									handleMaterialColor(index);
+									setCurrentMetalColor(index)
 									setIsOpen(false);
 								}}
 							>
