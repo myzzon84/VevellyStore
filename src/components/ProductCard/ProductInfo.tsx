@@ -69,7 +69,7 @@ const ProductInfo: FC<ProductInfoProps> = ({ selectedProduct }) => {
 						setCurrentSize(sizes.indexOf(num as number));
 					}}
 				/>
-			) : null}
+			) : (<div>{`Size: ${selectedProduct.subproducts?.[0]?.size}`}</div>)}
 
 			<div>
 				{subproducts && subproducts[currentSize]?.old_price ? (
